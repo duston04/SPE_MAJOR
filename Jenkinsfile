@@ -3,7 +3,7 @@ pipeline {
 	agent any
 
 	environment {
-	    registry = "darshan4163264/calculatorproj"
+	    registry = "darshan4163264/spebackend"
 	    registryCredential = 'dockerId'
 	    dockerImage = ''
 	}
@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Git Pull') {
             steps {
-				git url: 'https://github.com/duston04/calcDevops.git',
+				git url: 'https://github.com/duston04/SPE_MAJOR.git',
 				branch: 'master'
             }
         }
@@ -36,12 +36,6 @@ pipeline {
                         dockerImage.push()
                     }
                 }
-            }
-        }
-
-        stage('Cleaning Docker Image') {
-            steps {
-                sh 'docker rmi -f darshan4163264/calculatorproj:latest'
             }
         }
 

@@ -1,0 +1,11 @@
+---
+- name: Deploying the application
+  hosts: all
+  tasks:
+    - name: Starting the docker service
+      service:
+        name: docker
+        state: started
+
+    - name: "Start docker compose"
+      command: "docker-compose up -d"

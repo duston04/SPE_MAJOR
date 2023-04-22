@@ -14,6 +14,7 @@ services:
       - ./db:/var/lib/mysql
 
   app:
+    image: darshan4163264/spebackend:latest
     depends_on:
       - mysqldb
     build: .

@@ -1,0 +1,1 @@
+client1 ansible_host=localhost ansible_conneection=ssh ansible_user=darshandemo ansible_sudo_pass=1234567890 ansible_python_interpreter=/usr/bin/python3
