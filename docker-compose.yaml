@@ -17,7 +17,6 @@ services:
     image: darshan4163264/spebackend:latest
     depends_on:
       - mysqldb
-    build: .
     ports:
       - 8282:8282
     environment:

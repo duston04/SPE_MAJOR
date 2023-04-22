@@ -7,5 +7,10 @@
         name: docker
         state: started
 
-    - name: "Start docker compose"
-      command: "docker-compose up -d"
+    - name: Copying the docker compose file
+      copy:
+        src: ./docker-compose.yaml
+        dest: ./
+
+    - name: Starting the application
+      shell: docker-compose up -d
