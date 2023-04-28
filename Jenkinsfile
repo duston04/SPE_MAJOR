@@ -41,7 +41,7 @@ pipeline {
                     dockerImage = docker.build registry
                 }
                 script{
-                    sh 'cd /frontend/frontend'
+                    sh 'cd frontend/frontend'
                     dockerImageReact = docker.build registryfront
                 }
             }
