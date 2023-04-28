@@ -4,8 +4,10 @@ pipeline {
 
 	environment {
 	    registry = "darshan4163264/spebackend"
+	    registryfront = "darshan4163264/spefrontend"
 	    registryCredential = 'dockerId'
 	    dockerImage = ''
+	    dockerImageReact = ''
 	}
 
     stages {
@@ -15,6 +17,14 @@ pipeline {
 				branch: 'master'
             }
         }
+
+        stage("React installations"){
+            steps{
+                sh 'cd /frontend/frontend'
+                sh 'npm install'
+            }
+        }
+
         stage('Maven Build') {
             steps {
                 sh 'mvn clean install'
@@ -26,6 +36,10 @@ pipeline {
                 script {
                     dockerImage = docker.build registry
                 }
+                script{
+                    sh 'cd /frontend/frontend'
+                    dockerImageReact = docker.build registryfront
+                }
             }
         }
 
@@ -34,6 +48,10 @@ pipeline {
                 script{
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push()
+                    }
+
+                    docker.withRegistry( '', registryCredential) {
+                        dockerImageReact.push()
                     }
                 }
             }
