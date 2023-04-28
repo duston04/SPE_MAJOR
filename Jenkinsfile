@@ -21,6 +21,7 @@ pipeline {
         stage("React installations"){
             steps{
                 dir('frontend/frontend'){
+                    sh 'echo hello'
                     sh 'npm install'
                 }
             }
