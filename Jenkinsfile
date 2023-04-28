@@ -2,6 +2,8 @@ pipeline {
 
 	agent any
 
+    tools {nodejs "nodejs"}
+
 	environment {
 	    registry = "darshan4163264/spebackend"
 	    registryfront = "darshan4163264/spefrontend"
