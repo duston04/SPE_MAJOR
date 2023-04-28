@@ -35,17 +35,23 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Backend Docker Image') {
             steps {
                 script {
                     dockerImage = docker.build registry
                 }
-                script{
+            }
+        }
+
+        stage('Build Frontend Docker Image') {
+            steps {
+                script {
                     sh 'cd frontend/frontend'
                     dockerImageReact = docker.build registryfront
                 }
             }
         }
+
 
         stage('Push Docker Image') {
             steps {
