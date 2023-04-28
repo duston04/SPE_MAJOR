@@ -45,9 +45,10 @@ pipeline {
 
         stage('Build Frontend Docker Image') {
             steps {
-                script {
-                    sh 'cd frontend/frontend'
-                    dockerImageReact = docker.build registryfront
+                dir('frontend/frontend'){
+                    script {
+                        dockerImageReact = docker.build registryfront
+                    }
                 }
             }
         }
