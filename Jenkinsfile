@@ -20,7 +20,7 @@ pipeline {
 
         stage("React installations"){
             steps{
-                sh 'cd /frontend/frontend'
+                sh 'cd frontend/frontend'
                 sh 'npm install'
             }
         }
