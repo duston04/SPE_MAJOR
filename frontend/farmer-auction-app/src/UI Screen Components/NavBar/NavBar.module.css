@@ -1,0 +1,57 @@
+.NavBar {
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 92.92%;
+  display: inline-flex;
+  background-color: white;
+  color: white;
+
+  padding-left: 7%;
+  height: 65px;
+  border: 1px solid #2691d9;
+  border-radius: 2px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.202);
+  font-size: 30px;
+  font-weight: bold;
+}
+.logo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin-right: 10px;
+  width: 75px;
+  height: 65px;
+  /* border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px; */
+}
+.AppName {
+  margin-right: 10px;
+  width: 200px;
+  height: 65px;
+  /* border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px; */
+}
+
+.back_btn {
+  background: transparent;
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 98%;
+  border: white;
+
+  border-radius: 2px;
+  font-size: 15px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+  margin-left: 70%;
+}
+
+.back_btn:hover {
+  background-color: #007bff;
+  color: black;
+}
