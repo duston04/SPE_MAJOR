@@ -68,12 +68,10 @@ const items = [
 ];
 const FarmerDashBoard = (props) => {
   //   const [farmerScreen, setFarmerScreen] = useState("AddNewBid");
-
-  if (props.farmerScreen === "Active List")
+  if (props.farmerScreen === "Farmer Profile")
     return (
       <>
-        <AddNewBid />
-        <ActiveBidList />
+        <FarmerProfile />
       </>
     );
   else if (props.farmerScreen === "Expired List")
@@ -88,10 +86,11 @@ const FarmerDashBoard = (props) => {
         <CompletedBidList />
       </>
     );
-  else if (props.farmerScreen === "Farmer Profile")
+  else
     return (
       <>
-        <FarmerProfile />
+        <AddNewBid />
+        <ActiveBidList />
       </>
     );
 };

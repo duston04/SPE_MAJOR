@@ -56,6 +56,7 @@ const NavBar2 = (props) => {
             <button
               onClick={() => {
                 props.setFarmerScreen(navOption.option);
+                handleMenuToggle();
               }}
             >
               {navOption.option}

@@ -1,6 +1,6 @@
 .CompletedListContainer {
   position: absolute;
-  left: 40%;
+  left: 20%;
   top: 17%;
   width: 600px;
   background-color: white;
@@ -11,7 +11,7 @@
   border-radius: 10px;
 }
 .CompletedList {
-  background-color: rgba(29, 236, 119, 0.752);
+  background-color: #2ecc71;
   max-height: 400px;
   overflow-y: scroll;
   height: 350px;

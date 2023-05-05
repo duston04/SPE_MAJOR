@@ -26,6 +26,7 @@ const Application = () => {
           value="Logout"
           onClick={() => {
             setScreen("Login");
+            setFarmerScreen("Active List");
           }}
           userScreenType={userScreenType}
           setFarmerScreen={setFarmerScreen}
