@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import classes from "./Registration.module.css";
+import classes from "./FarmerProfile.module.css";
 
-const Registration = (props) => {
+const FarmerProfile = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [contact, setContact] = useState("");
@@ -48,14 +48,8 @@ const Registration = (props) => {
 
   return (
     <div className={classes.registration_form}>
-      <h1>Registration Form</h1>
+      <h1>Farmer Profile</h1>
       <form onSubmit={handleSubmit}>
-        <label>User Type:</label>
-        <select value={userType} onChange={handleUserTypeChange}>
-          <option value="consumer">Consumer</option>
-          <option value="farmer">Farmer</option>
-        </select>
-
         <label>Username:</label>
         <input type="text" value={username} onChange={handleUsernameChange} />
 
@@ -91,14 +85,11 @@ const Registration = (props) => {
             justifyContent: "space-evenly",
           }}
         >
-          <button type="submit">Register</button>
-          <button type="button" onClick={loginButtonHandler}>
-            Login
-          </button>
+          <button type="submit">Update</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Registration;
+export default FarmerProfile;

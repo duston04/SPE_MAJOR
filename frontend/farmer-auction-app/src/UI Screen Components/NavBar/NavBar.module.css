@@ -1,4 +1,4 @@
-.NavBar {
+/* .NavBar {
   opacity: 0.9;
   position: absolute;
   top: 0;
@@ -24,34 +24,151 @@
   width: 75px;
   height: 65px;
   /* border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px; */
+  border-bottom-right-radius: 25px; 
 }
 .AppName {
   margin-right: 10px;
   width: 200px;
   height: 65px;
-  /* border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px; */
-}
+   border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px; 
+}*/
 
 .back_btn {
   background: transparent;
   display: inline-block;
   position: relative;
-  width: 120px;
-  height: 98%;
+  width: 100px;
+  height: 105%;
   border: white;
 
   border-radius: 2px;
   font-size: 15px;
-  color: white;
-  font-weight: 400;
+  color: black;
+  font-weight: bold;
   cursor: pointer;
   outline: none;
-  margin-left: 70%;
+  margin-left: 80%;
 }
 
 .back_btn:hover {
   background-color: #007bff;
-  color: black;
+  color: white;
+}
+.NavBar {
+  opacity: 0.85;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99.3%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 60px;
+  padding-left: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 50px;
+}
+
+.AppName {
+  height: 40px;
+  margin-right: 10px;
+  width: 150px;
+  margin-left: 30px;
+}
+
+.menu_btn {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.menu_icon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 20px;
+}
+
+.menu_icon span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  border-radius: 3px;
+  transition: transform 0.3s ease-out;
+}
+
+.menu_icon span:before,
+.menu_icon span:after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  border-radius: 3px;
+}
+
+.menu_icon span:before {
+  top: -8px;
+}
+
+.menu_icon span:after {
+  bottom: -8px;
+}
+
+.menu_btn:hover .menu_icon span {
+  transform: scale(1.1);
+}
+
+.menu_btn:hover .menu_icon span:before {
+  top: -10px;
+}
+
+.menu_btn:hover .menu_icon span:after {
+  bottom: -10px;
+}
+
+.menu_label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.menu {
+  opacity: 1;
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 626px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu button {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background-color: #ff6200;
 }

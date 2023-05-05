@@ -22,10 +22,11 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.setScreen("Farmer Dashboard");
     // handle login or signup logic here
   };
   const handleSignup = () => {
-    props.setInitialScreen("SignUp");
+    props.setScreen("SignUp");
   };
 
   return (

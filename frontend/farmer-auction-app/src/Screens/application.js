@@ -2,18 +2,34 @@ import { useState } from "react";
 import Login from "./Login Module/Login";
 import classes from "./application.module.css";
 import Registration from "./Register Module/Registration";
-import NavBar from "../UI Screen Components/NavBar/NavBar";
+import NavBars from "../UI Screen Components/NavBar/NavBar";
+import FarmerDashBoard from "./Farmer Module/FarmerDashBoard";
 
 const Application = () => {
-  const [initialScreen, setInitialScreen] = useState("Login");
+  const [screen, setScreen] = useState("Login");
+  const [userScreenType, setUserScreenType] = useState("");
+  const [farmerScreen, setFarmerScreen] = useState("Active List");
 
   return (
     <div className={classes.bg_container}>
-      {initialScreen === "Login" && (
-        <Login setInitialScreen={setInitialScreen} />
+      {screen === "Login" && (
+        <Login setScreen={setScreen} setUserScreenType={setUserScreenType} />
       )}
-      {initialScreen === "SignUp" && (
-        <Registration setInitialScreen={setInitialScreen} />
+      {screen === "SignUp" && <Registration setScreen={setScreen} />}
+      {screen === "Farmer Dashboard" && (
+        <FarmerDashBoard setScreen={setScreen} farmerScreen={farmerScreen} />
+      )}
+      {screen === "Login" || screen === "SignUp" ? (
+        <NavBars.NavBar />
+      ) : (
+        <NavBars.NavBar2
+          value="Logout"
+          onClick={() => {
+            setScreen("Login");
+          }}
+          userScreenType={userScreenType}
+          setFarmerScreen={setFarmerScreen}
+        />
       )}
     </div>
   );

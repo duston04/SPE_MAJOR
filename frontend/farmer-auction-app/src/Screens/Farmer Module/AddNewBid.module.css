@@ -1,0 +1,60 @@
+.add_new_bid {
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  justify-content: flex-start;
+}
+
+.add_new_bid h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+
+.add_new_bid label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.add_new_bid select,
+.add_new_bid input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add_new_bid button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add_new_bid button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+.add_new_bid select:focus,
+.add_new_bid input[type="number"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0px 0px 5px #007bff;
+}
