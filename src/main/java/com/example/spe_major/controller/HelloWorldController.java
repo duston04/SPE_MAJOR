@@ -1,7 +1,7 @@
 package com.example.spe_major.controller;
 
-import com.example.spe_major.entities.HelloWorld;
-import com.example.spe_major.repo.HelloWorldRepo;
+import com.example.spe_major.model.HelloWorld;
+import com.example.spe_major.repository.HelloWorldRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

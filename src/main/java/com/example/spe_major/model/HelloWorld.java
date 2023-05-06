@@ -1,4 +1,4 @@
-package com.example.spe_major.entities;
+package com.example.spe_major.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
