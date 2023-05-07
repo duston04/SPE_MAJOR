@@ -10,6 +10,9 @@ import com.example.spe_major.repository.CustomerBidRepository;
 import com.example.spe_major.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -55,5 +58,43 @@ public class CustomerBidService {
         customerBidRepository.save(customerBid);
 
         return customerBid;
+    }
+
+    public List<Bid> activeBidsForCustomer(String customerUsername){
+        Optional<Customer> customer = customerRepository.findByUsername(customerUsername);
+        if(customer.isEmpty()){
+            throw new ResourceNotFoundException("Customer with the given username does not exist");
+        }
+        List<CustomerBid> customerBidList = customerBidRepository.findByCustomer(customer.get());
+
+        List<Bid> bidList = new ArrayList<>();
+
+        for(int i=0; i<customerBidList.size(); i++){
+            if(Objects.equals(customerBidList.get(i).getBid().getStatus(), "ACTIVE")){
+                Optional<Bid> bid = bidRepository.findById(customerBidList.get(i).getBid().getBidId());
+                bidList.add(bid.get());
+            }
+        }
+
+        return bidList;
+    }
+
+    public List<Bid> deletedBidsForCustomer(String customerUsername){
+        Optional<Customer> customer = customerRepository.findByUsername(customerUsername);
+        if(customer.isEmpty()){
+            throw new ResourceNotFoundException("Customer with the given username does not exist");
+        }
+        List<CustomerBid> customerBidList = customerBidRepository.findByCustomer(customer.get());
+
+        List<Bid> bidList = new ArrayList<>();
+
+        for(int i=0; i<customerBidList.size(); i++){
+            if(Objects.equals(customerBidList.get(i).getBid().getStatus(), "EXPIRED") || Objects.equals(customerBidList.get(i).getBid().getStatus(), "DELETED")){
+                Optional<Bid> bid = bidRepository.findById(customerBidList.get(i).getBid().getBidId());
+                bidList.add(bid.get());
+            }
+        }
+
+        return bidList;
     }
 }

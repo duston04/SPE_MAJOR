@@ -102,4 +102,16 @@ public class FarmerController {
             throw e;
         }
     }
+
+    @GetMapping("/profile/{farmerUsername}")
+    public ResponseEntity<Farmer> getProfile(@PathVariable String farmerUsername){
+        Farmer farmer;
+        try {
+            farmer = farmerService.getProfile(farmerUsername);
+            return ResponseEntity.of(Optional.of(farmer));
+        }
+        catch (RuntimeException e){
+            throw e;
+        }
+    }
 }

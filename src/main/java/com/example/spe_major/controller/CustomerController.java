@@ -76,4 +76,37 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/activeBidsForACustomer/{customerUsername}")
+    public ResponseEntity<List<Bid>> activeBidsForACustomer(@PathVariable String customerUsername){
+        List<Bid> bidList;
+        try{
+            bidList = customerBidService.activeBidsForCustomer(customerUsername);
+            return ResponseEntity.of(Optional.of(bidList));
+        }catch (RuntimeException e){
+            throw e;
+        }
+    }
+
+    @GetMapping("/deletedBidsForCustomer/{customerUsername}")
+    public ResponseEntity<List<Bid>> deletedBidsForCustomer(@PathVariable String customerUsername){
+        List<Bid> bidList;
+        try{
+            bidList = customerBidService.deletedBidsForCustomer(customerUsername);
+            return ResponseEntity.of(Optional.of(bidList));
+        }catch (RuntimeException e){
+            throw e;
+        }
+    }
+
+    @GetMapping("/profile/{customerUsername}")
+    public ResponseEntity<Customer> getProfile(@PathVariable String customerUsername){
+        Customer customer;
+        try {
+            customer = customerService.getProfile(customerUsername);
+            return ResponseEntity.of(Optional.of(customer));
+        }
+        catch (RuntimeException e){
+            throw e;
+        }
+    }
 }

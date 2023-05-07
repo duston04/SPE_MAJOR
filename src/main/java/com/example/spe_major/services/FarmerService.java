@@ -45,4 +45,8 @@ public class FarmerService {
         return farmer1;
     }
 
+    public Farmer getProfile(String farmerUsername){
+        return farmerRepository.findByUsername(farmerUsername);
+    }
+
 }

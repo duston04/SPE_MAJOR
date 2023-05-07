@@ -43,4 +43,8 @@ public class CustomerService {
         Customer customer1 = customerRepository.save(updatedCustomer.get());
         return customer1;
     }
+
+    public Customer getProfile(String customerUsername){
+        return customerRepository.findByUsername(customerUsername).get();
+    }
 }
