@@ -27,4 +27,14 @@ public class CategoryService {
         ArrayList<String> list = new ArrayList<>(typeList);
         return list;
     }
+
+    public List<String> getCategories(){
+        List<Category> categories = categoryRepository.findAll();
+        Set<String> subCategoryList = new HashSet<String>();
+        for (Category category : categories) {
+            subCategoryList.add(category.getSubcategory());
+        }
+        ArrayList<String> list = new ArrayList<>(subCategoryList);
+        return list;
+    }
 }

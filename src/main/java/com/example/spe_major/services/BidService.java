@@ -97,6 +97,32 @@ public class BidService {
         return bidList;
     }
 
+    public List<Bid> activeBidsForType(String type){
+        List<Bid> activeBidList = bidRepository.findByStatus("ACTIVE");
+        List<Bid> bidListByType = new ArrayList<>();
+        for (Bid bid : activeBidList) {
+            if (Objects.equals(bid.getCategory().getType(), type)) {
+                bidListByType.add(bid);
+            }
+        }
+        return bidListByType;
+    }
 
+    public List<Bid> activeBidsForSubCategory(String subCategory){
+        List<Bid> activeBidList = bidRepository.findByStatus("ACTIVE");
+        List<Bid> bidListBySubCategory = new ArrayList<>();
+        for (Bid bid : activeBidList) {
+            if (Objects.equals(bid.getCategory().getSubcategory(), subCategory)) {
+                bidListBySubCategory.add(bid);
+            }
+        }
+        return bidListBySubCategory;
+    }
 
+    public Bid updateMaxPrice(int price, int bidId){
+        Optional<Bid> bid = bidRepository.findById(bidId);
+        bid.get().setCurrentMaxBid(price);
+        bidRepository.save(bid.get());
+        return bid.get();
+    }
 }
