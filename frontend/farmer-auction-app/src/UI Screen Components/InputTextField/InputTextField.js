@@ -1,18 +1,15 @@
-import classes from "./InputTextField.module.css";
-
 const InputTextField = (props) => {
-  console.log("console.log(props.isRequired)");
-  console.log(props.isRequired);
-
   const inputTextFieldDataChangeHandler = (event) => {
     props.onChange({ [props.mappedKey]: event.target.value });
   };
+  const type = props.type === undefined ? "text" : props.type;
 
   var inputFieldElement = (
     <input
-      type="text"
+      type={type}
       value={props.value}
       onChange={inputTextFieldDataChangeHandler}
+      placeholder={props.placeHolder}
       required
     />
   );
@@ -20,15 +17,18 @@ const InputTextField = (props) => {
   if (props.isRequired === false) {
     inputFieldElement = (
       <input
-        type="text"
+        type={type}
         value={props.value}
+        placeholder={props.placeHolder}
         onChange={inputTextFieldDataChangeHandler}
       />
     );
   }
 
+  const styleName = props.children;
+
   return (
-    <div className={classes.txt_field}>
+    <div className={styleName}>
       {inputFieldElement}
       <span></span>
       <label>{props.label}</label>

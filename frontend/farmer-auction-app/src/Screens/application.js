@@ -1,21 +1,63 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./Login Module/Login";
 import classes from "./application.module.css";
 import Registration from "./Register Module/Registration";
 import NavBars from "../UI Screen Components/NavBar/NavBar";
 import FarmerDashBoard from "./Farmer Module/FarmerDashBoard";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const Application = () => {
   const [screen, setScreen] = useState("Login");
   const [userScreenType, setUserScreenType] = useState("");
   const [farmerScreen, setFarmerScreen] = useState("Active List");
 
+  //Meesage Alert Props...
+  const [alertFlag, setAlertFlag] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertInfo, setAlertInfo] = useState("info");
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      // After 3 seconds set the show value to false
+      setAlertFlag(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [alertFlag]);
+
+  const showBottomMessageBar = (errorMessageData) => {
+    console.log("**************************************");
+    console.log(errorMessageData);
+    setAlertInfo(errorMessageData["messageType"]);
+    setAlertMessage(errorMessageData["message"]);
+    setAlertFlag(true);
+  };
+
   return (
     <div className={classes.bg_container}>
-      {screen === "Login" && (
-        <Login setScreen={setScreen} setUserScreenType={setUserScreenType} />
+      {alertFlag === true && (
+        <Snackbar open={alertFlag}>
+          <Alert severity={alertInfo} sx={{ width: "100%" }}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
       )}
-      {screen === "SignUp" && <Registration setScreen={setScreen} />}
+      {screen === "Login" && (
+        <Login
+          setScreen={setScreen}
+          setUserScreenType={setUserScreenType}
+          showBottomMessageBar={showBottomMessageBar}
+        />
+      )}
+      {screen === "SignUp" && (
+        <Registration
+          setScreen={setScreen}
+          showBottomMessageBar={showBottomMessageBar}
+        />
+      )}
       {screen === "Farmer Dashboard" && (
         <FarmerDashBoard setScreen={setScreen} farmerScreen={farmerScreen} />
       )}

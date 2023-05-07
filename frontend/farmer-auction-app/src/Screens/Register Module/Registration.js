@@ -1,86 +1,142 @@
 import React, { useState } from "react";
 import classes from "./Registration.module.css";
+import RegistrationUtility from "../../Utilities/RegistrationUtility/RegistrationUtility";
+import InputTextField from "../../UI Screen Components/InputTextField/InputTextField";
+import InputNumericTextField from "../../UI Screen Components/InputNumber/InputNumericTextField";
+import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
+import RegisterUserHandler from "../../ServiceHandlers/RegisterUserHandler/RegisterUserHandler";
 
 const Registration = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [contact, setContact] = useState("");
-  // const [gender, setGender] = useState("male");
-  const [address, setAddress] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [userType, setUserType] = useState("consumer");
+  const [registerUserData, setRegisterUserData] = useState(
+    RegistrationUtility.getRegisterUserInitialData()
+  );
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleContactChange = (event) => {
-    setContact(event.target.value);
-  };
-
-  // const handleGenderChange = (event) => {
-  //   setGender(event.target.value);
-  // };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
-
-  const handlePincodeChange = (event) => {
-    setPincode(event.target.value);
+  //Update User registration data...
+  const setUserRegistrationData = (userData) => {
+    console.log(registerUserData);
+    setRegisterUserData((userRegisterData) => {
+      console.log({ ...userRegisterData, ...userData });
+      return { ...userRegisterData, ...userData };
+    });
   };
 
   const handleUserTypeChange = (event) => {
-    setUserType(event.target.value);
+    setUserRegistrationData({ usertype: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle registration logic here
+
+    const userValidationData =
+      RegistrationUtility.checkAddUserDataValidations(registerUserData);
+
+    if (
+      userValidationData[
+        UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey
+      ] === true
+    ) {
+      props.showBottomMessageBar(userValidationData);
+      return;
+    }
+
+    RegisterUserHandler.getRegisterUserData({
+      registerUserData: registerUserData,
+      registerUserResponseHandler: registerUserResponseHandler,
+    });
   };
+
+  const registerUserResponseHandler = (registerUserResponseData) => {
+
+    if (registerUserResponseData.isUserRegisteredFlag === false) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          registerUserResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+      });
+      return;
+    }
+
+    props.showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        "User registered successfully. Please login to proceed.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+    });
+
+    setUserRegistrationData(RegistrationUtility.getRegisterUserInitialData());
+  };
+
   const loginButtonHandler = () => {
     props.setScreen("Login");
   };
 
   return (
     <div className={classes.registration_form}>
-      <h1>Registration Form</h1>
+      {/* code to removed from comment */}
+      {/* <h1>Registration Form</h1> */}
       <form onSubmit={handleSubmit}>
         <label>User Type:</label>
-        <select value={userType} onChange={handleUserTypeChange}>
+        <select
+          value={registerUserData["usertype"]}
+          onChange={handleUserTypeChange}
+        >
           <option value="consumer">Consumer</option>
           <option value="farmer">Farmer</option>
         </select>
 
-        <label>Username:</label>
-        <input type="text" value={username} onChange={handleUsernameChange} />
+        <div>
+          <label>Username:</label>
+          <InputTextField
+            value={registerUserData["username"]}
+            onChange={setUserRegistrationData}
+            mappedKey="username"
+            placeHolder="Username"
+          />
+
+          <label>Name:</label>
+          <InputTextField
+            value={registerUserData["name"]}
+            onChange={setUserRegistrationData}
+            mappedKey="name"
+            placeHolder="Name"
+          />
+        </div>
 
         <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
+        <InputTextField
+          value={registerUserData["password"]}
+          onChange={setUserRegistrationData}
+          mappedKey="password"
+          placeHolder="Password"
         />
 
-        <label>Contact: </label>
-        <input type="number" value={contact} onChange={handleContactChange} />
-
-        {/* <label>Gender:</label>
-        <select value={gender} onChange={handleGenderChange}>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select> */}
+        <label>Contact Number:</label>
+        <InputNumericTextField
+          value={registerUserData["contact"]}
+          onChange={setUserRegistrationData}
+          mappedKey="contact"
+          placeHolder="Contact Number"
+          requiredLength="10"
+        />
 
         <label>Address: </label>
-        <input type="text" value={address} onChange={handleAddressChange} />
+        <InputTextField
+          value={registerUserData["address"]}
+          onChange={setUserRegistrationData}
+          mappedKey="address"
+          placeHolder="Address"
+        />
 
         <label>Pincode: </label>
-        <input type="number" value={pincode} onChange={handlePincodeChange} />
+        <InputNumericTextField
+          value={registerUserData["pincode"]}
+          onChange={setUserRegistrationData}
+          mappedKey="pincode"
+          placeHolder="Pincode"
+          requiredLength="6"
+        />
+
         <div
           style={{
             position: "absolute",

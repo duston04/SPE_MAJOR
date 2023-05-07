@@ -1,30 +1,63 @@
 import React, { useState } from "react";
 import classes from "./Login.module.css";
 import InputTextField from "../../UI Screen Components/InputTextField/InputTextField";
-// import Registration from "../Register Module/Registration";
+import LoginUtility from "../../Utilities/LoginUtility/LoginUtility";
+import LoginUserHandler from "../../ServiceHandlers/LoginUserHandler/LoginUserHandler";
+import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 
 const Login = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("consumer");
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+  const [userLoginData, setUserLoginData] = useState(
+    LoginUtility.getUserLoginInitialData()
+  );
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  //Update User registration data...
+  const updatedUserLoginDataHandler = (userData) => {
+    setUserLoginData((userLoginData) => {
+      return { ...userLoginData, ...userData };
+    });
   };
 
   const handleUserTypeChange = (event) => {
     setUserType(event.target.value);
+    updatedUserLoginDataHandler({
+      role: event.target.value === "farmer" ? "ROLE_FARMER" : "ROLE_CUSTOMER",
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.setScreen("Farmer Dashboard");
-    // handle login or signup logic here
+    LoginUserHandler.getLoginUserData({
+      loginUserData: userLoginData,
+      loginUserResponseHandler: loginUserResponseHandler,
+    });
   };
+
+
+  const loginUserResponseHandler = (userLoginResponseData) => {
+    if (userLoginResponseData.isUserLoggedInFlag === false) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        userLoginResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+      });
+      return;
+    }
+
+    props.showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+      "User logged In Successfully.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+    });
+
+    setUserLoginData(LoginUtility.getUserLoginInitialData());
+    props.setScreen("Farmer Dashboard");
+  };
+
+
   const handleSignup = () => {
     props.setScreen("SignUp");
   };
@@ -43,13 +76,20 @@ const Login = (props) => {
             <option value="farmer">Farmer</option>
           </select>
           <label>Username:</label>
-          <input type="text" value={username} onChange={handleUsernameChange} />
+          <InputTextField
+            value={userLoginData["username"]}
+            onChange={updatedUserLoginDataHandler}
+            mappedKey="username"
+            placeHolder="Username"
+          />
 
           <label>password:</label>
-          <input
+          <InputTextField
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={userLoginData["password"]}
+            onChange={updatedUserLoginDataHandler}
+            mappedKey="password"
+            placeHolder="Password"
           />
 
           <button type="submit">Login</button>
