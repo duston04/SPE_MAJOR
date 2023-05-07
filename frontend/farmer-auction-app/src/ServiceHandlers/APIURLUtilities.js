@@ -4,7 +4,7 @@
 const getAPIChildURLKeys = () => {
   return {
     registerFarmerKey: "register/farmer",
-    registerConsumerKey: "register/consumer",
+    registerConsumerKey: "register/customer",
   };
 };
 
