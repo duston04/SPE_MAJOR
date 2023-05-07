@@ -1,13 +1,12 @@
-
 const InputTextField = (props) => {
-
   const inputTextFieldDataChangeHandler = (event) => {
     props.onChange({ [props.mappedKey]: event.target.value });
   };
+  const type = props.type === undefined ? "text" : props.type;
 
   var inputFieldElement = (
     <input
-      type="text"
+      type={type}
       value={props.value}
       onChange={inputTextFieldDataChangeHandler}
       placeholder={props.placeHolder}
@@ -18,7 +17,7 @@ const InputTextField = (props) => {
   if (props.isRequired === false) {
     inputFieldElement = (
       <input
-        type="text"
+        type={type}
         value={props.value}
         placeholder={props.placeHolder}
         onChange={inputTextFieldDataChangeHandler}

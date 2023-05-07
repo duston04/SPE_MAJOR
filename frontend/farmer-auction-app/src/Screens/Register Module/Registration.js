@@ -45,15 +45,12 @@ const Registration = (props) => {
     });
   };
 
-
   const registerUserResponseHandler = (registerUserResponseData) => {
-    console.log("registerUserResponseHandler");
-    console.log(registerUserResponseData);
 
     if (registerUserResponseData.isUserRegisteredFlag === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-        registerUserResponseData.errorMessage,
+          registerUserResponseData.errorMessage,
         [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
           UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
       });
@@ -67,23 +64,11 @@ const Registration = (props) => {
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
     });
 
-    const userType = registerUserData["usertype"];
-
-    // RegistrationUtility.getRegisterUserInitialData()
-
-
     setUserRegistrationData(RegistrationUtility.getRegisterUserInitialData());
-    console.log("***************************************");
-    console.log(registerUserData);
   };
 
   const loginButtonHandler = () => {
     props.setScreen("Login");
-
-    props.showBottomMessageBar({
-      message: "Testing message",
-      messageType: "info",
-    });
   };
 
   return (

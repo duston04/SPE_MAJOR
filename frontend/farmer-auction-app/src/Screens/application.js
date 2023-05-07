@@ -17,11 +17,6 @@ const Application = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("info");
 
-
-
-
-
-
   useEffect(() => {
     const timeId = setTimeout(() => {
       // After 3 seconds set the show value to false
@@ -33,8 +28,6 @@ const Application = () => {
     };
   }, [alertFlag]);
 
-
-
   const showBottomMessageBar = (errorMessageData) => {
     console.log("**************************************");
     console.log(errorMessageData);
@@ -45,7 +38,7 @@ const Application = () => {
 
   return (
     <div className={classes.bg_container}>
-    {alertFlag === true && (
+      {alertFlag === true && (
         <Snackbar open={alertFlag}>
           <Alert severity={alertInfo} sx={{ width: "100%" }}>
             {alertMessage}
@@ -53,9 +46,18 @@ const Application = () => {
         </Snackbar>
       )}
       {screen === "Login" && (
-        <Login setScreen={setScreen} setUserScreenType={setUserScreenType} />
+        <Login
+          setScreen={setScreen}
+          setUserScreenType={setUserScreenType}
+          showBottomMessageBar={showBottomMessageBar}
+        />
       )}
-      {screen === "SignUp" && <Registration setScreen={setScreen} showBottomMessageBar={showBottomMessageBar}/>}
+      {screen === "SignUp" && (
+        <Registration
+          setScreen={setScreen}
+          showBottomMessageBar={showBottomMessageBar}
+        />
+      )}
       {screen === "Farmer Dashboard" && (
         <FarmerDashBoard setScreen={setScreen} farmerScreen={farmerScreen} />
       )}
