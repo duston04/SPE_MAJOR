@@ -4,15 +4,16 @@ import RegistrationUtility from "../../Utilities/RegistrationUtility/Registratio
 import InputTextField from "../../UI Screen Components/InputTextField/InputTextField";
 import InputNumericTextField from "../../UI Screen Components/InputNumber/InputNumericTextField";
 import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
+import RegisterUserHandler from "../../ServiceHandlers/RegisterUserHandler/RegisterUserHandler";
 
 const Registration = (props) => {
-
   const [registerUserData, setRegisterUserData] = useState(
     RegistrationUtility.getRegisterUserInitialData()
   );
 
   //Update User registration data...
   const setUserRegistrationData = (userData) => {
+    console.log(registerUserData);
     setRegisterUserData((userRegisterData) => {
       console.log({ ...userRegisterData, ...userData });
       return { ...userRegisterData, ...userData };
@@ -37,8 +38,44 @@ const Registration = (props) => {
       props.showBottomMessageBar(userValidationData);
       return;
     }
+
+    RegisterUserHandler.getRegisterUserData({
+      registerUserData: registerUserData,
+      registerUserResponseHandler: registerUserResponseHandler,
+    });
   };
 
+
+  const registerUserResponseHandler = (registerUserResponseData) => {
+    console.log("registerUserResponseHandler");
+    console.log(registerUserResponseData);
+
+    if (registerUserResponseData.isUserRegisteredFlag === false) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        registerUserResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+      });
+      return;
+    }
+
+    props.showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        "User registered successfully. Please login to proceed.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+    });
+
+    const userType = registerUserData["usertype"];
+
+    // RegistrationUtility.getRegisterUserInitialData()
+
+
+    setUserRegistrationData(RegistrationUtility.getRegisterUserInitialData());
+    console.log("***************************************");
+    console.log(registerUserData);
+  };
 
   const loginButtonHandler = () => {
     props.setScreen("Login");
