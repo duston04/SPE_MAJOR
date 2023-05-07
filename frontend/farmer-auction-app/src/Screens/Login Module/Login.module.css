@@ -1,0 +1,83 @@
+.tagline {
+  position: absolute;
+  left: 40%;
+  top: 10%;
+  font-size: 90px;
+  font-weight: bold;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.771);
+  margin-top: 50px;
+  width: 900px;
+}
+.Login_container {
+  position: absolute;
+  left: 7%;
+  top: 15%;
+  background-color: rgba(255, 255, 255, 0.742);
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  height: 500px;
+  padding: 20px;
+}
+.Login_form {
+  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+
+  margin: 50px auto;
+  max-width: 500px;
+}
+
+.Login_form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Login_form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid silver;
+}
+
+.Login_form input[type="text"],
+.Login_form input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: 1px solid silver;
+}
+
+.Login_form button[type="submit"],
+.Login_form button[type="button"] {
+  width: "100%";
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.Login_form button[type="submit"]:hover,
+.Login_form button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+.Login_container h1 {
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
