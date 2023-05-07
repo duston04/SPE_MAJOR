@@ -1,11 +1,13 @@
 package com.example.spe_major.controller;
 
+import com.example.spe_major.model.Bid;
 import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.services.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController

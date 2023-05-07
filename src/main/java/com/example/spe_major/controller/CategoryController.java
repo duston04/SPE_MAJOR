@@ -29,4 +29,14 @@ public class CategoryController {
             throw new RuntimeException();
         }
     }
+
+    @GetMapping("/getCategories")
+    public ResponseEntity<List<String>> getCategories(){
+        try {
+            List<String> typesList = categoryService.getCategories();
+            return ResponseEntity.of(Optional.of(typesList));
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
+    }
 }
