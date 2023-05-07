@@ -17,12 +17,12 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public boolean login(User user){
+    public String login(User user){
         Optional<User> user1 = userRepository.findByUsernameAndPasswordAndRole(user.getUsername(), user.getPassword(), user.getRole());
         if(!user1.isPresent()){
             throw new ForbiddenException("User does not exist please enter a valid username/password or usertype");
         }
-        return true;
+        return user1.get().getUsername();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.spe_major.services;
 
+import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.model.Role;
 import com.example.spe_major.repository.FarmerRepository;
@@ -7,6 +8,7 @@ import org.hibernate.type.descriptor.jdbc.JdbcTypeFamilyInformation;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class FarmerService {
@@ -15,30 +17,31 @@ public class FarmerService {
 
     UserService userService;
 
-    public FarmerService(FarmerRepository farmerRepository) {
+    public FarmerService(FarmerRepository farmerRepository, UserService userService) {
         this.farmerRepository = farmerRepository;
+        this.userService = userService;
     }
 
     public Farmer addFarmer(Farmer farmer){
-        farmer.setRole(Role.ROLE_FARMER);
         userService.checkIfUserIdExists(farmer.getUsername());
+        farmer.setRole(Role.ROLE_FARMER);
         Farmer farmer1 = farmerRepository.save(farmer);
         return farmer1;
     }
 
     public Farmer updateFarmer(Farmer farmer){
-        Farmer updatedFarmer = farmerRepository.findByUserId(farmer.getUserId());
-        if(!Objects.equals(updatedFarmer.getUsername(), farmer.getUsername())){
+        Optional<Farmer> updatedFarmer = farmerRepository.findByUserId(farmer.getUserId());
+        if(!Objects.equals(updatedFarmer.get().getUsername(), farmer.getUsername())){
             userService.checkIfUserIdExists(farmer.getUsername());
         }
-        updatedFarmer.setUsername(farmer.getUsername());
-        updatedFarmer.setName(farmer.getName());
-        updatedFarmer.setPassword(farmer.getPassword());
-        updatedFarmer.setAddress(farmer.getAddress());
-        updatedFarmer.setPincode(farmer.getPincode());
-        updatedFarmer.setContact(farmer.getContact());
+        updatedFarmer.get().setUsername(farmer.getUsername());
+        updatedFarmer.get().setName(farmer.getName());
+        updatedFarmer.get().setPassword(farmer.getPassword());
+        updatedFarmer.get().setAddress(farmer.getAddress());
+        updatedFarmer.get().setPincode(farmer.getPincode());
+        updatedFarmer.get().setContact(farmer.getContact());
 
-        Farmer farmer1 = farmerRepository.save(updatedFarmer);
+        Farmer farmer1 = farmerRepository.save(updatedFarmer.get());
         return farmer1;
     }
 

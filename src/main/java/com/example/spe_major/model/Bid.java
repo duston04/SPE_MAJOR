@@ -12,9 +12,10 @@ public class Bid {
     @GeneratedValue
     private int bidId;
 
-    @OneToOne
+    @ManyToOne
     private Category category;
 
+    @Column(nullable = false)
     private int quantity;
 
     @Column(nullable = false)
@@ -36,4 +37,115 @@ public class Bid {
     @ManyToOne
     private Farmer farmer;
 
+    public Bid() {
+    }
+
+    public Bid(int bidId, Category category, int quantity, int basePrice, int finalCustomerId, String expiryDate, String status, int currentMaxBid, List<CustomerBid> customerBidList, Farmer farmer) {
+        this.bidId = bidId;
+        this.category = category;
+        this.quantity = quantity;
+        this.basePrice = basePrice;
+        this.finalCustomerId = finalCustomerId;
+        this.expiryDate = expiryDate;
+        this.status = status;
+        this.currentMaxBid = currentMaxBid;
+        this.customerBidList = customerBidList;
+        this.farmer = farmer;
+    }
+
+    public int getBidId() {
+        return bidId;
+    }
+
+    public void setBidId(int bidId) {
+        this.bidId = bidId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public int getFinalCustomerId() {
+        return finalCustomerId;
+    }
+
+    public void setFinalCustomerId(int finalCustomerId) {
+        this.finalCustomerId = finalCustomerId;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getCurrentMaxBid() {
+        return currentMaxBid;
+    }
+
+    public void setCurrentMaxBid(int currentMaxBid) {
+        this.currentMaxBid = currentMaxBid;
+    }
+
+    public List<CustomerBid> getCustomerBidList() {
+        return customerBidList;
+    }
+
+    public void setCustomerBidList(List<CustomerBid> customerBidList) {
+        this.customerBidList = customerBidList;
+    }
+
+    public Farmer getFarmer() {
+        return farmer;
+    }
+
+    public void setFarmer(Farmer farmer) {
+        this.farmer = farmer;
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "bidId=" + bidId +
+                ", category=" + category +
+                ", quantity=" + quantity +
+                ", basePrice=" + basePrice +
+                ", finalCustomerId=" + finalCustomerId +
+                ", expiryDate='" + expiryDate + '\'' +
+                ", status='" + status + '\'' +
+                ", currentMaxBid=" + currentMaxBid +
+                ", customerBidList=" + customerBidList +
+                ", farmer=" + farmer +
+                '}';
+    }
 }
