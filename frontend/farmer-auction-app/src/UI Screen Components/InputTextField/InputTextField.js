@@ -10,6 +10,7 @@ const InputTextField = (props) => {
       type="text"
       value={props.value}
       onChange={inputTextFieldDataChangeHandler}
+      placeholder={props.placeHolder}
       required
     />
   );
@@ -19,6 +20,7 @@ const InputTextField = (props) => {
       <input
         type="text"
         value={props.value}
+        placeholder={props.placeHolder}
         onChange={inputTextFieldDataChangeHandler}
       />
     );

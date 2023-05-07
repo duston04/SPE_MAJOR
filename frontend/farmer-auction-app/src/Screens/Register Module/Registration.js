@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import classes from "./Registration.module.css";
 import RegistrationUtility from "../../Utilities/RegistrationUtility/RegistrationUtility";
 import InputTextField from "../../UI Screen Components/InputTextField/InputTextField";
+import InputNumericTextField from "../../UI Screen Components/InputNumber/InputNumericTextField";
+import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 
 const Registration = (props) => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  const [contact, setContact] = useState("");
-  // const [address, setAddress] = useState("");
-  const [pincode, setPincode] = useState("");
-  // const [userType, setUserType] = useState("consumer");
 
   const [registerUserData, setRegisterUserData] = useState(
     RegistrationUtility.getRegisterUserInitialData()
@@ -23,22 +19,27 @@ const Registration = (props) => {
     });
   };
 
-  const handleContactChange = (event) => {
-    setContact(event.target.value);
-  };
-
-  const handlePincodeChange = (event) => {
-    setPincode(event.target.value);
-  };
-
   const handleUserTypeChange = (event) => {
-    setUserRegistrationData({ "usertype" : event.target.value});
+    setUserRegistrationData({ usertype: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle registration logic here
+
+    const userValidationData =
+      RegistrationUtility.checkAddUserDataValidations(registerUserData);
+
+    if (
+      userValidationData[
+        UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey
+      ] === true
+    ) {
+      props.showBottomMessageBar(userValidationData);
+      return;
+    }
   };
+
+
   const loginButtonHandler = () => {
     props.setScreen("Login");
 
@@ -50,11 +51,14 @@ const Registration = (props) => {
 
   return (
     <div className={classes.registration_form}>
-    {/* code to removed from comment */}
+      {/* code to removed from comment */}
       {/* <h1>Registration Form</h1> */}
       <form onSubmit={handleSubmit}>
         <label>User Type:</label>
-        <select value={registerUserData["usertype"]} onChange={handleUserTypeChange}>
+        <select
+          value={registerUserData["usertype"]}
+          onChange={handleUserTypeChange}
+        >
           <option value="consumer">Consumer</option>
           <option value="farmer">Farmer</option>
         </select>
@@ -65,6 +69,7 @@ const Registration = (props) => {
             value={registerUserData["username"]}
             onChange={setUserRegistrationData}
             mappedKey="username"
+            placeHolder="Username"
           />
 
           <label>Name:</label>
@@ -72,6 +77,7 @@ const Registration = (props) => {
             value={registerUserData["name"]}
             onChange={setUserRegistrationData}
             mappedKey="name"
+            placeHolder="Name"
           />
         </div>
 
@@ -80,20 +86,34 @@ const Registration = (props) => {
           value={registerUserData["password"]}
           onChange={setUserRegistrationData}
           mappedKey="password"
+          placeHolder="Password"
         />
 
-        <label>Contact: </label>
-        <input type="number" value={contact} onChange={handleContactChange} />
+        <label>Contact Number:</label>
+        <InputNumericTextField
+          value={registerUserData["contact"]}
+          onChange={setUserRegistrationData}
+          mappedKey="contact"
+          placeHolder="Contact Number"
+          requiredLength="10"
+        />
 
         <label>Address: </label>
         <InputTextField
           value={registerUserData["address"]}
           onChange={setUserRegistrationData}
           mappedKey="address"
+          placeHolder="Address"
         />
 
         <label>Pincode: </label>
-        <input type="number" value={pincode} onChange={handlePincodeChange} />
+        <InputNumericTextField
+          value={registerUserData["pincode"]}
+          onChange={setUserRegistrationData}
+          mappedKey="pincode"
+          placeHolder="Pincode"
+          requiredLength="6"
+        />
 
         <div
           style={{
