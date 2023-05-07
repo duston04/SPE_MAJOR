@@ -17,15 +17,15 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestBody User user){
-        Boolean result;
+    public ResponseEntity<String> login(@RequestBody User user){
+        String username;
         try{
-            result = loginService.login(user);
+            username = loginService.login(user);
         }catch(Exception exception){
             throw exception;
         }
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(username);
     }
 
 }
