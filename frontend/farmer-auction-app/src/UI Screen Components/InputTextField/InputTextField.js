@@ -1,8 +1,5 @@
-import classes from "./InputTextField.module.css";
 
 const InputTextField = (props) => {
-  console.log("console.log(props.isRequired)");
-  console.log(props.isRequired);
 
   const inputTextFieldDataChangeHandler = (event) => {
     props.onChange({ [props.mappedKey]: event.target.value });
@@ -27,8 +24,10 @@ const InputTextField = (props) => {
     );
   }
 
+  const styleName = props.children;
+
   return (
-    <div className={classes.txt_field}>
+    <div className={styleName}>
       {inputFieldElement}
       <span></span>
       <label>{props.label}</label>
