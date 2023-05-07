@@ -1,0 +1,61 @@
+.CompletedListContainer {
+  position: absolute;
+  left: 20%;
+  top: 17%;
+  width: 600px;
+  background-color: white;
+  padding-inline: 50px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: 450px;
+  border-radius: 10px;
+}
+.CompletedList {
+  background-color: #2ecc71;
+  max-height: 400px;
+  overflow-y: scroll;
+  height: 350px;
+  width: 550px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.CompletedListContainer h2 {
+  margin-top: 0;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+
+.CompletedList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.CompletedList li {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #1e1d1d;
+}
+
+.CompletedList li:last-child {
+  border-bottom: none;
+}
+
+.CompletedList li div {
+  margin-bottom: 5px;
+}
+
+.CompletedList li button {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #ff3c00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+}
+
+.CompletedList li button:hover {
+  background-color: #0069d9;
+}

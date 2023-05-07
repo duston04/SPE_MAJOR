@@ -1,0 +1,9 @@
+.bg_container {
+  background-image: url("../Assets/farmer_bg.jpg");
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+}

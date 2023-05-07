@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+frontend/farmer-auction-app/node_modules/
