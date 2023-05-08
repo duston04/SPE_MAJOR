@@ -6,6 +6,7 @@ const getAPIChildURLKeys = () => {
     registerFarmerKey: "register/farmer",
     registerConsumerKey: "register/customer",
     loginUserKey: "login",
+    getActiveListKey : "farmer/activeBids/"
   };
 };
 

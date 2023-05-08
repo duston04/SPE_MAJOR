@@ -4,6 +4,7 @@ import InputTextField from "../../UI Screen Components/InputTextField/InputTextF
 import LoginUtility from "../../Utilities/LoginUtility/LoginUtility";
 import LoginUserHandler from "../../ServiceHandlers/LoginUserHandler/LoginUserHandler";
 import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
+import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods";
 
 const Login = (props) => {
   const [userType, setUserType] = useState("consumer");
@@ -34,12 +35,11 @@ const Login = (props) => {
     });
   };
 
-
   const loginUserResponseHandler = (userLoginResponseData) => {
     if (userLoginResponseData.isUserLoggedInFlag === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-        userLoginResponseData.errorMessage,
+          userLoginResponseData.errorMessage,
         [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
           UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
       });
@@ -48,15 +48,14 @@ const Login = (props) => {
 
     props.showBottomMessageBar({
       [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-      "User logged In Successfully.",
+        "User logged In Successfully.",
       [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
     });
-
+    UtilitiesMethods.saveUserLoginData(userLoginResponseData);
     setUserLoginData(LoginUtility.getUserLoginInitialData());
     props.setScreen("Farmer Dashboard");
   };
-
 
   const handleSignup = () => {
     props.setScreen("SignUp");
