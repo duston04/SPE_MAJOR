@@ -3,14 +3,17 @@ package com.example.spe_major.services;
 import com.example.spe_major.Exception.ResourceNotFoundException;
 import com.example.spe_major.model.Bid;
 import com.example.spe_major.model.Category;
+import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.repository.BidRepository;
 import com.example.spe_major.repository.CategoryRepository;
+import com.example.spe_major.repository.CustomerRepository;
 import com.example.spe_major.repository.FarmerRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Component
@@ -24,18 +27,26 @@ public class BidService {
 
     UserService userService;
 
-    public BidService(BidRepository bidRepository, FarmerRepository farmerRepository, CategoryRepository categoryRepository, UserService userService) {
+    CustomerRepository customerRepository;
+
+    public BidService(BidRepository bidRepository, FarmerRepository farmerRepository, CategoryRepository categoryRepository, UserService userService, CustomerRepository customerRepository) {
         this.bidRepository = bidRepository;
         this.farmerRepository = farmerRepository;
         this.categoryRepository = categoryRepository;
         this.userService = userService;
+        this.customerRepository = customerRepository;
     }
 
     public Bid addBid(Bid bid, String farmerUsername){
         Category category = bid.getCategory();
-        Category category1 = categoryRepository.findByTypeAndSubcategory(category.getType(), category.getSubcategory());
+        Optional<Category> category1 = categoryRepository.findByTypeAndSubcategory(category.getType(), category.getSubcategory());
+
+        if(category1.isEmpty()){
+            throw new ResourceNotFoundException("No such category found. Please enter a valid category");
+        }
+
         Farmer farmer = farmerRepository.findByUsername(farmerUsername);
-        bid.setCategory(category1);
+        bid.setCategory(category1.get());
         bid.setFarmer(farmer);
         bid.setStatus("ACTIVE");
         Bid bid1 = bidRepository.save(bid);
@@ -52,13 +63,19 @@ public class BidService {
         return true;
     }
 
-    @Scheduled(cron = "0 41 20 * * ?")
-    public void sendOtpForTodaysFollowUps(){
+    @Scheduled(cron = "0 34 11 * * ?")
+    public void expireBids(){
         String date = LocalDate.now().toString();
-        List<Bid> bidList = bidRepository.findByExpiryDateAndStatus(date, "ACTIVE");
+        List<Bid> bidList = bidRepository.findByStatus("ACTIVE");
+
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate today = LocalDate.parse(date, f);
 
         for(int i=0; i<bidList.size(); i++){
-            bidList.get(i).setStatus("EXPIRED");
+            LocalDate before = LocalDate.parse(bidList.get(i).getExpiryDate(), f);
+            if(before.isBefore(today)){
+                bidList.get(i).setStatus("EXPIRED");
+            }
         }
 
         bidRepository.saveAll(bidList);
@@ -124,5 +141,14 @@ public class BidService {
         bid.get().setCurrentMaxBid(price);
         bidRepository.save(bid.get());
         return bid.get();
+    }
+
+    public List<Bid> getBidsWonByCustomer(String customerUsername){
+        Optional<Customer> customer = customerRepository.findByUsername(customerUsername);
+        if(customer.isEmpty()){
+            throw new ResourceNotFoundException("No customer with the given username exists");
+        }
+        List<Bid> bidList = bidRepository.findByFinalCustomer(customer.get());
+        return bidList;
     }
 }

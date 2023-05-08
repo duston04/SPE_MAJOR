@@ -109,4 +109,15 @@ public class CustomerController {
             throw e;
         }
     }
+
+    @GetMapping("/getWonBiddings/{customerUsername}")
+    public ResponseEntity<List<Bid>> getWonBiddings(@PathVariable String customerUsername){
+        List<Bid> bidList;
+        try{
+            bidList = bidService.getBidsWonByCustomer(customerUsername);
+            return ResponseEntity.of(Optional.of(bidList));
+        }catch (RuntimeException e){
+            throw e;
+        }
+    }
 }

@@ -2,8 +2,10 @@ package com.example.spe_major.controller;
 
 import com.example.spe_major.model.Bid;
 import com.example.spe_major.model.Category;
+import com.example.spe_major.model.CustomerBid;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.services.BidService;
+import com.example.spe_major.services.CustomerBidService;
 import com.example.spe_major.services.FarmerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,12 @@ public class FarmerController {
     FarmerService farmerService;
     BidService bidService;
 
-    public FarmerController(FarmerService farmerService, BidService bidService) {
+    CustomerBidService customerBidService;
+
+    public FarmerController(FarmerService farmerService, BidService bidService, CustomerBidService customerBidService) {
         this.farmerService = farmerService;
         this.bidService = bidService;
+        this.customerBidService = customerBidService;
     }
 
     @PutMapping("/update")
@@ -111,6 +116,28 @@ public class FarmerController {
             return ResponseEntity.of(Optional.of(farmer));
         }
         catch (RuntimeException e){
+            throw e;
+        }
+    }
+
+    @GetMapping("/customersPerBid/{bidId}")
+    public ResponseEntity<List<CustomerBid>> getCustomerPerBid(@PathVariable int bidId){
+        List<CustomerBid> customerBidList;
+        try{
+            customerBidList = customerBidService.getCustomerBidByBidId(bidId);
+            return ResponseEntity.of(Optional.of(customerBidList));
+        }catch (RuntimeException e){
+            throw e;
+        }
+    }
+
+    @PostMapping("/completeBid/{id}")
+    public ResponseEntity<Bid> completeBid(@PathVariable int id){
+        Bid bid;
+        try {
+            bid = customerBidService.completeBid(id);
+            return ResponseEntity.of(Optional.of(bid));
+        }catch (RuntimeException e){
             throw e;
         }
     }

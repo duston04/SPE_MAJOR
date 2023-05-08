@@ -41,6 +41,10 @@ public class CustomerBidService {
             throw new ResourceNotFoundException("No customer with the given username exists");
         }
 
+        if(Objects.equals(bid.get().getStatus(), "DELETED") || Objects.equals(bid.get().getStatus(), "EXPIRED") || Objects.equals(bid.get().getStatus(), "COMPLETED")){
+            throw new ForbiddenException("This bid is either Expired/Deleted OR Completed. Please bid on another Item");
+        }
+
         if(price < bid.get().getBasePrice()){
             throw new ForbiddenException("Price cannot be less than the base price");
         }
@@ -96,5 +100,42 @@ public class CustomerBidService {
         }
 
         return bidList;
+    }
+
+    public List<CustomerBid> getCustomerBidByBidId(int bidId){
+        Optional<Bid> bid = bidRepository.findById(bidId);
+
+        if(bid.isEmpty()){
+            throw new ResourceNotFoundException("No bid with given ID exists");
+        }
+
+        List<CustomerBid> customerBidList = new ArrayList<>();
+        customerBidList = customerBidRepository.findByBid(bid.get());
+
+        return customerBidList;
+    }
+
+    public Bid completeBid(int id){
+        Optional<CustomerBid> customerBid = customerBidRepository.findById(id);
+        if(customerBid.isEmpty()){
+            throw new ResourceNotFoundException("No such bidding exists");
+        }
+        Optional<Customer> customer = customerRepository.findById(customerBid.get().getCustomer().getUserId());
+        Optional<Bid> bid = bidRepository.findById(customerBid.get().getBid().getBidId());
+
+        if(Objects.equals(bid.get().getStatus(), "COMPLETED")){
+            throw new ForbiddenException("This Bid is already completed you cannot bid on this again");
+        }
+
+        if(Objects.equals(bid.get().getStatus(), "EXPIRED") || Objects.equals(bid.get().getStatus(), "DELETED")){
+            throw new ForbiddenException("This Bid is exprired/deleted by the farmer. You cannot bid on this.");
+        }
+
+        bid.get().setCurrentMaxBid(customerBid.get().getPrice());
+        bid.get().setStatus("COMPLETED");
+        bid.get().setFinalCustomer(customer.get());
+        Bid savedBid = bidRepository.save(bid.get());
+
+        return savedBid;
     }
 }
