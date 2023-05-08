@@ -70,6 +70,10 @@ const FarmerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
 
+  const showBottomMessageBar = (errorMessageData) => {
+    props.showBottomMessageBar(errorMessageData);
+  };
+
   const invertDownloadActiveListFlag = () => {
     setActiveListPageRefreshFlag((isRefresh) => {
       return !isRefresh;
@@ -81,7 +85,6 @@ const FarmerDashBoard = (props) => {
       invertDownloadActiveListFlag();
     }
   }, [props.farmerScreen]);
-  
 
   if (props.farmerScreen === "Farmer Profile")
     return (
@@ -104,8 +107,11 @@ const FarmerDashBoard = (props) => {
   else
     return (
       <>
-        <AddNewBid />
-        <ActiveBidList activeListPageRefreshFlag={activeListPageRefreshFlag}/>
+        <AddNewBid showBottomMessageBar={showBottomMessageBar}/>
+        <ActiveBidList
+          activeListPageRefreshFlag={activeListPageRefreshFlag}
+          showBottomMessageBar={showBottomMessageBar}
+        />
       </>
     );
 };

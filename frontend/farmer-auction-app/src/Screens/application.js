@@ -59,7 +59,11 @@ const Application = () => {
         />
       )}
       {screen === "Farmer Dashboard" && (
-        <FarmerDashBoard setScreen={setScreen} farmerScreen={farmerScreen} />
+        <FarmerDashBoard
+          setScreen={setScreen}
+          farmerScreen={farmerScreen}
+          showBottomMessageBar={showBottomMessageBar}
+        />
       )}
       {screen === "Login" || screen === "SignUp" ? (
         <NavBars.NavBar />
