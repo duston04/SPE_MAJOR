@@ -14,18 +14,15 @@ const InputNumericTextField = (props) => {
     ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
 
   return (
-    <div className={props.children}>
-      <input
-        type="number"
-        value={props.value}
-        onChange={inputTextFieldDataChangeHandler}
-        onKeyDown={blockInvalidChar}
-        placeholder={props.placeHolder}
-        required
-      />
-      <span></span>
-      <label>{props.label}</label>
-    </div>
+    <input
+      type="number"
+      value={props.value}
+      onChange={inputTextFieldDataChangeHandler}
+      onKeyDown={blockInvalidChar}
+      placeholder={props.placeHolder}
+      className={classes.txt_field_input}
+      required
+    />
   );
 };
 

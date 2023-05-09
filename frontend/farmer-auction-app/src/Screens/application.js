@@ -38,13 +38,13 @@ const Application = () => {
 
   return (
     <div className={classes.bg_container}>
-      {alertFlag === true && (
+      {/* {alertFlag === true && (
         <Snackbar open={alertFlag}>
           <Alert severity={alertInfo} sx={{ width: "100%" }}>
             {alertMessage}
           </Alert>
         </Snackbar>
-      )}
+      )} */}
       {screen === "Login" && (
         <Login
           setScreen={setScreen}
@@ -77,6 +77,13 @@ const Application = () => {
           userScreenType={userScreenType}
           setFarmerScreen={setFarmerScreen}
         />
+      )}
+      {alertFlag === true && (
+        <Snackbar open={alertFlag}>
+          <Alert severity={alertInfo} sx={{ width: "100%" }}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
       )}
     </div>
   );

@@ -1,4 +1,9 @@
 const ActiveBidCell = (props) => {
+  const showBidersListHandler = (item) => {
+    //CALL API TO GET BIDERS LIST FOR SPECIFIC ITEM USING "item.id"
+    console.log(item);
+    props.setShowBidersList(item);
+  };
   return (
     <>
       <div>
@@ -23,9 +28,16 @@ const ActiveBidCell = (props) => {
         <strong>Status:</strong> {props.item.status}
       </div>
       <div>
-        <strong>Name of Highest Bidder:</strong> {props.item.name_of_highest_bidder}
+        <strong>Name of Highest Bidder:</strong>{" "}
+        {props.item.name_of_highest_bidder}
       </div>
-      <button>Sell Item</button>
+      <button
+        onClick={() => {
+          showBidersListHandler(props.item);
+        }}
+      >
+        Show Biders
+      </button>
     </>
   );
 };

@@ -4,6 +4,7 @@ import ExpiredBidList from "./ExpiredBidList";
 import CompletedBidList from "./CompletedBidList";
 import React, { useEffect, useState } from "react";
 import FarmerProfile from "./FarmerProfile";
+import ActiveBidersList from "./ActiveBidersList";
 const items = [
   {
     category: "fruit",
@@ -69,6 +70,7 @@ const items = [
 const FarmerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
+  const [showBidersList, setShowBidersList] = useState(false);
 
   const showBottomMessageBar = (errorMessageData) => {
     props.showBottomMessageBar(errorMessageData);
@@ -107,11 +109,13 @@ const FarmerDashBoard = (props) => {
   else
     return (
       <>
-        <AddNewBid showBottomMessageBar={showBottomMessageBar}/>
+        <AddNewBid showBottomMessageBar={showBottomMessageBar} />
         <ActiveBidList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
           showBottomMessageBar={showBottomMessageBar}
+          setShowBidersList={setShowBidersList}
         />
+        {showBidersList && <ActiveBidersList />}
       </>
     );
 };

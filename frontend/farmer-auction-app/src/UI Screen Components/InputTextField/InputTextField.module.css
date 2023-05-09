@@ -1,24 +1,16 @@
-form .txt_field {
-  position: relative;
-
-  display: inline-block;
-  margin-top: 10px;
+.txt_field_input {
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid silver;
+  margin-top: 25px;
   margin-bottom: 20px;
-  margin-left: 30px;
+  box-sizing: border-box;
+  font-size: 16px;
+  display: inline;
   margin-right: 20px;
 }
-.txt_field input {
-  width: 100%;
-  padding: 0 5px;
-  height: 50px;
-  font-size: 16px;
-  border: 1px solid silver;
-  background: none;
-  outline: none;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-.txt_field input[type="number"]::-webkit-inner-spin-button {
+.txt_field_input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

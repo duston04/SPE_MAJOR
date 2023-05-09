@@ -120,7 +120,7 @@ const AddNewBid = (props) => {
           onChange={handleQuantityChange}
         />
 
-        <label htmlFor="baseprice">Base Price (Rs) per 1 kg:</label>
+        <label htmlFor="baseprice">Base Price (Rs):</label>
         <input
           type="number"
           id="baseprice"
@@ -128,6 +128,7 @@ const AddNewBid = (props) => {
           onChange={handleBasePriceChange}
         />
 
+        <label>Expiry Date:</label>
         <input
           type="date"
           min={minDate}
