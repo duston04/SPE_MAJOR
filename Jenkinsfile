@@ -45,7 +45,7 @@ pipeline {
 
         stage('Build Frontend Docker Image') {
             steps {
-                dir('frontend/frontend'){
+                dir('frontend/farmer-auction-app'){
                     script {
                         dockerImageReact = docker.build registryfront
                     }
