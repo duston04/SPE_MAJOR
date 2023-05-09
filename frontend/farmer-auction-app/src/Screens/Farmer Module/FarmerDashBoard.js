@@ -67,7 +67,25 @@ const items = [
   },
 ];
 const FarmerDashBoard = (props) => {
-  //   const [farmerScreen, setFarmerScreen] = useState("AddNewBid");
+  const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
+    useState(false);
+
+  const showBottomMessageBar = (errorMessageData) => {
+    props.showBottomMessageBar(errorMessageData);
+  };
+
+  const invertDownloadActiveListFlag = () => {
+    setActiveListPageRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
+  };
+
+  useEffect(() => {
+    if (props.farmerScreen === "Active List") {
+      invertDownloadActiveListFlag();
+    }
+  }, [props.farmerScreen]);
+
   if (props.farmerScreen === "Farmer Profile")
     return (
       <>
@@ -89,8 +107,11 @@ const FarmerDashBoard = (props) => {
   else
     return (
       <>
-        <AddNewBid />
-        <ActiveBidList />
+        <AddNewBid showBottomMessageBar={showBottomMessageBar}/>
+        <ActiveBidList
+          activeListPageRefreshFlag={activeListPageRefreshFlag}
+          showBottomMessageBar={showBottomMessageBar}
+        />
       </>
     );
 };
