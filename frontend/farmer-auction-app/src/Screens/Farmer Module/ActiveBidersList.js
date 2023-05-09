@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ActiveBidersList.module.css";
 import ActiveBidersCell from "./ActiveBidersCell";
-import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
+// import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 
 const items = [
   {

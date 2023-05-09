@@ -54,7 +54,10 @@ const Login = (props) => {
     });
     UtilitiesMethods.saveUserLoginData(userLoginResponseData);
     setUserLoginData(LoginUtility.getUserLoginInitialData());
-    props.setScreen("Farmer Dashboard");
+
+    props.setScreen(
+      userType === "Farmer" ? "Farmer Dashboard" : "Customer Dashboard"
+    );
   };
 
   const handleSignup = () => {

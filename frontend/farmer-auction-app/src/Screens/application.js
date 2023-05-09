@@ -4,13 +4,15 @@ import classes from "./application.module.css";
 import Registration from "./Register Module/Registration";
 import NavBars from "../UI Screen Components/NavBar/NavBar";
 import FarmerDashBoard from "./Farmer Module/FarmerDashBoard";
+import CustomerDashBoard from "./Consumer Module/CustomerDashBoard";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 
 const Application = () => {
   const [screen, setScreen] = useState("Login");
-  const [userScreenType, setUserScreenType] = useState("");
+  // const [userScreenType, setUserScreenType] = useState("");
   const [farmerScreen, setFarmerScreen] = useState("Active List");
+  const [customerScreen, setCustomerScreen] = useState("Active List");
 
   //Meesage Alert Props...
   const [alertFlag, setAlertFlag] = useState(false);
@@ -48,7 +50,6 @@ const Application = () => {
       {screen === "Login" && (
         <Login
           setScreen={setScreen}
-          setUserScreenType={setUserScreenType}
           showBottomMessageBar={showBottomMessageBar}
         />
       )}
@@ -65,6 +66,13 @@ const Application = () => {
           showBottomMessageBar={showBottomMessageBar}
         />
       )}
+      {screen === "Customer Dashboard" && (
+        <CustomerDashBoard
+          setScreen={setScreen}
+          customerScreen={customerScreen}
+          showBottomMessageBar={showBottomMessageBar}
+        />
+      )}
       {screen === "Login" || screen === "SignUp" ? (
         <NavBars.NavBar />
       ) : (
@@ -73,9 +81,11 @@ const Application = () => {
           onClick={() => {
             setScreen("Login");
             setFarmerScreen("Active List");
+            setCustomerScreen("Customer BuyNewItem List");
           }}
-          userScreenType={userScreenType}
+          userScreenType={screen}
           setFarmerScreen={setFarmerScreen}
+          setCustomerScreen={setCustomerScreen}
         />
       )}
       {alertFlag === true && (
