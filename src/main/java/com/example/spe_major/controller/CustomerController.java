@@ -120,4 +120,15 @@ public class CustomerController {
             throw e;
         }
     }
+
+    @GetMapping("/activeBidsNotBiddedOn/{customerUsername}")
+    public ResponseEntity<List<Bid>> activeBidsNotBiddedOn(@PathVariable String customerUsername){
+        List<Bid> bidList;
+        try{
+            bidList = customerBidService.activeBidsNotBiddedOn(customerUsername);
+            return ResponseEntity.of(Optional.of(bidList));
+        }catch (RuntimeException e){
+            throw  e;
+        }
+    }
 }

@@ -138,4 +138,17 @@ public class CustomerBidService {
 
         return savedBid;
     }
+
+    public List<Bid> activeBidsNotBiddedOn(String customerUsername) throws RuntimeException{
+
+        List<Bid> activeBidsForCustomer = activeBidsForCustomer(customerUsername);
+
+        List<Bid> allActiveBids = bidRepository.findByStatus("ACTIVE");
+
+        List<Bid> differences = new ArrayList<>(allActiveBids);
+
+        differences.removeAll(activeBidsForCustomer);
+
+        return differences;
+    }
 }
