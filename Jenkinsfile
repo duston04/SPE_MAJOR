@@ -16,7 +16,7 @@ pipeline {
         stage('Git Pull') {
             steps {
 				git url: 'https://github.com/duston04/SPE_MAJOR.git',
-				branch: 'Farmer_App_Changes'
+				branch: 'master'
             }
         }
 
