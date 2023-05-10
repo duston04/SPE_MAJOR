@@ -1,10 +1,9 @@
-import ActiveBidList from "./ActiveBidList";
-import AddNewBid from "./AddNewBid";
-import ExpiredBidList from "./ExpiredBidList";
-import CompletedBidList from "./CompletedBidList";
+import CustomerActiveBidList from "./CustomerActiveBidList";
+import CustomerCompletedBidList from "./CustomerCompletedBidList";
 import React, { useEffect, useState } from "react";
-import FarmerProfile from "./FarmerProfile";
-import ActiveBidersList from "./ActiveBidersList";
+import CustomerProfile from "./CustomerProfile";
+import CustomerBuyNewItemList from "./CustomerBuyNewItemList";
+
 const items = [
   {
     category: "fruit",
@@ -67,10 +66,9 @@ const items = [
     name_of_highest_bidder: "Jane Smith",
   },
 ];
-const FarmerDashBoard = (props) => {
+const CustomerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
-  const [showBidersList, setShowBidersList] = useState(false);
 
   const showBottomMessageBar = (errorMessageData) => {
     props.showBottomMessageBar(errorMessageData);
@@ -83,43 +81,37 @@ const FarmerDashBoard = (props) => {
   };
 
   useEffect(() => {
-    if (props.farmerScreen === "Active List") {
+    if (props.customerScreen === "Customer BuyNewItem List") {
       invertDownloadActiveListFlag();
     }
-  }, [props.farmerScreen]);
+  }, [props.customerScreen]);
 
-  if (props.farmerScreen === "Farmer Profile")
+  if (props.customerScreen === "Customer Profile")
     return (
       <>
-        <FarmerProfile />
+        <CustomerProfile />
       </>
     );
-  else if (props.farmerScreen === "Expired List")
+  else if (props.customerScreen === "Customer BuyNewItem List")
     return (
       <>
-        <ExpiredBidList />
+        <CustomerBuyNewItemList />
       </>
     );
-  else if (props.farmerScreen === "Completed List")
+  else if (props.customerScreen === "Customer Completed List")
     return (
       <>
-        <CompletedBidList />
+        <CustomerCompletedBidList />
       </>
     );
   else
     return (
       <>
-        <AddNewBid
-          showBottomMessageBar={showBottomMessageBar}
-          invertDownloadActiveFlag={invertDownloadActiveListFlag}
-        />
-        <ActiveBidList
+        <CustomerActiveBidList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
           showBottomMessageBar={showBottomMessageBar}
-          setShowBidersList={setShowBidersList}
         />
-        {showBidersList && <ActiveBidersList />}
       </>
     );
 };
-export default FarmerDashBoard;
+export default CustomerDashBoard;

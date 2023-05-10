@@ -1,61 +1,61 @@
-.ActiveListContainer {
+.CompletedListContainer {
   position: absolute;
-  left: 30%;
+  left: 25%;
   top: 17%;
-  width: 500px;
+  width: 700px;
   background-color: white;
-  padding-inline: 20px;
+  padding-inline: 50px;
   padding-top: 20px;
   padding-bottom: 40px;
-  height: 500px;
-  border-radius: 10px;
-}
-.ActiveList {
-  background-color: wheat;
-
-  overflow-y: scroll;
   height: 450px;
-  width: 480px;
-  padding: 10px;
+  border-radius: 10px;
+}
+.CompletedList {
+  background-color: #2ecc71;
+  max-height: 400px;
+  overflow-y: scroll;
+  height: 350px;
+  width: 680px;
+  padding: 20px;
   border-radius: 10px;
 }
 
-.ActiveListContainer h2 {
+.CompletedListContainer h2 {
   margin-top: 0;
   text-align: center;
   border-bottom: 1px solid silver;
 }
 
-.ActiveList ul {
+.CompletedList ul {
   list-style-type: none;
   padding: 0;
 }
 
-.ActiveList li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+.CompletedList li {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #1e1d1d;
 }
 
-.ActiveList li:last-child {
+.CompletedList li:last-child {
   border-bottom: none;
 }
 
-.ActiveList li div {
+.CompletedList li div {
   margin-bottom: 5px;
 }
 
-.ActiveList li button {
+.CompletedList li button {
   margin-top: 10px;
   padding: 5px;
-  background-color: #ff6200;
+  background-color: #ff3c00;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 200px;
+  width: 100px;
   height: 30px;
 }
 
-.ActiveList li button:hover {
+.CompletedList li button:hover {
   background-color: #0069d9;
 }

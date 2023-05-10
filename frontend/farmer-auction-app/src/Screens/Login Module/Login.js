@@ -53,8 +53,11 @@ const Login = (props) => {
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
     });
     UtilitiesMethods.saveUserLoginData(userLoginResponseData);
+
+    props.setScreen(
+      userLoginData.role === "ROLE_FARMER" ? "Farmer Dashboard" : "Customer Dashboard"
+    );
     setUserLoginData(LoginUtility.getUserLoginInitialData());
-    props.setScreen("Farmer Dashboard");
   };
 
   const handleSignup = () => {
@@ -63,7 +66,7 @@ const Login = (props) => {
 
   return (
     <div>
-      <div class={classes.tagline}>
+      <div className={classes.tagline}>
         Bridging the Gap Between Farmers and Buyers
       </div>
       <div className={classes.Login_container}>

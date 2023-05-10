@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./AddNewBid.module.css";
 import FarmerUtility from "../../Utilities/FarmerUtiilityMethods/FarmerUtilityMethods";
 import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
-// import Bdate from "../../UIComponents/BirthDate/bdate";
+import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 
 const AddNewBid = (props) => {
   const today = new Date();
@@ -63,6 +63,40 @@ const AddNewBid = (props) => {
       props.showBottomMessageBar(categoryValidationData);
       return;
     }
+
+    //Call API for Add New Bid...
+
+    FarmerServiceHandler.addFarmerNewBid({
+      bidData: bidData,
+      categoryData: bidCategoryData,
+      addFarmerNewBidResponseHandler: addFarmerNewBidResponseHandler,
+    });
+  };
+
+  const addFarmerNewBidResponseHandler = (addNewBidResponseData) => {
+    console.log("addNewBidResponseData");
+    console.log(addNewBidResponseData);
+
+    if (addNewBidResponseData.isBidAddedFlag === false) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          addNewBidResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+    props.invertDownloadActiveFlag();
+    props.showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        "Bid added successfully.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+      [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: false,
+    });
+    setBidCategoryData(FarmerUtility.getAddBidCategoryInitialData());
+    setBidData(FarmerUtility.getAddBidInitialData());
   };
 
   return (
@@ -120,7 +154,7 @@ const AddNewBid = (props) => {
           onChange={handleQuantityChange}
         />
 
-        <label htmlFor="baseprice">Base Price (Rs) per 1 kg:</label>
+        <label htmlFor="baseprice">Base Price (Rs):</label>
         <input
           type="number"
           id="baseprice"
@@ -128,6 +162,7 @@ const AddNewBid = (props) => {
           onChange={handleBasePriceChange}
         />
 
+        <label>Expiry Date:</label>
         <input
           type="date"
           min={minDate}

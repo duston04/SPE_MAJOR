@@ -46,7 +46,6 @@ const Registration = (props) => {
   };
 
   const registerUserResponseHandler = (registerUserResponseData) => {
-
     if (registerUserResponseData.isUserRegisteredFlag === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
@@ -74,7 +73,7 @@ const Registration = (props) => {
   return (
     <div className={classes.registration_form}>
       {/* code to removed from comment */}
-      {/* <h1>Registration Form</h1> */}
+      <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
         <label>User Type:</label>
         <select
@@ -85,23 +84,21 @@ const Registration = (props) => {
           <option value="farmer">Farmer</option>
         </select>
 
-        <div>
-          <label>Username:</label>
-          <InputTextField
-            value={registerUserData["username"]}
-            onChange={setUserRegistrationData}
-            mappedKey="username"
-            placeHolder="Username"
-          />
+        <label>Username:</label>
+        <InputTextField
+          value={registerUserData["username"]}
+          onChange={setUserRegistrationData}
+          mappedKey="username"
+          placeHolder="Username"
+        />
 
-          <label>Name:</label>
-          <InputTextField
-            value={registerUserData["name"]}
-            onChange={setUserRegistrationData}
-            mappedKey="name"
-            placeHolder="Name"
-          />
-        </div>
+        <label>Name:</label>
+        <InputTextField
+          value={registerUserData["name"]}
+          onChange={setUserRegistrationData}
+          mappedKey="name"
+          placeHolder="Name"
+        />
 
         <label>Password:</label>
         <InputTextField
@@ -111,7 +108,7 @@ const Registration = (props) => {
           placeHolder="Password"
         />
 
-        <label>Contact Number:</label>
+        <label>Contact:</label>
         <InputNumericTextField
           value={registerUserData["contact"]}
           onChange={setUserRegistrationData}

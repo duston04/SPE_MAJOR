@@ -10,8 +10,16 @@ const getAPIChildURLKeys = () => {
   };
 };
 
+//API Child URL Keys...
+const getFarmerAPIChildURLKeys = () => {
+  return {
+    getAddBidKey : "farmer/addBid/"
+  };
+};
+
 const APIURLUtilities = {
   getAPIChildURLKeys,
+  getFarmerAPIChildURLKeys
 };
 
 export default APIURLUtilities;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import classes from "./ActiveBidList.module.css";
-import ActiveBidCell from "./ActiveBidCell";
-import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
+import classes from "./CustomerActiveBidList.module.css";
+import CustomerBuyNewItemCell from "./CustomerBuyNewItemCell";
+// import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 
 const items = [
   {
@@ -66,56 +66,38 @@ const items = [
   },
 ];
 
-const ActiveBidList = (props) => {
-  const [activeBidsList, setActiveBidsList] = useState([]);
+const CustomerBuyNewItemList = (props) => {
+  const [customerActiveBidsList, setCustomerActiveBidsList] = useState([]);
 
   useEffect(() => {
-    //props.setShowBidersList(false);
+    setCustomerActiveBidsList(items);
     console.log("Use Effect running in active bids list page...");
-    FarmerServiceHandler.getAllActiveListsData({
-      getFarmersActiveBidListHandler: getFarmersActiveBidListHandler,
-    });
+    // FarmerServiceHandler.getAllActiveListsData({
+    //   getFarmersCustomerActiveBidListHandler:
+    //     getFarmersCustomerActiveBidListHandler,
+    // });
   }, [props.activeListPageRefreshFlag]);
 
-  const getFarmersActiveBidListHandler = (activeBidResponseData) => {
+  const getFarmersCustomerActiveBidListHandler = (activeBidResponseData) => {
     console.log("Active List Data Recieved");
     console.log(activeBidResponseData.activeBidsData);
-    // setActiveBidsList([]);
-    setActiveBidsList(activeBidResponseData.activeBidsData);
-    // setActiveBidsList(items);
+    // setActiveBidsList(activeBidResponseData.activeBidsData);
   };
-
-// basePrice: 2000
-// bidId: 3
-// category" {categoryId: 2, type: 'fruit', subcategory: 'banana'}
-// currentMaxBid: 0
-// expiryDate: "2023-05-11"
-// farmer
-// : 
-// {userId: 1, username: 'dhruvfarmer', password: '1234', role: 'ROLE_FARMER', address: 'f 172', …}
-// finalCustomer: null
-// quantity: 1000
-// status: "ACTIVE"
-//   
 
   return (
     <div className={classes.ActiveListContainer}>
-      <h2>Active List</h2>
+      <h2>Buy New Item List</h2>
 
       <div className={classes.ActiveList}>
-        {activeBidsList.length === 0 && (
+        {customerActiveBidsList.length === 0 && (
           <h2 style={{ textAlign: "center" }}>
             No active bids to display. Please add a bid.
           </h2>
         )}
         <ul>
-          {activeBidsList.map((item, index) => (
+          {customerActiveBidsList.map((item, index) => (
             <li key={index}>
-              <ActiveBidCell
-                setShowBidersList={props.setShowBidersList}
-                item={item}
-                index={index}
-              />
+              <CustomerBuyNewItemCell item={item} index={index} />
             </li>
           ))}
         </ul>
@@ -124,4 +106,4 @@ const ActiveBidList = (props) => {
   );
 };
 
-export default ActiveBidList;
+export default CustomerBuyNewItemList;
