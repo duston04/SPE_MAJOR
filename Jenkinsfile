@@ -1,6 +1,11 @@
 pipeline {
 
-	agent any
+    agent {
+        node {
+          label 'spe-major-project'
+          customWorkspace '/home/darshan/Desktop/customWorkspace'
+        }
+     }
 
     tools {nodejs "nodejs"}
 
