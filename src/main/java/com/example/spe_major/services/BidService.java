@@ -63,7 +63,7 @@ public class BidService {
         return true;
     }
 
-    @Scheduled(cron = "0 34 11 * * ?")
+    @Scheduled(cron = "0 34 14 * * ?")
     public void expireBids(){
         String date = LocalDate.now().toString();
         List<Bid> bidList = bidRepository.findByStatus("ACTIVE");

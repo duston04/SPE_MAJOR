@@ -5,6 +5,7 @@ import com.example.spe_major.model.Farmer;
 import com.example.spe_major.model.Role;
 import com.example.spe_major.repository.FarmerRepository;
 import org.hibernate.type.descriptor.jdbc.JdbcTypeFamilyInformation;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -17,14 +18,19 @@ public class FarmerService {
 
     UserService userService;
 
-    public FarmerService(FarmerRepository farmerRepository, UserService userService) {
+    PasswordEncoder passwordEncoder;
+
+
+    public FarmerService(FarmerRepository farmerRepository, UserService userService, PasswordEncoder passwordEncoder) {
         this.farmerRepository = farmerRepository;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Farmer addFarmer(Farmer farmer){
         userService.checkIfUserIdExists(farmer.getUsername());
         farmer.setRole(Role.ROLE_FARMER);
+        farmer.setPassword(passwordEncoder.encode(farmer.getPassword()));
         Farmer farmer1 = farmerRepository.save(farmer);
         return farmer1;
     }
@@ -36,7 +42,8 @@ public class FarmerService {
         }
         updatedFarmer.get().setUsername(farmer.getUsername());
         updatedFarmer.get().setName(farmer.getName());
-        updatedFarmer.get().setPassword(farmer.getPassword());
+        if(!Objects.equals(farmer.getPassword(), ""))
+            updatedFarmer.get().setPassword(passwordEncoder.encode(farmer.getPassword()));
         updatedFarmer.get().setAddress(farmer.getAddress());
         updatedFarmer.get().setPincode(farmer.getPincode());
         updatedFarmer.get().setContact(farmer.getContact());

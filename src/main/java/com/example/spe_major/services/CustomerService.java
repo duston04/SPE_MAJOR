@@ -5,6 +5,7 @@ import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.model.Role;
 import com.example.spe_major.repository.CustomerRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -15,15 +16,18 @@ public class CustomerService {
 
     CustomerRepository customerRepository;
     UserService userService;
+    PasswordEncoder passwordEncoder;
 
-    public CustomerService(CustomerRepository customerRepository, UserService userService) {
+    public CustomerService(CustomerRepository customerRepository, UserService userService, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Customer addCustomer(Customer customer){
-        customer.setRole(Role.ROLE_CUSTOMER);
         userService.checkIfUserIdExists(customer.getUsername());
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customer.setRole(Role.ROLE_CUSTOMER);
         Customer customer1 = customerRepository.save(customer);
         return customer1;
     }
@@ -35,7 +39,8 @@ public class CustomerService {
         }
         updatedCustomer.get().setUsername(customer.getUsername());
         updatedCustomer.get().setName(customer.getName());
-        updatedCustomer.get().setPassword(customer.getPassword());
+        if(!Objects.equals(customer.getPassword(), ""))
+            updatedCustomer.get().setPassword(passwordEncoder.encode(customer.getPassword()));
         updatedCustomer.get().setAddress(customer.getAddress());
         updatedCustomer.get().setPincode(customer.getPincode());
         updatedCustomer.get().setContact(customer.getContact());
