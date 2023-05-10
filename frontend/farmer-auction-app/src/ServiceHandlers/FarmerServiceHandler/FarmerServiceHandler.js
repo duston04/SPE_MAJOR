@@ -14,8 +14,8 @@ const getAllActiveListsData = async (props) => {
     APIURLUtilities.getAPIChildURLKeys().getActiveListKey +
     UtilitiesMethods.getLoggedInUserID();
 
-    console.log(childURL);
-    // return;
+  console.log(childURL);
+  // return;
 
   await GlobalServiceHandler.hitGetServiceWithOutBearer({
     childURL: childURL,
@@ -27,15 +27,44 @@ const getAllActiveListsData = async (props) => {
         // console.log("error not null");
         props.getFarmersActiveBidListHandler({
           isActiveBidsListRecieved: true,
-          activeBidsData:
-          activeBidsResponseData.responseData.data,
+          activeBidsData: activeBidsResponseData.responseData.data,
           errorMessage: null,
         });
       } else if (activeBidsResponseData.responseData === null) {
         props.getFarmersActiveBidListHandler({
-            isActiveBidsListRecieved: false,
-            activeBidsData: [],
+          isActiveBidsListRecieved: false,
+          activeBidsData: [],
           errorMessage: "Some error occured. Please try again later.",
+        });
+      }
+    },
+  });
+};
+
+
+
+const addFarmerNewBid = async (props) => {
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys().getAddBidKey +
+    UtilitiesMethods.getLoggedInUserID();
+
+  const postData = { category: props.categoryData, ...props.bidData };
+
+  await GlobalServiceHandler.hitPostServiceWithOutBearer({
+    childURL: childURL,
+    postData: postData,
+    responseDataHandler: (addBidServiceData) => {
+      if (addBidServiceData.responseError === null) {
+        props.addFarmerNewBidResponseHandler({
+          isBidAddedFlag: true,
+          addedBidData: addBidServiceData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (addBidServiceData.responseData === null) {
+        props.addFarmerNewBidResponseHandler({
+          isBidAddedFlag: false,
+          addedBidData: null,
+          errorMessage: addBidServiceData.responseError.message,
         });
       }
     },
@@ -44,6 +73,7 @@ const getAllActiveListsData = async (props) => {
 
 const FarmerServiceHandler = {
   getAllActiveListsData,
+  addFarmerNewBid,
 };
 
 export default FarmerServiceHandler;

@@ -70,7 +70,7 @@ const ActiveBidList = (props) => {
   const [activeBidsList, setActiveBidsList] = useState([]);
 
   useEffect(() => {
-    props.setShowBidersList(false);
+    //props.setShowBidersList(false);
     console.log("Use Effect running in active bids list page...");
     FarmerServiceHandler.getAllActiveListsData({
       getFarmersActiveBidListHandler: getFarmersActiveBidListHandler,
@@ -80,9 +80,23 @@ const ActiveBidList = (props) => {
   const getFarmersActiveBidListHandler = (activeBidResponseData) => {
     console.log("Active List Data Recieved");
     console.log(activeBidResponseData.activeBidsData);
+    // setActiveBidsList([]);
     setActiveBidsList(activeBidResponseData.activeBidsData);
-    setActiveBidsList(items);
+    // setActiveBidsList(items);
   };
+
+// basePrice: 2000
+// bidId: 3
+// category" {categoryId: 2, type: 'fruit', subcategory: 'banana'}
+// currentMaxBid: 0
+// expiryDate: "2023-05-11"
+// farmer
+// : 
+// {userId: 1, username: 'dhruvfarmer', password: '1234', role: 'ROLE_FARMER', address: 'f 172', …}
+// finalCustomer: null
+// quantity: 1000
+// status: "ACTIVE"
+//   
 
   return (
     <div className={classes.ActiveListContainer}>

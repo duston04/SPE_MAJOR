@@ -53,11 +53,11 @@ const Login = (props) => {
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
     });
     UtilitiesMethods.saveUserLoginData(userLoginResponseData);
-    setUserLoginData(LoginUtility.getUserLoginInitialData());
 
     props.setScreen(
-      userType === "Farmer" ? "Farmer Dashboard" : "Customer Dashboard"
+      userLoginData.role === "ROLE_FARMER" ? "Farmer Dashboard" : "Customer Dashboard"
     );
+    setUserLoginData(LoginUtility.getUserLoginInitialData());
   };
 
   const handleSignup = () => {

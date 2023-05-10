@@ -10,8 +10,8 @@ const getAddBidCategoryInitialData = () => {
 
 const getAddBidInitialData = () => {
   return {
-    quantity: null,
-    basePrice: null,
+    quantity: "",
+    basePrice: "",
     expiryDate: "",
   };
 };
@@ -52,7 +52,10 @@ const checkBidCategoryDataValidations = (bidData, bidCategoryData) => {
   }
 
   //Validation for Quantity...
-  if (parseInt(bidData.quantity) === 0) {
+  if (
+    UtilitiesMethods.getSpaceTrimmedLenght(bidData.quantity) === 0 ||
+    parseInt(bidData.quantity) === 0
+  ) {
     return {
       ...validationData,
       ...{
@@ -63,7 +66,10 @@ const checkBidCategoryDataValidations = (bidData, bidCategoryData) => {
   }
 
   //Validation for Base Price...
-  if (parseInt(bidData.basePrice) === 0) {
+  if (
+    UtilitiesMethods.getSpaceTrimmedLenght(bidData.basePrice) === 0 ||
+    parseInt(bidData.basePrice) === 0
+  ) {
     return {
       ...validationData,
       ...{
@@ -74,9 +80,7 @@ const checkBidCategoryDataValidations = (bidData, bidCategoryData) => {
   }
 
   //Validation for Expiry Date...
-  if (
-    UtilitiesMethods.getSpaceTrimmedLenght(bidData.expiryDate) === 0
-  ) {
+  if (UtilitiesMethods.getSpaceTrimmedLenght(bidData.expiryDate) === 0) {
     return {
       ...validationData,
       ...{

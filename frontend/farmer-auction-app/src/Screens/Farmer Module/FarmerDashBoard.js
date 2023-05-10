@@ -109,7 +109,10 @@ const FarmerDashBoard = (props) => {
   else
     return (
       <>
-        <AddNewBid showBottomMessageBar={showBottomMessageBar} />
+        <AddNewBid
+          showBottomMessageBar={showBottomMessageBar}
+          invertDownloadActiveFlag={invertDownloadActiveListFlag}
+        />
         <ActiveBidList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
           showBottomMessageBar={showBottomMessageBar}
