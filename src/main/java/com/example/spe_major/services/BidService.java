@@ -9,6 +9,8 @@ import com.example.spe_major.repository.BidRepository;
 import com.example.spe_major.repository.CategoryRepository;
 import com.example.spe_major.repository.CustomerRepository;
 import com.example.spe_major.repository.FarmerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,8 @@ public class BidService {
 
     CustomerRepository customerRepository;
 
+    Logger logger = LoggerFactory.getLogger(BidService.class);
+
     public BidService(BidRepository bidRepository, FarmerRepository farmerRepository, CategoryRepository categoryRepository, UserService userService, CustomerRepository customerRepository) {
         this.bidRepository = bidRepository;
         this.farmerRepository = farmerRepository;
@@ -42,6 +46,7 @@ public class BidService {
         Optional<Category> category1 = categoryRepository.findByTypeAndSubcategory(category.getType(), category.getSubcategory());
 
         if(category1.isEmpty()){
+            logger.trace("EXCEPTION :  Given type and category does not exist in database");
             throw new ResourceNotFoundException("No such category found. Please enter a valid category");
         }
 
@@ -50,16 +55,19 @@ public class BidService {
         bid.setFarmer(farmer);
         bid.setStatus("ACTIVE");
         Bid bid1 = bidRepository.save(bid);
+        logger.trace("Bid has been successfully added");
         return bid;
     }
 
     public boolean deleteBid(int bidId){
         Optional<Bid> bid = bidRepository.findById(bidId);
         if(!bid.isPresent()){
+            logger.trace("EXCEPTION :  Given bid with bid id does not exist");
             throw new ResourceNotFoundException("Bid does not exist");
         }
         bid.get().setStatus("DELETED");
         bidRepository.save(bid.get());
+        logger.trace("Bid has been set to deleted");
         return true;
     }
 
@@ -78,6 +86,8 @@ public class BidService {
             }
         }
 
+        logger.trace("Bids before "+ date +" been set to deleted");
+
         bidRepository.saveAll(bidList);
     }
 
@@ -87,6 +97,7 @@ public class BidService {
         List<Bid> bidList = new ArrayList<>();
         bidList = bidRepository.findByFarmerAndStatus(farmer, "ACTIVE");
 
+        logger.trace("Active Bid list successfully fetched");
         return bidList;
     }
 
@@ -102,6 +113,7 @@ public class BidService {
         bidList.addAll(bidList1);
         bidList.addAll(bidList2);
 
+        logger.trace("Deleted/Expired Bid list successfully fetched");
         return bidList;
     }
 
@@ -111,6 +123,7 @@ public class BidService {
         List<Bid> bidList = new ArrayList<>();
         bidList = bidRepository.findByFarmerAndStatus(farmer, "COMPLETED");
 
+        logger.trace("Completed Bid list successfully fetched");
         return bidList;
     }
 
@@ -122,6 +135,7 @@ public class BidService {
                 bidListByType.add(bid);
             }
         }
+        logger.trace("Bid list successfully fetched");
         return bidListByType;
     }
 
@@ -133,6 +147,7 @@ public class BidService {
                 bidListBySubCategory.add(bid);
             }
         }
+        logger.trace("Bid list successfully fetched");
         return bidListBySubCategory;
     }
 
@@ -140,15 +155,18 @@ public class BidService {
         Optional<Bid> bid = bidRepository.findById(bidId);
         bid.get().setCurrentMaxBid(price);
         bidRepository.save(bid.get());
+        logger.trace("Max Price of the given bid has been updated");
         return bid.get();
     }
 
     public List<Bid> getBidsWonByCustomer(String customerUsername){
         Optional<Customer> customer = customerRepository.findByUsername(customerUsername);
         if(customer.isEmpty()){
+            logger.trace("Given customer with customer username does not exist");
             throw new ResourceNotFoundException("No customer with the given username exists");
         }
         List<Bid> bidList = bidRepository.findByFinalCustomer(customer.get());
+        logger.trace("Bid list successfully fetched for Customer");
         return bidList;
     }
 }

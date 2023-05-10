@@ -4,6 +4,8 @@ import com.example.spe_major.Security.auth.AuthenticationResponse;
 import com.example.spe_major.Security.auth.AuthenticationService;
 import com.example.spe_major.model.User;
 import com.example.spe_major.services.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,8 @@ public class LoginController {
     LoginService loginService;
 
     AuthenticationService authenticationService;
+
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     public LoginController(LoginService loginService, AuthenticationService authenticationService) {
         this.loginService = loginService;
@@ -33,6 +37,7 @@ public class LoginController {
 //        return ResponseEntity.ok(username);
 //    }
     public ResponseEntity<AuthenticationResponse> loginUser(@RequestBody User request){
+        logger.info("Login API hit");
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 

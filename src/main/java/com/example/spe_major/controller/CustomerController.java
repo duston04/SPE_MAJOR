@@ -7,6 +7,8 @@ import com.example.spe_major.model.Farmer;
 import com.example.spe_major.services.BidService;
 import com.example.spe_major.services.CustomerBidService;
 import com.example.spe_major.services.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,7 @@ public class CustomerController {
 
     CustomerBidService customerBidService;
 
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     public CustomerController(CustomerService customerService, BidService bidService, CustomerBidService customerBidService) {
         this.customerService = customerService;
@@ -33,6 +36,7 @@ public class CustomerController {
 
     @PutMapping("/update")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
+        logger.info("Customer profile update API hit");
         Customer updatedCustomer;
         try{
             updatedCustomer = customerService.updateCustomer(customer);
@@ -45,6 +49,7 @@ public class CustomerController {
 
     @GetMapping("/activeBidsBytype/{type}")
     public ResponseEntity<List<Bid>> activeBidsByType(@PathVariable String type){
+        logger.info("Customer get active bids for the given type API hit");
         List<Bid> bidList = new ArrayList<>();
         try{
             bidList = bidService.activeBidsForType(type);
@@ -56,6 +61,7 @@ public class CustomerController {
 
     @GetMapping("/activeBidsBySubCategory/{subcategory}")
     public ResponseEntity<List<Bid>> activeBidsBySubcategory(@PathVariable String subcategory){
+        logger.info("Customer get active bids for the given subcategory API hit");
         List<Bid> bidList = new ArrayList<>();
         try{
             bidList = bidService.activeBidsForSubCategory(subcategory);
@@ -67,6 +73,7 @@ public class CustomerController {
 
     @PostMapping("/setPrice")
     public ResponseEntity<CustomerBid> setPrice(@RequestBody CustomerBid customerBid){
+        logger.info("Customer set price for a Bid API hit");
         CustomerBid customerBid1;
         try{
             customerBid1 = customerBidService.setPrice(customerBid.getBid().getBidId(), customerBid.getCustomer().getUsername(), customerBid.getPrice());
@@ -78,6 +85,7 @@ public class CustomerController {
 
     @GetMapping("/activeBidsForACustomer/{customerUsername}")
     public ResponseEntity<List<Bid>> activeBidsForACustomer(@PathVariable String customerUsername){
+        logger.info("Get all active bids for a customer API Hit");
         List<Bid> bidList;
         try{
             bidList = customerBidService.activeBidsForCustomer(customerUsername);
@@ -89,6 +97,7 @@ public class CustomerController {
 
     @GetMapping("/deletedBidsForCustomer/{customerUsername}")
     public ResponseEntity<List<Bid>> deletedBidsForCustomer(@PathVariable String customerUsername){
+        logger.info("Get all deleted/expired bids for a customer API Hit");
         List<Bid> bidList;
         try{
             bidList = customerBidService.deletedBidsForCustomer(customerUsername);
@@ -100,6 +109,7 @@ public class CustomerController {
 
     @GetMapping("/profile/{customerUsername}")
     public ResponseEntity<Customer> getProfile(@PathVariable String customerUsername){
+        logger.info("Get Customer Profile API Hit");
         Customer customer;
         try {
             customer = customerService.getProfile(customerUsername);
@@ -112,6 +122,7 @@ public class CustomerController {
 
     @GetMapping("/getWonBiddings/{customerUsername}")
     public ResponseEntity<List<Bid>> getWonBiddings(@PathVariable String customerUsername){
+        logger.info("Customer get list of won biddings API Hit");
         List<Bid> bidList;
         try{
             bidList = bidService.getBidsWonByCustomer(customerUsername);
@@ -123,6 +134,7 @@ public class CustomerController {
 
     @GetMapping("/activeBidsNotBiddedOn/{customerUsername}")
     public ResponseEntity<List<Bid>> activeBidsNotBiddedOn(@PathVariable String customerUsername){
+        logger.info("Customer get list of bids that he has not bidded on API Hit");
         List<Bid> bidList;
         try{
             bidList = customerBidService.activeBidsNotBiddedOn(customerUsername);
