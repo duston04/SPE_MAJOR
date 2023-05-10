@@ -13,7 +13,8 @@ const getAPIChildURLKeys = () => {
 //API Child URL Keys...
 const getFarmerAPIChildURLKeys = () => {
   return {
-    getAddBidKey : "farmer/addBid/"
+    getAddBidKey : "farmer/addBid/",
+    getFarmerProfileDataKey : "farmer/profile/"
   };
 };
 

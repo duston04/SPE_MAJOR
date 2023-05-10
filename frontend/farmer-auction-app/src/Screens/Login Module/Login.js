@@ -52,7 +52,7 @@ const Login = (props) => {
       [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
     });
-    UtilitiesMethods.saveUserLoginData(userLoginResponseData);
+    UtilitiesMethods.saveUserLoginData(userLoginResponseData.loggedInUserData);
 
     props.setScreen(
       userLoginData.role === "ROLE_FARMER" ? "Farmer Dashboard" : "Customer Dashboard"

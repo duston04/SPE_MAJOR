@@ -4,7 +4,8 @@ const getSpaceTrimmedLenght = (stringToMeasure) => {
 };
 
 const saveUserLoginData = (userLoginData) => {
-  localStorage.setItem("userid", userLoginData.loggedInUserData);
+  localStorage.setItem("userid", userLoginData.username);
+  localStorage.setItem("token", userLoginData.token);
 };
 
 const getLoggedInUserID = () => {
@@ -12,7 +13,7 @@ const getLoggedInUserID = () => {
 };
 
 const getJWTToken = () => {
-  return "";//localStorage.getItem("userid");
+  return localStorage.getItem("token");
 };
 
 const UtilitiesMethods = {
