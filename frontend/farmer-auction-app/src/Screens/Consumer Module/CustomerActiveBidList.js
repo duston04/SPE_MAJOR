@@ -72,15 +72,21 @@ const CustomerActiveBidList = (props) => {
   useEffect(() => {
     setCustomerActiveBidsList(items);
     console.log("Use Effect running in active bids list page...");
+
+    
+
+
+
+
     // FarmerServiceHandler.getAllActiveListsData({
     //   getFarmersCustomerActiveBidListHandler:
     //     getFarmersCustomerActiveBidListHandler,
     // });
   }, [props.activeListPageRefreshFlag]);
 
-  const getFarmersCustomerActiveBidListHandler = (activeBidResponseData) => {
+  const getCustomerActiveBidListHandler = (activeBidResponseData) => {
     console.log("Active List Data Recieved");
-    console.log(activeBidResponseData.activeBidsData);
+    console.log(activeBidResponseData);
     // setActiveBidsList(activeBidResponseData.activeBidsData);
   };
 

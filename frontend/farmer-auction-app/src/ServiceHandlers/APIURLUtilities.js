@@ -22,9 +22,23 @@ const getFarmerAPIChildURLKeys = () => {
   };
 };
 
+
+//API Child URL Keys...
+const getCustomerAPIChildURLKeys = () => {
+  return {
+    getActiveBidsListKey : "customer/activeBidsNotBiddedOn/",
+    // getFarmerProfileDataKey : "farmer/profile/",
+    // getCustomerProfileDataKey : "customer/profile/",
+    // updateFarmerProfileDataKey : "farmer/update",
+    // updateCustomerProfileDataKey : "customer/update",
+    // getFarmerBiddersListPerBidKey : "farmer/customersPerBid/"
+  };
+};
+
 const APIURLUtilities = {
   getAPIChildURLKeys,
-  getFarmerAPIChildURLKeys
+  getFarmerAPIChildURLKeys,
+  getCustomerAPIChildURLKeys
 };
 
 export default APIURLUtilities;

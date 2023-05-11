@@ -99,7 +99,10 @@ const CustomerDashBoard = (props) => {
   else if (props.customerScreen === "Customer BuyNewItem List")
     return (
       <>
-        <CustomerBuyNewItemList />
+        <CustomerBuyNewItemList
+          activeListPageRefreshFlag={activeListPageRefreshFlag}
+          showBottomMessageBar={showBottomMessageBar}
+        />
       </>
     );
   else if (props.customerScreen === "Customer Completed List")
