@@ -73,17 +73,10 @@ const CustomerBuyNewItemList = (props) => {
   const [customerActiveBidsList, setCustomerActiveBidsList] = useState([]);
 
   useEffect(() => {
-    //setCustomerActiveBidsList(items);
     console.log("Use Effect running in active bids list page...");
-
     CustomerServiceHandler.getCustomerBuyNewBidsData({
       getCustomerBuyNewBidListHandler: getCustomerBuyNewBidListHandler,
     });
-
-    // FarmerServiceHandler.getAllActiveListsData({
-    //   getFarmersCustomerActiveBidListHandler:
-    //     getFarmersCustomerActiveBidListHandler,
-    // });
   }, [props.invertBuyNewItemListFlag]);
 
   const getCustomerBuyNewBidListHandler = (buyNewBidsResponseData) => {
@@ -92,26 +85,33 @@ const CustomerBuyNewItemList = (props) => {
 
     console.log(props);
 
-    // isNewBidsListRecieved: false,
-    //       newBidsData: [],
-    //       errorMessage:
-
     if (buyNewBidsResponseData.isNewBidsListRecieved === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-        buyNewBidsResponseData.errorMessage,
+          buyNewBidsResponseData.errorMessage,
         [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
           UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
         [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
       });
     }
-    // UtilitiesKeys
-    setCustomerActiveBidsList(buyNewBidsResponseData.newBidsData);
+
+    const updatedPrice = buyNewBidsResponseData.newBidsData.map((item) => {
+      return { ...item, ...{ customerPrice: "" } };
+    });
+    setCustomerActiveBidsList(updatedPrice);
     console.log(customerActiveBidsList);
   };
 
+  const handlePriceValueChangeHanlder = (newBidData, index) => {
+    const updatedData = customerActiveBidsList.map((item, parsedIndex) => {
+      return (index == parsedIndex) ? newBidData : item;
+    });
+    setCustomerActiveBidsList(updatedData);
+  };
+
   const makeCustomerBidWithValues = (bidData) => {
-    if (parseInt(bidData.price) === 0) {
+    
+    if (parseInt(bidData.customerPrice) === 0) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
           "Please enter valid price to proceed.",
@@ -122,7 +122,7 @@ const CustomerBuyNewItemList = (props) => {
       return;
     }
 
-    if (UtilitiesMethods.getSpaceTrimmedLenght(bidData.price) === 0) {
+    if (UtilitiesMethods.getSpaceTrimmedLenght(bidData.customerPrice) === 0) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
           "Please enter some price to proceed.",
@@ -133,7 +133,7 @@ const CustomerBuyNewItemList = (props) => {
       return;
     }
 
-    if (parseInt(bidData.price) < parseInt(bidData.bidData.basePrice)) {
+    if (parseInt(bidData.customerPrice) < parseInt(bidData.basePrice)) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
           "Entered price can not be less than Base Price.",
@@ -163,7 +163,7 @@ const CustomerBuyNewItemList = (props) => {
         [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
       });
       return;
-    }
+    }else{
 
     props.showBottomMessageBar({
       [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
@@ -172,7 +172,7 @@ const CustomerBuyNewItemList = (props) => {
         UtilitiesKeys.getAlertMessageTypeKeys().successKey,
       [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: false,
     });
-    props.refreshBuyNewItemListHanlder();
+    props.refreshBuyNewItemListHanlder();}
   };
 
   return (
@@ -192,6 +192,7 @@ const CustomerBuyNewItemList = (props) => {
                 item={item}
                 index={index}
                 makeCustomerBidWithValues={makeCustomerBidWithValues}
+                handlePriceValueChangeHanlder={handlePriceValueChangeHanlder}
               />
             </li>
           ))}

@@ -1,17 +1,13 @@
-import { useState } from "react";
-
 const CustomerBuyNewItemCell = (props) => {
-  const [updatedBid, setUpdatedBid] = useState("");
-
   const handleUpdatedBid = (event) => {
-    setUpdatedBid(event.target.value);
+    props.handlePriceValueChangeHanlder(
+      { ...props.item, ...{ customerPrice: event.target.value } },
+      props.index
+    );
   };
 
   const updatedBidAmountHandler = (item, updatedBidAmount) => {
-    props.makeCustomerBidWithValues({
-      price: updatedBidAmount,
-      bidData: props.item,
-    });
+    props.makeCustomerBidWithValues(item);
   };
 
   return (
@@ -53,13 +49,13 @@ const CustomerBuyNewItemCell = (props) => {
         <input
           type="number"
           id="amount"
-          value={updatedBid}
+          value={props.item.customerPrice}
           onChange={handleUpdatedBid}
           min={0}
         />
         <button
           onClick={() => {
-            updatedBidAmountHandler(props.item, updatedBid);
+            updatedBidAmountHandler(props.item);
           }}
         >
           Bid

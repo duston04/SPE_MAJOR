@@ -86,7 +86,7 @@ const CustomerDashBoard = (props) => {
 
   const refreshBuyNewItemListHanlder = () => {
     console.log("refreshBuyNewItemListHanlder");
-    invertBuyNewItemListFlag();
+    invertDownloadActiveListFlag();
   };
 
   const invertBuyNewItemListFlag = () => {

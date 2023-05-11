@@ -24,7 +24,7 @@ const getCustomerBuyNewBidsData = async (props) => {
         });
       } else if (buyNewBidsResponseData.responseData === null) {
         props.getCustomerBuyNewBidListHandler({
-            isNewBidsListRecieved: false,
+          isNewBidsListRecieved: false,
           newBidsData: [],
           errorMessage: buyNewBidsResponseData.responseError.message,
         });
@@ -35,14 +35,13 @@ const getCustomerBuyNewBidsData = async (props) => {
 
 //Get All Users List In Admin Menu API Handler Method...
 const setPriceForCustomerBidData = async (props) => {
-
-    const childURL =
+  const childURL =
     APIURLUtilities.getCustomerAPIChildURLKeys().setPriceOfCustomerOnBidKey;
 
   const bidDataToServer = {
-    bid: { bidId: props.bidData.bidData.bidId },
+    bid: { bidId: props.bidData.bidId },
     customer: { username: UtilitiesMethods.getLoggedInUserID() },
-    price: props.bidData.price,
+    price: props.bidData.customerPrice,
   };
 
   await GlobalServiceHandler.hitCustomResponsePostService({
@@ -206,7 +205,7 @@ const setPriceForCustomerBidData = async (props) => {
 // };
 
 const CustomerServiceHandler = {
-    getCustomerBuyNewBidsData,
+  getCustomerBuyNewBidsData,
   setPriceForCustomerBidData,
   //   getAllActiveListsData,
   //   addFarmerNewBid,
