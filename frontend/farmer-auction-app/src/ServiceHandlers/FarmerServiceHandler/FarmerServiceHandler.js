@@ -107,6 +107,51 @@ const sellItemBidByFarmer = async (props) => {
   });
 };
 
+
+
+//Getting the bidders list for the current active bid...
+const deleteBidByFarmer = async (props) => {
+
+  console.log(props.itemData);
+
+  // itemData: bidData,
+  //     sellItemResponseHandler: sellItemResponseHandler
+
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerDeleteBidKey +
+    props.itemData.bidId;
+
+  console.log(childURL);
+
+  // return;
+
+  await GlobalServiceHandler.hitCustomResponsePostService({
+    childURL: childURL,
+    postData : {},
+    responseDataHandler: (deleteBidResponseData) => {
+      console.log("deleteBidResponseData");
+      console.log(deleteBidResponseData.responseData);
+
+      if (deleteBidResponseData.responseError === null) {
+        props.deleteBidResponseHandler({
+          isBidDeleted: true,
+          errorMessage: null,
+        });
+      } else if (deleteBidResponseData.responseData === null) {
+        props.deleteBidResponseHandler({
+          isBidDeleted: false,
+          errorMessage: deleteBidResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+
+
+
+
+
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
 
@@ -213,6 +258,7 @@ const FarmerServiceHandler = {
   updateFarmerProfileData,
   getCurrentBidBiddersList,
   sellItemBidByFarmer,
+  deleteBidByFarmer
 };
 
 export default FarmerServiceHandler;

@@ -7,6 +7,7 @@ import FarmerProfile from "./FarmerProfile";
 import ActiveBidersList from "./ActiveBidersList";
 import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
+import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods";
 const items = [
   {
     category: "fruit",
@@ -106,25 +107,47 @@ const FarmerDashBoard = (props) => {
     console.log(responseData);
 
     if (responseData.isBidCompleted === false) {
-      showBottomMessageBar({
-        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-          responseData.errorMessage,
-        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
-          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
-        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
-      });
+      showBottomMessageBar(
+        UtilitiesMethods.getErrorDisplayMessageList(responseData.errorMessage)
+      );
       return;
     }
 
-    showBottomMessageBar({
-      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-        "Bid assigned successfully.",
-      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
-        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
-      [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: false,
-    });
+    showBottomMessageBar(
+      UtilitiesMethods.getSuccessDisplayMessageList(
+        "Bid assigned successfully."
+      )
+    );
 
     setShowBidersList(false);
+    invertDownloadActiveListFlag();
+  };
+
+  const deleteBid = (item) => {
+    console.log("deleteBid called");
+    console.log(item);
+    setShowBidersList(false);
+
+    FarmerServiceHandler.deleteBidByFarmer({
+      itemData: item,
+      deleteBidResponseHandler: deleteBidResponseHandler,
+    });
+  };
+
+  const deleteBidResponseHandler = (responseData) => {
+    console.log("deleteBidResponseHandler");
+    console.log(responseData);
+
+    if (responseData.isBidDeleted === false) {
+      showBottomMessageBar(
+        UtilitiesMethods.getErrorDisplayMessageList(responseData.errorMessage)
+      );
+      return;
+    }
+
+    showBottomMessageBar(
+      UtilitiesMethods.getSuccessDisplayMessageList("Bid deleted successfully.")
+    );
     invertDownloadActiveListFlag();
   };
 
@@ -169,6 +192,7 @@ const FarmerDashBoard = (props) => {
           showBottomMessageBar={showBottomMessageBar}
           setShowBidersList={setShowBidersList}
           setUserSelectedBidData={setUserSelectedBidData}
+          deleteBid={deleteBid}
         />
         {showBidersList && (
           <ActiveBidersList

@@ -116,6 +116,7 @@ const ActiveBidList = (props) => {
                 item={item}
                 index={index}
                 setUserSelectedBidData={props.setUserSelectedBidData}
+                deleteBid={props.deleteBid}
               />
             </li>
           ))}

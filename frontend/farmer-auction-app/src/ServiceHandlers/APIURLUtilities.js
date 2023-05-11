@@ -19,7 +19,8 @@ const getFarmerAPIChildURLKeys = () => {
     updateFarmerProfileDataKey : "farmer/update",
     updateCustomerProfileDataKey : "customer/update",
     getFarmerBiddersListPerBidKey : "farmer/customersPerBid/",
-    getFarmerSellItemBidKey : "farmer/completeBid/"
+    getFarmerSellItemBidKey : "farmer/completeBid/",
+    getFarmerDeleteBidKey : "farmer/deleteBid/"
   };
 };
 
