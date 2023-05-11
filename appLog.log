@@ -1,40 +1,256 @@
-10-05-2023 15:24:17.111 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 28921 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
-10-05-2023 15:24:17.113 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
-10-05-2023 15:24:17.485 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-10-05-2023 15:24:17.540 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 49 ms. Found 8 JPA repository interfaces.
-10-05-2023 15:24:17.867 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
-10-05-2023 15:24:17.873 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
-10-05-2023 15:24:17.874 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
-10-05-2023 15:24:17.935 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
-10-05-2023 15:24:17.935 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 790 ms
-10-05-2023 15:24:18.004 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
-10-05-2023 15:24:18.032 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
-10-05-2023 15:24:18.191 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
-10-05-2023 15:24:18.287 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@35ac9ebd
-10-05-2023 15:24:18.288 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
-10-05-2023 15:24:18.317 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-10-05-2023 15:24:18.972 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-10-05-2023 15:24:18.978 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
-10-05-2023 15:24:19.195 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
-10-05-2023 15:24:19.362 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-10-05-2023 15:24:19.513 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@620f7a39, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e581302, org.springframework.security.web.context.SecurityContextHolderFilter@8942ece, org.springframework.security.web.header.HeaderWriterFilter@2ad80cf6, org.springframework.web.filter.CorsFilter@2b5ca574, org.springframework.security.web.authentication.logout.LogoutFilter@4d22265c, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@703a2bc9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15254569, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7603cfc2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21d6dc81, org.springframework.security.web.session.SessionManagementFilter@6bbb3280, org.springframework.security.web.access.ExceptionTranslationFilter@6b04689e, org.springframework.security.web.access.intercept.AuthorizationFilter@1fce6eb4]
-10-05-2023 15:24:19.640 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
-10-05-2023 15:24:19.648 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.864 seconds (process running for 3.242)
-10-05-2023 15:24:26.480 [http-nio-8282-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
-10-05-2023 15:24:26.481 [http-nio-8282-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
-10-05-2023 15:24:26.481 [http-nio-8282-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
-10-05-2023 15:24:26.562 [http-nio-8282-exec-1] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
-10-05-2023 15:24:26.846 [http-nio-8282-exec-1] TRACE c.e.s.S.auth.AuthenticationService.revokeAllUserTokens - Token has been revoked
-10-05-2023 15:24:26.866 [http-nio-8282-exec-1] TRACE c.e.s.S.auth.AuthenticationService.saveUserToken - Token has been generated and saved for the user : darshancustomer
-10-05-2023 15:24:26.866 [http-nio-8282-exec-1] TRACE c.e.s.S.auth.AuthenticationService.authenticate - User with username : darshancustomer is logged in
-10-05-2023 15:25:39.218 [http-nio-8282-exec-4] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
-10-05-2023 15:25:46.204 [http-nio-8282-exec-6] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
-10-05-2023 15:25:51.118 [http-nio-8282-exec-8] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
-10-05-2023 15:25:51.218 [http-nio-8282-exec-8] TRACE c.e.s.S.auth.AuthenticationService.revokeAllUserTokens - Token has been revoked
-10-05-2023 15:25:51.227 [http-nio-8282-exec-8] TRACE c.e.s.S.auth.AuthenticationService.saveUserToken - Token has been generated and saved for the user : darshanfarmer
-10-05-2023 15:25:51.227 [http-nio-8282-exec-8] TRACE c.e.s.S.auth.AuthenticationService.authenticate - User with username : darshanfarmer is logged in
-10-05-2023 15:26:00.958 [http-nio-8282-exec-9] INFO  c.e.s.controller.FarmerController.addBid - Farmer add bid API hit
-10-05-2023 15:26:00.997 [http-nio-8282-exec-9] TRACE c.e.spe_major.services.BidService.addBid - Bid has been successfully added
-10-05-2023 15:28:07.124 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
-10-05-2023 15:28:07.126 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
-10-05-2023 15:28:07.130 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:04:54.598 [main] ERROR o.s.boot.SpringApplication.reportFailure - Application run failed
+java.lang.IllegalStateException: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.model.processor.AppenderModelHandler - Could not create an Appender of type [net.logstash.logback.appender.LogstashTcpSocketAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.DefaultProcessor@7e5d9a50 - Failed to traverse model appender ch.qos.logback.core.model.processor.ModelHandlerException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.AppenderModelHandler - Could not create an Appender of type [net.logstash.logback.appender.LogstashTcpSocketAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.DefaultProcessor@7e5d9a50 - Failed to traverse model appender ch.qos.logback.core.model.processor.ModelHandlerException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:347)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:298)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.multicastInitialEvent(EventPublishingRunListener.java:136)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:81)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:64)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:63)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:305)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
+	at com.example.spe_major.SpeMajorApplication.main(SpeMajorApplication.java:15)
+Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.model.processor.AppenderModelHandler - Could not create an Appender of type [net.logstash.logback.appender.LogstashTcpSocketAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.DefaultProcessor@7e5d9a50 - Failed to traverse model appender ch.qos.logback.core.model.processor.ModelHandlerException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.AppenderModelHandler - Could not create an Appender of type [net.logstash.logback.appender.LogstashTcpSocketAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+ERROR in ch.qos.logback.core.model.processor.DefaultProcessor@7e5d9a50 - Failed to traverse model appender ch.qos.logback.core.model.processor.ModelHandlerException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type net.logstash.logback.appender.LogstashTcpSocketAppender
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.reportConfigurationErrorsIfNecessary(LogbackLoggingSystem.java:260)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:247)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithConventions(AbstractLoggingSystem.java:80)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:60)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:187)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:332)
+	... 19 common frames omitted
+11-05-2023 12:07:44.162 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 29113 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:07:44.164 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:07:44.543 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:07:44.593 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 44 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:07:44.908 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:07:44.913 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:07:44.914 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:07:44.959 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:07:44.959 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 771 ms
+11-05-2023 12:07:45.056 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:07:45.096 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:07:45.279 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:07:45.386 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@2ecdf528
+11-05-2023 12:07:45.387 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:07:45.417 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:07:46.052 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:07:46.058 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:07:46.264 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:07:46.421 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:07:46.556 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4417755b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3811464b, org.springframework.security.web.context.SecurityContextHolderFilter@5432be12, org.springframework.security.web.header.HeaderWriterFilter@6888746c, org.springframework.web.filter.CorsFilter@5f0a5848, org.springframework.security.web.authentication.logout.LogoutFilter@6f5f892c, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@12c30824, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b30b25f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@36c5a4b7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c6db00d, org.springframework.security.web.session.SessionManagementFilter@4a561f7d, org.springframework.security.web.access.ExceptionTranslationFilter@10b0dd3a, org.springframework.security.web.access.intercept.AuthorizationFilter@7e305953]
+11-05-2023 12:07:46.677 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:07:46.684 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.957 seconds (process running for 3.245)
+11-05-2023 12:13:28.870 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:13:28.872 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:13:28.873 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:13:30.324 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 29651 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:13:30.326 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:13:30.676 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:13:30.717 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 37 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:13:31.001 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:13:31.006 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:13:31.007 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:13:31.047 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:13:31.048 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 700 ms
+11-05-2023 12:13:31.120 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:13:31.145 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:13:31.309 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:13:31.389 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@419f0ea
+11-05-2023 12:13:31.390 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:13:31.416 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:13:32.011 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:13:32.017 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:13:32.218 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:13:32.378 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:13:32.531 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393d4e34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@123d666b, org.springframework.security.web.context.SecurityContextHolderFilter@79d8075c, org.springframework.security.web.header.HeaderWriterFilter@90b9695, org.springframework.web.filter.CorsFilter@1f3310fc, org.springframework.security.web.authentication.logout.LogoutFilter@5ae22651, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@7c31e01f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6f7c25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1267f832, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e44f989, org.springframework.security.web.session.SessionManagementFilter@6f2b608e, org.springframework.security.web.access.ExceptionTranslationFilter@30bd6bc8, org.springframework.security.web.access.intercept.AuthorizationFilter@6888746c]
+11-05-2023 12:13:32.654 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:13:32.661 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.801 seconds (process running for 3.1)
+11-05-2023 12:14:10.990 [http-nio-8282-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11-05-2023 12:14:10.990 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+11-05-2023 12:14:10.991 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+11-05-2023 12:14:11.056 [http-nio-8282-exec-2] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
+11-05-2023 12:14:11.344 [http-nio-8282-exec-2] TRACE c.e.s.S.auth.AuthenticationService.saveUserToken - Token has been generated and saved for the user : darshanfarmer
+11-05-2023 12:14:11.344 [http-nio-8282-exec-2] TRACE c.e.s.S.auth.AuthenticationService.authenticate - User with username : darshanfarmer is logged in
+11-05-2023 12:21:34.066 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:21:34.067 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:21:34.071 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:21:35.563 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 30550 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:21:35.565 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:21:35.908 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:21:35.950 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 38 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:21:36.243 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:21:36.249 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:21:36.249 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:21:36.289 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:21:36.290 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 702 ms
+11-05-2023 12:21:36.359 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:21:36.384 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:21:36.542 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:21:36.624 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@419f0ea
+11-05-2023 12:21:36.626 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:21:36.654 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:21:37.266 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:21:37.271 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:21:37.465 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:21:37.631 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:21:37.761 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393d4e34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@123d666b, org.springframework.security.web.context.SecurityContextHolderFilter@79d8075c, org.springframework.security.web.header.HeaderWriterFilter@90b9695, org.springframework.web.filter.CorsFilter@1f3310fc, org.springframework.security.web.authentication.logout.LogoutFilter@5ae22651, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@7c31e01f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6f7c25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1267f832, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e44f989, org.springframework.security.web.session.SessionManagementFilter@6f2b608e, org.springframework.security.web.access.ExceptionTranslationFilter@30bd6bc8, org.springframework.security.web.access.intercept.AuthorizationFilter@6888746c]
+11-05-2023 12:21:37.879 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:21:37.887 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.771 seconds (process running for 3.064)
+11-05-2023 12:21:46.441 [http-nio-8282-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11-05-2023 12:21:46.441 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+11-05-2023 12:21:46.442 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+11-05-2023 12:21:46.507 [http-nio-8282-exec-2] INFO  c.e.s.controller.LoginController.loginUser - Login API hit
+11-05-2023 12:21:46.798 [http-nio-8282-exec-2] TRACE c.e.s.S.auth.AuthenticationService.saveUserToken - Token has been generated and saved for the user : darshanfarmer
+11-05-2023 12:21:46.799 [http-nio-8282-exec-2] TRACE c.e.s.S.auth.AuthenticationService.authenticate - User with username : darshanfarmer is logged in
+11-05-2023 12:22:04.035 [http-nio-8282-exec-3] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:22:04.035 [http-nio-8282-exec-3] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:26:13.125 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:26:13.127 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:26:13.131 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:26:14.540 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 31563 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:26:14.542 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:26:14.885 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:26:14.928 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 39 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:26:15.224 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:26:15.229 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:26:15.230 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:26:15.271 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:26:15.271 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 705 ms
+11-05-2023 12:26:15.344 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:26:15.368 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:26:15.525 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:26:15.606 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@419f0ea
+11-05-2023 12:26:15.607 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:26:15.636 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:26:16.235 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:26:16.241 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:26:16.456 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:26:16.622 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:26:16.764 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393d4e34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@123d666b, org.springframework.security.web.context.SecurityContextHolderFilter@79d8075c, org.springframework.security.web.header.HeaderWriterFilter@90b9695, org.springframework.web.filter.CorsFilter@1f3310fc, org.springframework.security.web.authentication.logout.LogoutFilter@5ae22651, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@7c31e01f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6f7c25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1267f832, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e44f989, org.springframework.security.web.session.SessionManagementFilter@6f2b608e, org.springframework.security.web.access.ExceptionTranslationFilter@30bd6bc8, org.springframework.security.web.access.intercept.AuthorizationFilter@6888746c]
+11-05-2023 12:26:16.883 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:26:16.890 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.802 seconds (process running for 3.076)
+11-05-2023 12:35:10.891 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:35:10.893 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:35:10.897 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:35:12.371 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 32315 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:35:12.373 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:35:12.716 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:35:12.756 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 36 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:35:13.038 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:35:13.043 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:35:13.043 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:35:13.081 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:35:13.082 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 686 ms
+11-05-2023 12:35:13.148 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:35:13.171 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:35:13.323 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:35:13.404 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@63e70bf9
+11-05-2023 12:35:13.406 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:35:13.433 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:35:14.018 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:35:14.024 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:35:14.216 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:35:14.365 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:35:14.496 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393d4e34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@123d666b, org.springframework.security.web.context.SecurityContextHolderFilter@79d8075c, org.springframework.security.web.header.HeaderWriterFilter@90b9695, org.springframework.web.filter.CorsFilter@1f3310fc, org.springframework.security.web.authentication.logout.LogoutFilter@5ae22651, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@16257f8c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6f7c25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1267f832, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e44f989, org.springframework.security.web.session.SessionManagementFilter@6f2b608e, org.springframework.security.web.access.ExceptionTranslationFilter@30bd6bc8, org.springframework.security.web.access.intercept.AuthorizationFilter@6888746c]
+11-05-2023 12:35:14.611 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:35:14.621 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.71 seconds (process running for 2.985)
+11-05-2023 12:40:17.959 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:40:17.960 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:40:17.964 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:40:23.062 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 33385 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:40:23.065 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:40:23.434 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:40:23.479 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 40 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:40:23.780 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:40:23.785 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:40:23.785 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:40:23.827 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:40:23.827 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 736 ms
+11-05-2023 12:40:23.899 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:40:23.927 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:40:24.099 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:40:24.189 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@419f0ea
+11-05-2023 12:40:24.191 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:40:24.218 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:40:24.834 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:40:24.840 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:40:25.049 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:40:25.210 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:40:25.346 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@393d4e34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@123d666b, org.springframework.security.web.context.SecurityContextHolderFilter@79d8075c, org.springframework.security.web.header.HeaderWriterFilter@90b9695, org.springframework.web.filter.CorsFilter@1f3310fc, org.springframework.security.web.authentication.logout.LogoutFilter@5ae22651, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@7c31e01f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6f7c25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1267f832, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e44f989, org.springframework.security.web.session.SessionManagementFilter@6f2b608e, org.springframework.security.web.access.ExceptionTranslationFilter@30bd6bc8, org.springframework.security.web.access.intercept.AuthorizationFilter@6888746c]
+11-05-2023 12:40:25.468 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:40:25.476 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.864 seconds (process running for 3.15)
+11-05-2023 12:43:39.094 [http-nio-8282-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11-05-2023 12:43:39.094 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+11-05-2023 12:43:39.095 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+11-05-2023 12:43:39.242 [http-nio-8282-exec-2] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:39.243 [http-nio-8282-exec-2] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:43:39.832 [http-nio-8282-exec-3] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:39.832 [http-nio-8282-exec-3] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:43:40.683 [http-nio-8282-exec-4] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:40.684 [http-nio-8282-exec-4] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:43:41.046 [http-nio-8282-exec-5] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:41.046 [http-nio-8282-exec-5] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:43:42.868 [http-nio-8282-exec-6] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:42.869 [http-nio-8282-exec-6] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:43:43.195 [http-nio-8282-exec-7] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:43:43.196 [http-nio-8282-exec-7] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:58:29.099 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:58:29.101 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown initiated...
+11-05-2023 12:58:29.106 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - biddingApp - Shutdown completed.
+11-05-2023 12:58:32.983 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarting - Starting SpeMajorApplication using Java 17.0.6 with PID 35263 (/home/darshan/Desktop/SPE_MAJOR/target/classes started by darshan in /home/darshan/Desktop/SPE_MAJOR)
+11-05-2023 12:58:32.986 [main] INFO  c.e.spe_major.SpeMajorApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+11-05-2023 12:58:33.329 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11-05-2023 12:58:33.373 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 39 ms. Found 8 JPA repository interfaces.
+11-05-2023 12:58:33.664 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8282 (http)
+11-05-2023 12:58:33.670 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+11-05-2023 12:58:33.670 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.7]
+11-05-2023 12:58:33.710 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+11-05-2023 12:58:33.711 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 702 ms
+11-05-2023 12:58:33.779 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+11-05-2023 12:58:33.804 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.1.7.Final
+11-05-2023 12:58:33.962 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Starting...
+11-05-2023 12:58:34.044 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - biddingApp - Added connection com.mysql.cj.jdbc.ConnectionImpl@67b8d45
+11-05-2023 12:58:34.046 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - biddingApp - Start completed.
+11-05-2023 12:58:34.073 [main] INFO  SQL dialect.logSelectedDialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+11-05-2023 12:58:34.680 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11-05-2023 12:58:34.686 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11-05-2023 12:58:34.882 [main] DEBUG c.e.s.S.C.JwtAuthenticationFilter.init - Filter 'jwtAuthenticationFilter' configured for use
+11-05-2023 12:58:35.041 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11-05-2023 12:58:35.179 [main] INFO  o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@488c608a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b6c55b6, org.springframework.security.web.context.SecurityContextHolderFilter@7e8f97dd, org.springframework.security.web.header.HeaderWriterFilter@5cb64b9c, org.springframework.web.filter.CorsFilter@55e02661, org.springframework.security.web.authentication.logout.LogoutFilter@129b0ed, com.example.spe_major.Security.Configuration.JwtAuthenticationFilter@33986be7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69862a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@268f126f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f38545a, org.springframework.security.web.session.SessionManagementFilter@225890bc, org.springframework.security.web.access.ExceptionTranslationFilter@1d82d35c, org.springframework.security.web.access.intercept.AuthorizationFilter@e6fbf82]
+11-05-2023 12:58:35.301 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8282 (http) with context path ''
+11-05-2023 12:58:35.313 [main] INFO  c.e.spe_major.SpeMajorApplication.logStarted - Started SpeMajorApplication in 2.768 seconds (process running for 3.043)
+11-05-2023 12:59:00.919 [http-nio-8282-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11-05-2023 12:59:00.919 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+11-05-2023 12:59:00.920 [http-nio-8282-exec-2] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+11-05-2023 12:59:01.074 [http-nio-8282-exec-2] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:01.074 [http-nio-8282-exec-2] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:01.624 [http-nio-8282-exec-3] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:01.624 [http-nio-8282-exec-3] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:01.919 [http-nio-8282-exec-4] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:01.920 [http-nio-8282-exec-4] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:03.507 [http-nio-8282-exec-5] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:03.507 [http-nio-8282-exec-5] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:03.845 [http-nio-8282-exec-6] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:03.845 [http-nio-8282-exec-6] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:04.747 [http-nio-8282-exec-7] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:04.747 [http-nio-8282-exec-7] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
+11-05-2023 12:59:05.189 [http-nio-8282-exec-8] INFO  c.e.s.controller.FarmerController.getProfile - Get Farmer profile  API hit
+11-05-2023 12:59:05.189 [http-nio-8282-exec-8] TRACE c.e.spe_major.services.FarmerService.getProfile - Farmer Profile fetched
