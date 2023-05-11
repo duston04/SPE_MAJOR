@@ -34,6 +34,46 @@ const getAllActiveListsData = async (props) => {
   });
 };
 
+//Getting the bidders list for the current active bid...
+const getCurrentBidBiddersList = async (props) => {
+  console.log("getCurrentBidBiddersList");
+
+  console.log(props.bidData);
+
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerBiddersListPerBidKey +
+    props.bidData.bidId;
+
+  console.log(childURL);
+
+  // bidData: props.selectedBidData,
+  // bidersListResponseHandler: getFarmersActiveBidersListHandler,
+
+  // return;
+
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (biddersListResponseData) => {
+      console.log("biddersListResponseData");
+      console.log(biddersListResponseData.responseData);
+
+      if (biddersListResponseData.responseError === null) {
+        props.bidersListResponseHandler({
+          isBiddersListRecieved: true,
+          biddersListData: biddersListResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (biddersListResponseData.responseData === null) {
+        props.bidersListResponseHandler({
+          isBiddersListRecieved: false,
+          biddersListData: [],
+          errorMessage: biddersListResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
 
@@ -138,6 +178,7 @@ const FarmerServiceHandler = {
   addFarmerNewBid,
   getUserProfileData,
   updateFarmerProfileData,
+  getCurrentBidBiddersList,
 };
 
 export default FarmerServiceHandler;

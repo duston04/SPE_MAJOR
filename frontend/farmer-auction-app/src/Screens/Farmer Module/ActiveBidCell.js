@@ -2,10 +2,11 @@ const ActiveBidCell = (props) => {
   const showBidersListHandler = (item) => {
     //CALL API TO GET BIDERS LIST FOR SPECIFIC ITEM USING "item.id"
     console.log(item);
-    //props.setShowBidersList(item);
+    props.setShowBidersList(item);
+    props.setUserSelectedBidData(item);
   };
 
-  console.log(props.item);
+  // console.log(props.item);
 
 // basePrice: 2000
 // bidId: 3
