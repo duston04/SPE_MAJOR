@@ -71,6 +71,7 @@ const FarmerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
   const [showBidersList, setShowBidersList] = useState(false);
+  const [selectedBidData, setSelectedBidData] = useState({});
 
   const showBottomMessageBar = (errorMessageData) => {
     props.showBottomMessageBar(errorMessageData);
@@ -82,16 +83,26 @@ const FarmerDashBoard = (props) => {
     });
   };
 
+  const setUserSelectedBidData = (bidData) => {
+    console.log("Bid data selected in the setUserSelectedBidData");
+    console.log(bidData);
+    setSelectedBidData(bidData);
+  };
+
   useEffect(() => {
     if (props.farmerScreen === "Active List") {
       invertDownloadActiveListFlag();
+      setShowBidersList(false);
     }
   }, [props.farmerScreen]);
 
   if (props.farmerScreen === "Farmer Profile")
     return (
       <>
-        <FarmerProfile showBottomMessageBar={showBottomMessageBar}/>
+        <FarmerProfile
+          showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        />
       </>
     );
   else if (props.farmerScreen === "Expired List")
@@ -112,13 +123,20 @@ const FarmerDashBoard = (props) => {
         <AddNewBid
           showBottomMessageBar={showBottomMessageBar}
           invertDownloadActiveFlag={invertDownloadActiveListFlag}
+          setShowBidersList={setShowBidersList}
         />
         <ActiveBidList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
           showBottomMessageBar={showBottomMessageBar}
           setShowBidersList={setShowBidersList}
+          setUserSelectedBidData={setUserSelectedBidData}
         />
-        {showBidersList && <ActiveBidersList />}
+        {showBidersList && (
+          <ActiveBidersList
+            selectedBidData={selectedBidData}
+            showBottomMessageBar={showBottomMessageBar}
+          />
+        )}
       </>
     );
 };

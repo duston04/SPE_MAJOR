@@ -17,9 +17,6 @@ const getAddBidInitialData = () => {
 };
 
 const checkBidCategoryDataValidations = (bidData, bidCategoryData) => {
-  console.log("checkBidCategoryDataValidations done");
-  console.log(bidData);
-  console.log(bidCategoryData);
 
   var validationData = {
     [UtilitiesKeys.getErrorMessageDataKeys().messageKey]: "",
@@ -97,6 +94,7 @@ const checkBidCategoryDataValidations = (bidData, bidCategoryData) => {
     },
   };
 };
+
 
 const FarmerUtility = {
   getAddBidCategoryInitialData,

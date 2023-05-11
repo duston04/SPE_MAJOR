@@ -57,6 +57,7 @@ const Login = (props) => {
     props.setScreen(
       userLoginData.role === "ROLE_FARMER" ? "Farmer Dashboard" : "Customer Dashboard"
     );
+    props.setIsFarmerScreenOpened(userLoginData.role === "ROLE_FARMER");
     setUserLoginData(LoginUtility.getUserLoginInitialData());
   };
 

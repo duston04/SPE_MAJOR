@@ -4,20 +4,13 @@ import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods"
 
 //Get All Users List In Admin Menu API Handler Method...
 const getAllActiveListsData = async (props) => {
-  console.log("GetSuperAdminAllRegisteredUserList");
-
-  // var hospitalID = "1";
-
-  // admin/getAllHospitalUsers/{adminUsername}
-
   const childURL =
     APIURLUtilities.getAPIChildURLKeys().getActiveListKey +
     UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
-  // return;
 
-  await GlobalServiceHandler.hitGetServiceWithOutBearer({
+  await GlobalServiceHandler.hitCustomResponseGetService({
     childURL: childURL,
     responseDataHandler: (activeBidsResponseData) => {
       console.log("activeBidsResponseData");
@@ -41,7 +34,116 @@ const getAllActiveListsData = async (props) => {
   });
 };
 
+//Getting the bidders list for the current active bid...
+const getCurrentBidBiddersList = async (props) => {
+  console.log("getCurrentBidBiddersList");
 
+  console.log(props.bidData);
+
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerBiddersListPerBidKey +
+    props.bidData.bidId;
+
+  console.log(childURL);
+
+  // bidData: props.selectedBidData,
+  // bidersListResponseHandler: getFarmersActiveBidersListHandler,
+
+  // return;
+
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (biddersListResponseData) => {
+      console.log("biddersListResponseData");
+      console.log(biddersListResponseData.responseData);
+
+      if (biddersListResponseData.responseError === null) {
+        props.bidersListResponseHandler({
+          isBiddersListRecieved: true,
+          biddersListData: biddersListResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (biddersListResponseData.responseData === null) {
+        props.bidersListResponseHandler({
+          isBiddersListRecieved: false,
+          biddersListData: [],
+          errorMessage: biddersListResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+const getUserProfileData = async (props) => {
+  console.log("GetSuperAdminAllRegisteredUserList");
+
+  console.log(props.isFarmerProfile);
+
+  const childURL = props.isFarmerProfile
+    ? APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey
+    : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey +
+      UtilitiesMethods.getLoggedInUserID();
+
+  console.log(childURL);
+
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (userProfileResponseData) => {
+      console.log("userProfileResponseData");
+      console.log(userProfileResponseData.responseData);
+
+      if (userProfileResponseData.responseError === null) {
+        props.fetchProfileDataResponseHandler({
+          isProfileDataRecieved: true,
+          userProfileData: userProfileResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (userProfileResponseData.responseData === null) {
+        props.fetchProfileDataResponseHandler({
+          isBidAddedFlag: false,
+          userProfileData: null,
+          errorMessage: userProfileResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+const updateFarmerProfileData = async (props) => {
+  const childURL = +(props.isFarmerProfile === true)
+    ? APIURLUtilities.getFarmerAPIChildURLKeys().updateFarmerProfileDataKey
+    : APIURLUtilities.getFarmerAPIChildURLKeys().updateCustomerProfileDataKey;
+
+  const userProfileData = {
+    userId: props.userProfileData.userId,
+    username: props.userProfileData.username,
+    password: props.userProfileData.password,
+    name: props.userProfileData.name,
+    address: props.userProfileData.address,
+    pincode: props.userProfileData.pincode,
+    contact: props.userProfileData.contact,
+  };
+
+  await GlobalServiceHandler.hitPutService({
+    childURL: childURL,
+    postData: userProfileData,
+    responseDataHandler: (updatedProfileResponseData) => {
+      if (updatedProfileResponseData.responseError === null) {
+        props.updateProfileDataResponseHandler({
+          isProfileUpdatedFlag: true,
+          updateProfileData: updatedProfileResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (updatedProfileResponseData.responseData === null) {
+        props.updateProfileDataResponseHandler({
+          isProfileUpdatedFlag: false,
+          updateProfileData: null,
+          errorMessage: updatedProfileResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
 
 const addFarmerNewBid = async (props) => {
   const childURL =
@@ -50,7 +152,7 @@ const addFarmerNewBid = async (props) => {
 
   const postData = { category: props.categoryData, ...props.bidData };
 
-  await GlobalServiceHandler.hitPostServiceWithOutBearer({
+  await GlobalServiceHandler.hitCustomResponsePostService({
     childURL: childURL,
     postData: postData,
     responseDataHandler: (addBidServiceData) => {
@@ -74,6 +176,9 @@ const addFarmerNewBid = async (props) => {
 const FarmerServiceHandler = {
   getAllActiveListsData,
   addFarmerNewBid,
+  getUserProfileData,
+  updateFarmerProfileData,
+  getCurrentBidBiddersList,
 };
 
 export default FarmerServiceHandler;

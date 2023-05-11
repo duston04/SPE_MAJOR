@@ -37,9 +37,11 @@ const checkAddUserDataValidations = (userData) => {
     };
   }
 
+  const pinCode = userData["pincode"].toString();
+
   //Validation for user pincode...
   if (
-    userData["pincode"].length !==
+    pinCode.length !==
     parseInt(
       UtilitiesKeys.getInputFieldLengthValidationKeys().userPinCodeLength
     )
