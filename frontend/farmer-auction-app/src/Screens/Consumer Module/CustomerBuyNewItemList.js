@@ -3,6 +3,7 @@ import classes from "./CustomerActiveBidList.module.css";
 import CustomerBuyNewItemCell from "./CustomerBuyNewItemCell";
 import CustomerServiceHandler from "../../ServiceHandlers/CustomerServiceHandler/CustomerServiceHandler";
 import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
+import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods";
 // import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 
 // const items = [
@@ -89,20 +90,61 @@ const CustomerBuyNewItemList = (props) => {
     console.log("Active List Data Recieved");
     console.log(activeBidResponseData.activeBidsData);
 
+    console.log(props);
+
     //  isActiveBidsListRecieved: true,
     // activeBidsData: activeBidsResponseData.responseData.data,
     // errorMessage: null,
     // activeBidResponseData.errorMessage
     if (activeBidResponseData.isActiveBidsListRecieved === false) {
-      props.showBottomMessageBar({[UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-        activeBidResponseData.errorMessage,
-      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
-        UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
-      [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,});
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          activeBidResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
     }
     // UtilitiesKeys
     setCustomerActiveBidsList(activeBidResponseData.activeBidsData);
     console.log(customerActiveBidsList);
+  };
+
+  const makeCustomerBidWithValues = (bidData) => {
+
+    if (parseInt(bidData.price) === 0) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          "Please enter valid price to proceed.",
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+
+    if (UtilitiesMethods.getSpaceTrimmedLenght(bidData.price) === 0) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          "Please enter some price to proceed.",
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+
+    if (parseInt(bidData.price) < parseInt(bidData.bidData.basePrice)) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          "Entered price can not be less than Base Price.",
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+
   };
 
   return (
@@ -118,7 +160,11 @@ const CustomerBuyNewItemList = (props) => {
         <ul>
           {customerActiveBidsList.map((item, index) => (
             <li key={index}>
-              <CustomerBuyNewItemCell item={item} index={index} />
+              <CustomerBuyNewItemCell
+                item={item}
+                index={index}
+                makeCustomerBidWithValues={makeCustomerBidWithValues}
+              />
             </li>
           ))}
         </ul>

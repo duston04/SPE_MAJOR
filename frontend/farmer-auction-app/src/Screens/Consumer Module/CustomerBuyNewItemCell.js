@@ -6,25 +6,13 @@ const CustomerBuyNewItemCell = (props) => {
   const handleUpdatedBid = (event) => {
     setUpdatedBid(event.target.value);
   };
+
   const updatedBidAmountHandler = (item, updatedBidAmount) => {
-    //CALL API TO GET BIDERS LIST FOR SPECIFIC ITEM USING "item.id"
-    console.log(item);
-    console.log(updatedBidAmount);
-    item.active_bid = updatedBidAmount;
+    props.makeCustomerBidWithValues({
+      price: updatedBidAmount,
+      bidData: props.item,
+    });
   };
-
-
-
-  // basePrice: 5000
-  // bidId : 1
-  // category: {categoryId: 1, type: 'fruit', subcategory: 'banana'}
-  // currentMaxBid:  0
-  // expiryDate: "2023-05-11"
-  // farmer: {userId: 1, username: 'dhruvfarmer', password: '$2a$10$Lr.hhpEvB/xeUA0Ofs1tCebPC/DZVd8Eq8WPYlnfruLZvOKsv2EQ.', role: 'ROLE_FARMER', address: 'f 173', …}
-  // finalCustomer : null
-  // quantity: 1000
-  // status: "ACTIVE"
-
 
   return (
     <>
@@ -67,6 +55,7 @@ const CustomerBuyNewItemCell = (props) => {
           id="amount"
           value={updatedBid}
           onChange={handleUpdatedBid}
+          min={0}
         />
         <button
           onClick={() => {

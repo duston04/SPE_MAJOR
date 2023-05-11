@@ -1,9 +1,10 @@
 import CustomerActiveBidList from "./CustomerActiveBidList";
 import CustomerCompletedBidList from "./CustomerCompletedBidList";
 import React, { useEffect, useState } from "react";
-import CustomerProfile from "./CustomerProfile";
+// import CustomerProfile from "./CustomerProfile";
 import CustomerBuyNewItemList from "./CustomerBuyNewItemList";
 import FarmerProfile from "../Farmer Module/FarmerProfile";
+// import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 
 const items = [
   {
@@ -101,7 +102,7 @@ const CustomerDashBoard = (props) => {
       <>
         <CustomerBuyNewItemList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
-          showBottomMessageBar={showBottomMessageBar}
+          showBottomMessageBar={props.showBottomMessageBar}
         />
       </>
     );
