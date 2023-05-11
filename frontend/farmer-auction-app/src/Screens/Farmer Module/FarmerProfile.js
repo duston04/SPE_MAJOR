@@ -7,7 +7,9 @@ import InputNumericTextField from "../../UI Screen Components/InputNumber/InputN
 import RegistrationUtility from "../../Utilities/RegistrationUtility/RegistrationUtility";
 
 const FarmerProfile = (props) => {
-  const [isFarmerProfile, setIsFarmerProfile] = useState(true);
+  const [isFarmerProfile, setIsFarmerProfile] = useState(
+    props.isFarmerLoggedIn
+  );
   const [userProfile, setUserProfile] = useState({});
   const [fetchProfileFlag, setFetchProfileFlag] = useState(false);
 

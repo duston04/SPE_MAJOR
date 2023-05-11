@@ -3,6 +3,7 @@ import CustomerCompletedBidList from "./CustomerCompletedBidList";
 import React, { useEffect, useState } from "react";
 import CustomerProfile from "./CustomerProfile";
 import CustomerBuyNewItemList from "./CustomerBuyNewItemList";
+import FarmerProfile from "../Farmer Module/FarmerProfile";
 
 const items = [
   {
@@ -89,7 +90,10 @@ const CustomerDashBoard = (props) => {
   if (props.customerScreen === "Customer Profile")
     return (
       <>
-        <CustomerProfile />
+        <FarmerProfile
+          showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        />
       </>
     );
   else if (props.customerScreen === "Customer BuyNewItem List")

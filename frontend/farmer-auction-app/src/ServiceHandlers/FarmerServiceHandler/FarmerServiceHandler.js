@@ -37,9 +37,12 @@ const getAllActiveListsData = async (props) => {
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
 
-  const childURL =
-    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey +
-    UtilitiesMethods.getLoggedInUserID();
+  console.log(props.isFarmerProfile);
+
+  const childURL = props.isFarmerProfile
+    ? APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey
+    : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey +
+      UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
 
@@ -66,11 +69,10 @@ const getUserProfileData = async (props) => {
   });
 };
 
-
 const updateFarmerProfileData = async (props) => {
   const childURL = +(props.isFarmerProfile === true)
     ? APIURLUtilities.getFarmerAPIChildURLKeys().updateFarmerProfileDataKey
-    : "";
+    : APIURLUtilities.getFarmerAPIChildURLKeys().updateCustomerProfileDataKey;
 
   const userProfileData = {
     userId: props.userProfileData.userId,

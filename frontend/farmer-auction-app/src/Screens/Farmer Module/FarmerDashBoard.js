@@ -91,7 +91,10 @@ const FarmerDashBoard = (props) => {
   if (props.farmerScreen === "Farmer Profile")
     return (
       <>
-        <FarmerProfile showBottomMessageBar={showBottomMessageBar}/>
+        <FarmerProfile
+          showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        />
       </>
     );
   else if (props.farmerScreen === "Expired List")

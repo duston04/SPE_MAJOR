@@ -15,7 +15,9 @@ const getFarmerAPIChildURLKeys = () => {
   return {
     getAddBidKey : "farmer/addBid/",
     getFarmerProfileDataKey : "farmer/profile/",
-    updateFarmerProfileDataKey : "farmer/update"
+    getCustomerProfileDataKey : "customer/profile/",
+    updateFarmerProfileDataKey : "farmer/update",
+    updateCustomerProfileDataKey : "customer/update"
   };
 };
 

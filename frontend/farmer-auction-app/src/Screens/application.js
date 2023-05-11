@@ -10,12 +10,12 @@ import Snackbar from "@mui/material/Snackbar";
 
 const Application = () => {
   const [screen, setScreen] = useState("Login");
-  // const [userScreenType, setUserScreenType] = useState("");
   const [farmerScreen, setFarmerScreen] = useState("Active List");
   const [customerScreen, setCustomerScreen] = useState("Active List");
 
   //Meesage Alert Props...
   const [alertFlag, setAlertFlag] = useState(false);
+  const [isFarmerScreen, setIsFarmerScreen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("info");
 
@@ -38,6 +38,10 @@ const Application = () => {
     setAlertFlag(true);
   };
 
+  const setIsFarmerScreenOpened = (isFramerOptionSelected) => {
+    setIsFarmerScreen(isFramerOptionSelected);
+  };
+
   return (
     <div className={classes.bg_container}>
       {/* {alertFlag === true && (
@@ -51,6 +55,7 @@ const Application = () => {
         <Login
           setScreen={setScreen}
           showBottomMessageBar={showBottomMessageBar}
+          setIsFarmerScreenOpened={setIsFarmerScreenOpened}
         />
       )}
       {screen === "SignUp" && (
@@ -64,6 +69,7 @@ const Application = () => {
           setScreen={setScreen}
           farmerScreen={farmerScreen}
           showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={isFarmerScreen}
         />
       )}
       {screen === "Customer Dashboard" && (
@@ -71,6 +77,7 @@ const Application = () => {
           setScreen={setScreen}
           customerScreen={customerScreen}
           showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={isFarmerScreen}
         />
       )}
       {screen === "Login" || screen === "SignUp" ? (
