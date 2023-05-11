@@ -7,6 +7,7 @@ console.log(props);
   const sellItemHandler = (item) => {
     //SELL ITEM TO SELECTED CUSTOMER
     console.log(item);
+    props.hanlderSellBidHandler(item);
   };
 
   // category : 

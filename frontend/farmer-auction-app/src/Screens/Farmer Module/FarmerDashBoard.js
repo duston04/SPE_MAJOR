@@ -5,6 +5,8 @@ import CompletedBidList from "./CompletedBidList";
 import React, { useEffect, useState } from "react";
 import FarmerProfile from "./FarmerProfile";
 import ActiveBidersList from "./ActiveBidersList";
+import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
+import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 const items = [
   {
     category: "fruit",
@@ -89,6 +91,43 @@ const FarmerDashBoard = (props) => {
     setSelectedBidData(bidData);
   };
 
+  const hanlderSellBidHandler = (bidData) => {
+    console.log("hanlderSellBidHandler called");
+    console.log(bidData);
+
+    FarmerServiceHandler.sellItemBidByFarmer({
+      itemData: bidData,
+      sellItemResponseHandler: sellItemResponseHandler,
+    });
+  };
+
+  const sellItemResponseHandler = (responseData) => {
+    console.log("sellItemResponseHandler");
+    console.log(responseData);
+
+    if (responseData.isBidCompleted === false) {
+      showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          responseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+
+    showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        "Bid assigned successfully.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+      [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: false,
+    });
+
+    setShowBidersList(false);
+    invertDownloadActiveListFlag();
+  };
+
   useEffect(() => {
     if (props.farmerScreen === "Active List") {
       invertDownloadActiveListFlag();
@@ -135,6 +174,7 @@ const FarmerDashBoard = (props) => {
           <ActiveBidersList
             selectedBidData={selectedBidData}
             showBottomMessageBar={showBottomMessageBar}
+            hanlderSellBidHandler={hanlderSellBidHandler}
           />
         )}
       </>

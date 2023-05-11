@@ -46,11 +46,6 @@ const getCurrentBidBiddersList = async (props) => {
 
   console.log(childURL);
 
-  // bidData: props.selectedBidData,
-  // bidersListResponseHandler: getFarmersActiveBidersListHandler,
-
-  // return;
-
   await GlobalServiceHandler.hitCustomResponseGetService({
     childURL: childURL,
     responseDataHandler: (biddersListResponseData) => {
@@ -68,6 +63,44 @@ const getCurrentBidBiddersList = async (props) => {
           isBiddersListRecieved: false,
           biddersListData: [],
           errorMessage: biddersListResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+//Getting the bidders list for the current active bid...
+const sellItemBidByFarmer = async (props) => {
+
+  console.log(props.itemData);
+
+  // itemData: bidData,
+  //     sellItemResponseHandler: sellItemResponseHandler
+
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerSellItemBidKey +
+    props.itemData.customerBidId;
+
+  console.log(childURL);
+
+  await GlobalServiceHandler.hitCustomResponsePostService({
+    childURL: childURL,
+    postData : {},
+    responseDataHandler: (sellBidResponseData) => {
+      console.log("sellBidResponseData");
+      console.log(sellBidResponseData.responseData);
+
+      if (sellBidResponseData.responseError === null) {
+        props.sellItemResponseHandler({
+          isBidCompleted: true,
+          // biddersListData: sellBidResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (sellBidResponseData.responseData === null) {
+        props.sellItemResponseHandler({
+          isBidCompleted: false,
+          // biddersListData: [],
+          errorMessage: sellBidResponseData.responseError.message,
         });
       }
     },
@@ -179,6 +212,7 @@ const FarmerServiceHandler = {
   getUserProfileData,
   updateFarmerProfileData,
   getCurrentBidBiddersList,
+  sellItemBidByFarmer,
 };
 
 export default FarmerServiceHandler;

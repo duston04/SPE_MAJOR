@@ -32,7 +32,6 @@ import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 const ActiveBidersList = (props) => {
   const [bidersList, setBidersList] = useState([]);
 
-
   console.log("ActiveBidersList called");
 
   useEffect(() => {
@@ -42,9 +41,7 @@ const ActiveBidersList = (props) => {
     });
   }, [props.selectedBidData]);
 
-
   const getFarmersActiveBidersListHandler = (activeBidResponseData) => {
-
     if (activeBidResponseData.isBiddersListRecieved === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
@@ -60,11 +57,10 @@ const ActiveBidersList = (props) => {
     console.log(activeBidResponseData.biddersListData);
     setBidersList(activeBidResponseData.biddersListData);
 
-
-  //  console.log(bidersList);
-
+    //  console.log(bidersList);
   };
 
+  // const hanlderSellBidHandler = () => {};
 
   return (
     <div className={classes.ActiveBidersListContainer}>
@@ -79,7 +75,11 @@ const ActiveBidersList = (props) => {
         <ul>
           {bidersList.map((item, index) => (
             <li key={index}>
-              <ActiveBidersCell item={item} index={index} />
+              <ActiveBidersCell
+                item={item}
+                index={index}
+                hanlderSellBidHandler={props.hanlderSellBidHandler}
+              />
             </li>
           ))}
         </ul>
