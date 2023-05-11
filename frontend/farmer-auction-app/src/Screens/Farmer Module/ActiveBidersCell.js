@@ -1,24 +1,90 @@
 const ActiveBidersCell = (props) => {
+
+console.log("ActiveBidersCell called");
+console.log(props);
+
+
   const sellItemHandler = (item) => {
     //SELL ITEM TO SELECTED CUSTOMER
     console.log(item);
   };
+
+  // category : 
+  // categoryId: 1
+  // subcategory : "banana"
+  // type : "fruit"
+
+
+//   {item: {…}, index: 1}
+// index: 1
+// item: 
+// bid: {bidId: 1, category: {…}, quantity: 1000, basePrice: 5000, finalCustomer: null, …}
+// customer: {userId: 52, username: 'dhruvconsumer1', password: '$2a$10$CEAcu7QB4qtL45nTBtlsNuF5qkBxiOpfR0n4ej8yaUgh9VxnRfuxm', role: 'ROLE_CUSTOMER', name: 'dhruv', …}
+// customerBidId: 10
+// price: 7000
+
+
+// consumer
+
+// accountNonExpired
+// : 
+// true
+// accountNonLocked
+// : 
+// true
+// address
+// : 
+// "f 172"
+// authorities
+// : 
+// [{…}]
+// contact
+// : 
+// "9015346166"
+// credentialsNonExpired
+// : 
+// true
+// enabled
+// : 
+// true
+// name
+// : 
+// "dhruv"
+// password
+// : 
+// "$2a$10$CEAcu7QB4qtL45nTBtlsNuF5qkBxiOpfR0n4ej8yaUgh9VxnRfuxm"
+// pincode
+// : 
+// 201009
+// role
+// : 
+// "ROLE_CUSTOMER"
+// userId
+// : 
+// 52
+// username
+// : 
+// "dhruvconsumer1"
+
+console.log(props.item);
+
+
   return (
     <>
       <div>
-        <strong>Name:</strong> {props.item.name}
+        <strong>Name : </strong> {props.item.bid.category.subcategory}
       </div>
       <div>
-        <strong>contact:</strong> {props.item.contact}
+        <strong>Customer Name : </strong> {props.item.customer.name}
       </div>
       <div>
-        <strong>Address:</strong> {props.item.address}
+        <strong>Base Price : </strong> {props.item.bid.basePrice}
       </div>
       <div>
-        <strong>Pincode:</strong> {props.item.pincode}
+        <strong>Quantity : </strong> {props.item.bid.quantity}
       </div>
       <div>
-        <strong>Bid:</strong> {props.item.bid}
+        <strong>Bid Price :</strong> {props.item.price}
       </div>
       <button
         onClick={() => {

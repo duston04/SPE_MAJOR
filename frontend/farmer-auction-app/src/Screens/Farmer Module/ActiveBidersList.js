@@ -30,7 +30,10 @@ import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 // ];
 
 const ActiveBidersList = (props) => {
-  const [activeBidersList, setActiveBidersList] = useState([]);
+  const [bidersList, setBidersList] = useState([]);
+
+
+  console.log("ActiveBidersList called");
 
   useEffect(() => {
     FarmerServiceHandler.getCurrentBidBiddersList({
@@ -50,8 +53,16 @@ const ActiveBidersList = (props) => {
           UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
         [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
       });
+      return;
     }
-    setActiveBidersList(activeBidResponseData.biddersListData);
+    console.log("respone of activeBidResponseData.biddersListData called");
+
+    console.log(activeBidResponseData.biddersListData);
+    setBidersList(activeBidResponseData.biddersListData);
+
+
+  //  console.log(bidersList);
+
   };
 
 
@@ -60,13 +71,13 @@ const ActiveBidersList = (props) => {
       <h2>Active Biders List</h2>
 
       <div className={classes.ActiveBidersList}>
-        {activeBidersList.length === 0 && (
+        {bidersList.length === 0 && (
           <h4 style={{ textAlign: "center" }}>
             No active bidders to display. Please let someone to bid first.
           </h4>
         )}
         <ul>
-          {activeBidersList.map((item, index) => (
+          {bidersList.map((item, index) => (
             <li key={index}>
               <ActiveBidersCell item={item} index={index} />
             </li>
