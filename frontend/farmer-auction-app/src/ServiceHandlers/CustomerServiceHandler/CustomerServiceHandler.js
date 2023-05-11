@@ -3,7 +3,7 @@ import APIURLUtilities from "../APIURLUtilities";
 import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods";
 
 //Get All Users List In Admin Menu API Handler Method...
-const getCustomerActiveBidsData = async (props) => {
+const getCustomerBuyNewBidsData = async (props) => {
   const childURL =
     APIURLUtilities.getCustomerAPIChildURLKeys().getActiveBidsListKey +
     UtilitiesMethods.getLoggedInUserID();
@@ -12,21 +12,54 @@ const getCustomerActiveBidsData = async (props) => {
 
   await GlobalServiceHandler.hitCustomResponseGetService({
     childURL: childURL,
-    responseDataHandler: (activeBidsResponseData) => {
-      console.log("activeBidsResponseData");
-      console.log(activeBidsResponseData.responseData);
+    responseDataHandler: (buyNewBidsResponseData) => {
+      console.log("buyNewBidsResponseData");
+      console.log(buyNewBidsResponseData.responseData);
 
-      if (activeBidsResponseData.responseError === null) {
-        props.getCustomerActiveBidListHandler({
-          isActiveBidsListRecieved: true,
-          activeBidsData: activeBidsResponseData.responseData.data,
+      if (buyNewBidsResponseData.responseError === null) {
+        props.getCustomerBuyNewBidListHandler({
+          isNewBidsListRecieved: true,
+          newBidsData: buyNewBidsResponseData.responseData.data,
           errorMessage: null,
         });
-      } else if (activeBidsResponseData.responseData === null) {
-        props.getCustomerActiveBidListHandler({
-          isActiveBidsListRecieved: false,
-          activeBidsData: [],
-          errorMessage: activeBidsResponseData.responseError.message,
+      } else if (buyNewBidsResponseData.responseData === null) {
+        props.getCustomerBuyNewBidListHandler({
+            isNewBidsListRecieved: false,
+          newBidsData: [],
+          errorMessage: buyNewBidsResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+//Get All Users List In Admin Menu API Handler Method...
+const setPriceForCustomerBidData = async (props) => {
+
+    const childURL =
+    APIURLUtilities.getCustomerAPIChildURLKeys().setPriceOfCustomerOnBidKey;
+
+  const bidDataToServer = {
+    bid: { bidId: props.bidData.bidData.bidId },
+    customer: { username: UtilitiesMethods.getLoggedInUserID() },
+    price: props.bidData.price,
+  };
+
+  await GlobalServiceHandler.hitCustomResponsePostService({
+    childURL: childURL,
+    postData: bidDataToServer,
+    responseDataHandler: (setBidPriceResponseData) => {
+      if (setBidPriceResponseData.responseError === null) {
+        props.setBidPriceByCustomerResponseHanlder({
+          isBidPriceSet: true,
+          setBidPriceData: setBidPriceResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (setBidPriceResponseData.responseData === null) {
+        props.setBidPriceByCustomerResponseHanlder({
+          isBidPriceSet: false,
+          setBidPriceData: [],
+          errorMessage: setBidPriceResponseData.responseError.message,
         });
       }
     },
@@ -173,7 +206,8 @@ const getCustomerActiveBidsData = async (props) => {
 // };
 
 const CustomerServiceHandler = {
-  getCustomerActiveBidsData,
+    getCustomerBuyNewBidsData,
+  setPriceForCustomerBidData,
   //   getAllActiveListsData,
   //   addFarmerNewBid,
   //   getUserProfileData,

@@ -76,42 +76,41 @@ const CustomerBuyNewItemList = (props) => {
     //setCustomerActiveBidsList(items);
     console.log("Use Effect running in active bids list page...");
 
-    CustomerServiceHandler.getCustomerActiveBidsData({
-      getCustomerActiveBidListHandler: getCustomerActiveBidListHandler,
+    CustomerServiceHandler.getCustomerBuyNewBidsData({
+      getCustomerBuyNewBidListHandler: getCustomerBuyNewBidListHandler,
     });
 
     // FarmerServiceHandler.getAllActiveListsData({
     //   getFarmersCustomerActiveBidListHandler:
     //     getFarmersCustomerActiveBidListHandler,
     // });
-  }, [props.activeListPageRefreshFlag]);
+  }, [props.invertBuyNewItemListFlag]);
 
-  const getCustomerActiveBidListHandler = (activeBidResponseData) => {
+  const getCustomerBuyNewBidListHandler = (buyNewBidsResponseData) => {
     console.log("Active List Data Recieved");
-    console.log(activeBidResponseData.activeBidsData);
+    console.log(buyNewBidsResponseData.activeBidsData);
 
     console.log(props);
 
-    //  isActiveBidsListRecieved: true,
-    // activeBidsData: activeBidsResponseData.responseData.data,
-    // errorMessage: null,
-    // activeBidResponseData.errorMessage
-    if (activeBidResponseData.isActiveBidsListRecieved === false) {
+    // isNewBidsListRecieved: false,
+    //       newBidsData: [],
+    //       errorMessage:
+
+    if (buyNewBidsResponseData.isNewBidsListRecieved === false) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
-          activeBidResponseData.errorMessage,
+        buyNewBidsResponseData.errorMessage,
         [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
           UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
         [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
       });
     }
     // UtilitiesKeys
-    setCustomerActiveBidsList(activeBidResponseData.activeBidsData);
+    setCustomerActiveBidsList(buyNewBidsResponseData.newBidsData);
     console.log(customerActiveBidsList);
   };
 
   const makeCustomerBidWithValues = (bidData) => {
-
     if (parseInt(bidData.price) === 0) {
       props.showBottomMessageBar({
         [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
@@ -145,6 +144,35 @@ const CustomerBuyNewItemList = (props) => {
       return;
     }
 
+    CustomerServiceHandler.setPriceForCustomerBidData({
+      bidData: bidData,
+      setBidPriceByCustomerResponseHanlder:
+        setBidPriceByCustomerResponseHanlder,
+    });
+  };
+
+  const setBidPriceByCustomerResponseHanlder = (bidSetPriceResponseData) => {
+    console.log(bidSetPriceResponseData);
+
+    if (bidSetPriceResponseData.isBidPriceSet === false) {
+      props.showBottomMessageBar({
+        [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+          bidSetPriceResponseData.errorMessage,
+        [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+          UtilitiesKeys.getAlertMessageTypeKeys().errorKey,
+        [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: true,
+      });
+      return;
+    }
+
+    props.showBottomMessageBar({
+      [UtilitiesKeys.getErrorMessageDataKeys().messageKey]:
+        "Bid price set successfully.",
+      [UtilitiesKeys.getErrorMessageDataKeys().messageType]:
+        UtilitiesKeys.getAlertMessageTypeKeys().successKey,
+      [UtilitiesKeys.getErrorMessageDataKeys().isErrorMessageKey]: false,
+    });
+    props.refreshBuyNewItemListHanlder();
   };
 
   return (

@@ -72,12 +72,25 @@ const CustomerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
 
+  const [buyNewItemRefreshFlag, setBuyNewItemRefreshFlag] = useState(false);
+
   const showBottomMessageBar = (errorMessageData) => {
     props.showBottomMessageBar(errorMessageData);
   };
 
   const invertDownloadActiveListFlag = () => {
     setActiveListPageRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
+  };
+
+  const refreshBuyNewItemListHanlder = () => {
+    console.log("refreshBuyNewItemListHanlder");
+    invertBuyNewItemListFlag();
+  };
+
+  const invertBuyNewItemListFlag = () => {
+    setBuyNewItemRefreshFlag((isRefresh) => {
       return !isRefresh;
     });
   };
@@ -103,6 +116,8 @@ const CustomerDashBoard = (props) => {
         <CustomerBuyNewItemList
           activeListPageRefreshFlag={activeListPageRefreshFlag}
           showBottomMessageBar={props.showBottomMessageBar}
+          invertBuyNewItemListFlag={invertBuyNewItemListFlag}
+          refreshBuyNewItemListHanlder={refreshBuyNewItemListHanlder}
         />
       </>
     );

@@ -27,6 +27,8 @@ const getFarmerAPIChildURLKeys = () => {
 const getCustomerAPIChildURLKeys = () => {
   return {
     getActiveBidsListKey : "customer/activeBidsNotBiddedOn/",
+    setPriceOfCustomerOnBidKey : "customer/setPrice",
+
     // getFarmerProfileDataKey : "farmer/profile/",
     // getCustomerProfileDataKey : "customer/profile/",
     // updateFarmerProfileDataKey : "farmer/update",
