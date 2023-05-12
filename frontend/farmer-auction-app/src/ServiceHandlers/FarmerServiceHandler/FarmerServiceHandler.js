@@ -137,6 +137,30 @@ const deleteBidByFarmer = async (props) => {
   });
 };
 
+const getCustomerWinningBidsData = async (props) => {
+  console.log("getCustomerWinningBidsData");
+  const childURL =
+    APIURLUtilities.getCustomerAPIChildURLKeys().getCustomerWonBidsKey +
+    UtilitiesMethods.getLoggedInUserID();
+  
+  console.log(childURL);
+
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (winningBidsResponseData) => {
+      if (winningBidsResponseData.responseError === null) {
+        props.getCustomerWonBidResponseHanlder({
+          winningBidsList: winningBidsResponseData.responseData.data,
+        });
+      } else if (winningBidsResponseData.responseData === null) {
+        props.getCustomerWonBidResponseHanlder({
+          winningBidsList: [],
+        });
+      }
+    },
+  });
+};
+
 const getCustomerExpiredAndDeletedBidsData = async (props) => {
   console.log("getFarmerExpiredAndDeletedBidsData");
 
@@ -317,6 +341,7 @@ const FarmerServiceHandler = {
   deleteBidByFarmer,
   getCustomerExpiredAndDeletedBidsData,
   getFarmerCompletedBidsData,
+  getCustomerWinningBidsData,
 };
 
 export default FarmerServiceHandler;
