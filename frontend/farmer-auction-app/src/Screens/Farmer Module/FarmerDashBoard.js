@@ -75,6 +75,7 @@ const FarmerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
   const [expiredListRefreshFlag, setExpiredListRefreshFlag] = useState(false);
+  const [completedListRefreshFlag, setCompletedListRefreshFlag] = useState(false);
   const [showBidersList, setShowBidersList] = useState(false);
   const [selectedBidData, setSelectedBidData] = useState({});
 
@@ -90,6 +91,13 @@ const FarmerDashBoard = (props) => {
 
   const invertDownloadExpiredListFlag = () => {
     setExpiredListRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
+  };
+
+
+  const invertDownloadCompletedListFlag = () => {
+    setCompletedListRefreshFlag((isRefresh) => {
       return !isRefresh;
     });
   };
@@ -157,6 +165,11 @@ const FarmerDashBoard = (props) => {
     if (props.farmerScreen === "Expired List") {
       invertDownloadExpiredListFlag();
     }
+
+    //Invert Refresh Flag When Screen Changed, for Completed Bidding List...
+    if (props.farmerScreen === "Expired List") {
+      invertDownloadCompletedListFlag();
+    }
   }, [props.farmerScreen]);
 
   if (props.farmerScreen === "Farmer Profile")
@@ -177,7 +190,7 @@ const FarmerDashBoard = (props) => {
   else if (props.farmerScreen === "Completed List")
     return (
       <>
-        <CompletedBidList />
+        <CompletedBidList completedListRefreshFlag={completedListRefreshFlag}/>
       </>
     );
   else

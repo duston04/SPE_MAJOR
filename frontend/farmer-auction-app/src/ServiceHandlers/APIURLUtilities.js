@@ -21,7 +21,8 @@ const getFarmerAPIChildURLKeys = () => {
     getFarmerBiddersListPerBidKey : "farmer/customersPerBid/",
     getFarmerSellItemBidKey : "farmer/completeBid/",
     getFarmerDeleteBidKey : "farmer/deleteBid/",
-    getFarmerExpiredAndDeletedBidsKey : "farmer/expiredAndDeletedBids/"
+    getFarmerExpiredAndDeletedBidsKey : "farmer/expiredAndDeletedBids/",
+    getFarmerCompletedBidsKey : "farmer/completedBids/"
   };
 };
 

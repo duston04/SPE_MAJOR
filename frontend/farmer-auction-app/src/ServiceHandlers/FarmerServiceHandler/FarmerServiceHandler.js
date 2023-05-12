@@ -169,6 +169,41 @@ const getFarmerExpiredAndDeletedBidsData = async (props) => {
   });
 };
 
+
+const getFarmerCompletedBidsData = async (props) => {
+  console.log("getFarmerCompletedBidsData");
+
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys()
+      .getFarmerCompletedBidsKey + UtilitiesMethods.getLoggedInUserID();
+
+  console.log(childURL);
+
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (completedBidsResponseData) => {
+      console.log("completedBidsResponseData");
+      console.log(completedBidsResponseData.responseData);
+
+      if (completedBidsResponseData.responseError === null) {
+        props.getFarmerCompletedBidsResponseHanlder({
+          isCompletedBidsListRecieved: true,
+          completedBidsList: completedBidsResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (completedBidsResponseData.responseData === null) {
+        props.getFarmerCompletedBidsResponseHanlder({
+          isCompletedBidsListRecieved: false,
+          completedBidsList: [],
+          errorMessage: completedBidsResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
+
+
+
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
 
@@ -278,6 +313,7 @@ const FarmerServiceHandler = {
   sellItemBidByFarmer,
   deleteBidByFarmer,
   getFarmerExpiredAndDeletedBidsData,
+  getFarmerCompletedBidsData
 };
 
 export default FarmerServiceHandler;
