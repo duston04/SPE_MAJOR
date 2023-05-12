@@ -146,7 +146,7 @@ const Registration = (props) => {
         >
           <button type="submit">Register</button>
           <button type="button" onClick={loginButtonHandler}>
-            Login
+            Back to Login
           </button>
         </div>
       </form>

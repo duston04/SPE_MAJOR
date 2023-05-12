@@ -49,7 +49,6 @@
 .ActiveList li {
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  flex-direction: row;
 }
 
 .ActiveList li:last-child {

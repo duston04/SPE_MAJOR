@@ -32,24 +32,23 @@ const ActiveBidCell = (props) => {
       <div>
         <strong>Status :</strong> {props.item.status}
       </div>
+      <div style={{ flexDirection: "row" }}>
+        <button
+          onClick={() => {
+            showBidersListHandler(props.item);
+          }}
+        >
+          Show Biders
+        </button>
 
-      <button
-        onClick={() => {
-          showBidersListHandler(props.item);
-        }}
-      >
-        Show Biders
-      </button>
-
-      <br />
-      <br />
-      <button
-        onClick={() => {
-          deleteBid(props.item);
-        }}
-      >
-        Delete Bid
-      </button>
+        <button
+          onClick={() => {
+            deleteBid(props.item);
+          }}
+        >
+          Delete Bid
+        </button>
+      </div>
     </>
   );
 };
