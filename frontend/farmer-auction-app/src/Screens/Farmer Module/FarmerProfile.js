@@ -97,9 +97,12 @@ const FarmerProfile = (props) => {
     invertFetchUserProfileFlag();
   };
 
+
+  const headerTitle = (isFarmerProfile === true) ? "Farmer Profile": "Customer Profile";
+
   return (
     <div className={classes.registration_form}>
-      <h1>Farmer Profile</h1>
+      <h1>{headerTitle}</h1>
       <form onSubmit={handleSubmit}>
         {/* User Profile Name Text Field */}
         <label>Name:</label>

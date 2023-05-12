@@ -7,9 +7,10 @@ const ExpiredBidList = (props) => {
 
   //Use Effect to download Farmers's Expired Bids List...
   useEffect(() => {
-    FarmerServiceHandler.getFarmerExpiredAndDeletedBidsData({
+    FarmerServiceHandler.getCustomerExpiredAndDeletedBidsData({
       getFarmerExpiredAndDeletdBidResponseHanlder:
         getFarmerExpiredAndDeletdBidResponseHanlder,
+        isFarmerLoggedIn : props.isFarmerLoggedIn
     });
   }, [props.expiredListRefreshFlag]);
 

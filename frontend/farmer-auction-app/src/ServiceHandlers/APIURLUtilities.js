@@ -32,12 +32,7 @@ const getCustomerAPIChildURLKeys = () => {
   return {
     getActiveBidsListKey : "customer/activeBidsNotBiddedOn/",
     setPriceOfCustomerOnBidKey : "customer/setPrice",
-
-    // getFarmerProfileDataKey : "farmer/profile/",
-    // getCustomerProfileDataKey : "customer/profile/",
-    // updateFarmerProfileDataKey : "farmer/update",
-    // updateCustomerProfileDataKey : "customer/update",
-    // getFarmerBiddersListPerBidKey : "farmer/customersPerBid/"
+    getCustomerExpiredAndDeletedBidsKey : "customer/deletedBidsForCustomer/",
   };
 };
 

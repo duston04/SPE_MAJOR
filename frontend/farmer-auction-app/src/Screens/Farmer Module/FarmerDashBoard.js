@@ -184,7 +184,7 @@ const FarmerDashBoard = (props) => {
   else if (props.farmerScreen === "Expired List")
     return (
       <>
-        <ExpiredBidList expiredListRefreshFlag={expiredListRefreshFlag}/>
+        <ExpiredBidList expiredListRefreshFlag={expiredListRefreshFlag} isFarmerLoggedIn={props.isFarmerLoggedIn}/>
       </>
     );
   else if (props.farmerScreen === "Completed List")

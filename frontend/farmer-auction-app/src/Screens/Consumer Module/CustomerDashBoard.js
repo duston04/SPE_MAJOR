@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 // import CustomerProfile from "./CustomerProfile";
 import CustomerBuyNewItemList from "./CustomerBuyNewItemList";
 import FarmerProfile from "../Farmer Module/FarmerProfile";
+import ExpiredBidList from "../Farmer Module/ExpiredBidList";
 // import UtilitiesKeys from "../../Utilities/UtilitiesKeys/UtilitiesKeys";
 
 const items = [
@@ -73,9 +74,16 @@ const CustomerDashBoard = (props) => {
     useState(false);
 
   const [buyNewItemRefreshFlag, setBuyNewItemRefreshFlag] = useState(false);
+  const [expiredListRefreshFlag, setExpiredListRefreshFlag] = useState(false);
 
   const showBottomMessageBar = (errorMessageData) => {
     props.showBottomMessageBar(errorMessageData);
+  };
+
+  const invertDownloadExpiredListFlag = () => {
+    setExpiredListRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
   };
 
   const invertDownloadActiveListFlag = () => {
@@ -99,7 +107,14 @@ const CustomerDashBoard = (props) => {
     if (props.customerScreen === "Customer BuyNewItem List") {
       invertDownloadActiveListFlag();
     }
+
+    if (props.customerScreen === "Customer Expired List") {
+      invertDownloadExpiredListFlag();
+    }
   }, [props.customerScreen]);
+
+  console.log("props.customerScreen");
+  console.log(props.customerScreen);
 
   if (props.customerScreen === "Customer Profile")
     return (
@@ -108,6 +123,29 @@ const CustomerDashBoard = (props) => {
           showBottomMessageBar={showBottomMessageBar}
           isFarmerLoggedIn={props.isFarmerLoggedIn}
         />
+      </>
+    );
+  else if (props.customerScreen === "Customer Expired List")
+    return (
+      <>
+      {/* <ExpiredBidList */}
+        <ExpiredBidList
+          expiredListRefreshFlag={expiredListRefreshFlag}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        />
+        {/* <FarmerProfile
+          showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        /> */}
+      </>
+    );
+  else if (props.customerScreen === "Customer Winning List")
+    return (
+      <>
+        {/* <FarmerProfile
+          showBottomMessageBar={showBottomMessageBar}
+          isFarmerLoggedIn={props.isFarmerLoggedIn}
+        /> */}
       </>
     );
   else if (props.customerScreen === "Customer BuyNewItem List")

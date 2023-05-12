@@ -137,12 +137,18 @@ const deleteBidByFarmer = async (props) => {
   });
 };
 
-const getFarmerExpiredAndDeletedBidsData = async (props) => {
+const getCustomerExpiredAndDeletedBidsData = async (props) => {
   console.log("getFarmerExpiredAndDeletedBidsData");
 
+  console.log(props.isFarmerLoggedIn);
+
   const childURL =
-    APIURLUtilities.getFarmerAPIChildURLKeys()
-      .getFarmerExpiredAndDeletedBidsKey + UtilitiesMethods.getLoggedInUserID();
+    (props.isFarmerLoggedIn
+      ? APIURLUtilities.getFarmerAPIChildURLKeys()
+          .getFarmerExpiredAndDeletedBidsKey
+      : APIURLUtilities.getCustomerAPIChildURLKeys()
+          .getCustomerExpiredAndDeletedBidsKey) +
+    UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
 
@@ -169,13 +175,12 @@ const getFarmerExpiredAndDeletedBidsData = async (props) => {
   });
 };
 
-
 const getFarmerCompletedBidsData = async (props) => {
   console.log("getFarmerCompletedBidsData");
 
   const childURL =
-    APIURLUtilities.getFarmerAPIChildURLKeys()
-      .getFarmerCompletedBidsKey + UtilitiesMethods.getLoggedInUserID();
+    APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerCompletedBidsKey +
+    UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
 
@@ -201,8 +206,6 @@ const getFarmerCompletedBidsData = async (props) => {
     },
   });
 };
-
-
 
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
@@ -312,8 +315,8 @@ const FarmerServiceHandler = {
   getCurrentBidBiddersList,
   sellItemBidByFarmer,
   deleteBidByFarmer,
-  getFarmerExpiredAndDeletedBidsData,
-  getFarmerCompletedBidsData
+  getCustomerExpiredAndDeletedBidsData,
+  getFarmerCompletedBidsData,
 };
 
 export default FarmerServiceHandler;
