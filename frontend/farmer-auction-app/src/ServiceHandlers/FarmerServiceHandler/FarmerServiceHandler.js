@@ -157,9 +157,9 @@ const getUserProfileData = async (props) => {
 
   console.log(props.isFarmerProfile);
 
-  const childURL = props.isFarmerProfile
+  const childURL = (props.isFarmerProfile
     ? APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey
-    : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey +
+    : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey) +
       UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
