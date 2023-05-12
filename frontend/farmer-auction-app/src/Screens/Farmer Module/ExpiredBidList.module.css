@@ -11,7 +11,7 @@
   border-radius: 10px;
 }
 .ExpiredList {
-  background-color: rgb(236, 136, 29);
+  background-color: rgb(255, 114, 118);
   max-height: 400px;
   overflow-y: scroll;
   height: 350px;

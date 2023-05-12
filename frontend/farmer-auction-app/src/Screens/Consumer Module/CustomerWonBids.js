@@ -2,37 +2,31 @@ import React, { useEffect, useState } from "react";
 import classes from "./CustomerWonBids.module.css";
 import CustomerServiceHandler from "../../ServiceHandlers/CustomerServiceHandler/CustomerServiceHandler";
 
+const CustomerWonBidsList = (props) => {
+  const [winningBidsList, setWinningBidsList] = useState([]);
 
-const CustomerActiveBidList = (props) => {
-  const [activeBidsList, setActiveBidsList] = useState([]);
-
+  //Use Effect to download Farmers's Winning Bids List...
   useEffect(() => {
-    console.log("Use Effect running in active bids list page...");
-    CustomerServiceHandler.getCustomerActiveBidsData({
-      getCustomerActiveBidResponseHanlder: getCustomerActiveBidResponseHanlder,
+    CustomerServiceHandler.getCustomerWinningBidsData({
+      getCustomerWonBidResponseHanlder: getCustomerWonBidResponseHanlder,
     });
-  }, [props.activeListPageRefreshFlag]);
-
+  }, [props.wonListRefreshFlag]);
 
   //Response Hanlder to handle the response from the API...
-  const getCustomerActiveBidResponseHanlder = (activeBidsData) => {
-
-    console.log("getCustomerActiveBidResponseHanlder");
-    console.log(activeBidsData.activeBidsList);
-    setActiveBidsList(activeBidsData.activeBidsList);
+  const getCustomerWonBidResponseHanlder = (winningBidsData) => {
+    setWinningBidsList(winningBidsData.winningBidsList);
   };
-
 
   return (
     <div className={classes.ExpiredListContainer}>
-      <h2>Active Bids List</h2>
+      <h2>Won Bid List</h2>
       <div className={classes.ExpiredList}>
-        {activeBidsList.length === 0 && (
-          <h2 style={{ textAlign: "center" }}>No Active bids to display.</h2>
+        {winningBidsList.length === 0 && (
+          <h2 style={{ textAlign: "center" }}>No won bids to display.</h2>
         )}
 
         <ul>
-          {activeBidsList.map((item, index) => (
+          {winningBidsList.map((item, index) => (
             <li key={index}>
               <div>
                 <strong>Category : </strong> {item.category.type}
@@ -57,4 +51,4 @@ const CustomerActiveBidList = (props) => {
   );
 };
 
-export default CustomerActiveBidList;
+export default CustomerWonBidsList;

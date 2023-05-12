@@ -74,6 +74,8 @@ import UtilitiesMethods from "../../Utilities/UtilitiesMethods/UtilitiesMethods"
 const FarmerDashBoard = (props) => {
   const [activeListPageRefreshFlag, setActiveListPageRefreshFlag] =
     useState(false);
+  const [expiredListRefreshFlag, setExpiredListRefreshFlag] = useState(false);
+  const [completedListRefreshFlag, setCompletedListRefreshFlag] = useState(false);
   const [showBidersList, setShowBidersList] = useState(false);
   const [selectedBidData, setSelectedBidData] = useState({});
 
@@ -83,6 +85,19 @@ const FarmerDashBoard = (props) => {
 
   const invertDownloadActiveListFlag = () => {
     setActiveListPageRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
+  };
+
+  const invertDownloadExpiredListFlag = () => {
+    setExpiredListRefreshFlag((isRefresh) => {
+      return !isRefresh;
+    });
+  };
+
+
+  const invertDownloadCompletedListFlag = () => {
+    setCompletedListRefreshFlag((isRefresh) => {
       return !isRefresh;
     });
   };
@@ -138,10 +153,22 @@ const FarmerDashBoard = (props) => {
     invertDownloadActiveListFlag();
   };
 
+  //UseEffect to invert the List of Expired & Active Biddings List...
   useEffect(() => {
+    //Invert Refresh Flag When Screen Changed, for Active Bidding List...
     if (props.farmerScreen === "Active List") {
       invertDownloadActiveListFlag();
       setShowBidersList(false);
+    }
+
+    //Invert Refresh Flag When Screen Changed, for Expired Bidding List...
+    if (props.farmerScreen === "Expired List") {
+      invertDownloadExpiredListFlag();
+    }
+
+    //Invert Refresh Flag When Screen Changed, for Completed Bidding List...
+    if (props.farmerScreen === "Expired List") {
+      invertDownloadCompletedListFlag();
     }
   }, [props.farmerScreen]);
 
@@ -157,13 +184,13 @@ const FarmerDashBoard = (props) => {
   else if (props.farmerScreen === "Expired List")
     return (
       <>
-        <ExpiredBidList />
+        <ExpiredBidList expiredListRefreshFlag={expiredListRefreshFlag} isFarmerLoggedIn={props.isFarmerLoggedIn}/>
       </>
     );
   else if (props.farmerScreen === "Completed List")
     return (
       <>
-        <CompletedBidList />
+        <CompletedBidList completedListRefreshFlag={completedListRefreshFlag}/>
       </>
     );
   else

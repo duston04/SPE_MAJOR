@@ -20,7 +20,9 @@ const getFarmerAPIChildURLKeys = () => {
     updateCustomerProfileDataKey : "customer/update",
     getFarmerBiddersListPerBidKey : "farmer/customersPerBid/",
     getFarmerSellItemBidKey : "farmer/completeBid/",
-    getFarmerDeleteBidKey : "farmer/deleteBid/"
+    getFarmerDeleteBidKey : "farmer/deleteBid/",
+    getFarmerExpiredAndDeletedBidsKey : "farmer/expiredAndDeletedBids/",
+    getFarmerCompletedBidsKey : "farmer/completedBids/"
   };
 };
 
@@ -30,12 +32,9 @@ const getCustomerAPIChildURLKeys = () => {
   return {
     getActiveBidsListKey : "customer/activeBidsNotBiddedOn/",
     setPriceOfCustomerOnBidKey : "customer/setPrice",
-
-    // getFarmerProfileDataKey : "farmer/profile/",
-    // getCustomerProfileDataKey : "customer/profile/",
-    // updateFarmerProfileDataKey : "farmer/update",
-    // updateCustomerProfileDataKey : "customer/update",
-    // getFarmerBiddersListPerBidKey : "farmer/customersPerBid/"
+    getCustomerExpiredAndDeletedBidsKey : "customer/deletedBidsForCustomer/",
+    getCustomerWonBidsKey : "customer/getWonBiddings/",
+    getCustomerActiveBidsKey : "customer/activeBidsForACustomer/",
   };
 };
 
