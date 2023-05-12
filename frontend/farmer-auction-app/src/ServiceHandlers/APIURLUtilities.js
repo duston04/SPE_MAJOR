@@ -34,6 +34,7 @@ const getCustomerAPIChildURLKeys = () => {
     setPriceOfCustomerOnBidKey : "customer/setPrice",
     getCustomerExpiredAndDeletedBidsKey : "customer/deletedBidsForCustomer/",
     getCustomerWonBidsKey : "customer/getWonBiddings/",
+    getCustomerActiveBidsKey : "customer/activeBidsForACustomer/",
   };
 };
 

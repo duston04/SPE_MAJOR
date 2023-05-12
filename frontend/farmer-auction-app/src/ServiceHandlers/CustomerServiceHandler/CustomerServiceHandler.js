@@ -65,6 +65,57 @@ const setPriceForCustomerBidData = async (props) => {
   });
 };
 
+
+const getCustomerWinningBidsData = async (props) => {
+    console.log("getCustomerWinningBidsData");
+    const childURL =
+      APIURLUtilities.getCustomerAPIChildURLKeys().getCustomerWonBidsKey +
+      UtilitiesMethods.getLoggedInUserID();
+    
+    console.log(childURL);
+  
+    await GlobalServiceHandler.hitCustomResponseGetService({
+      childURL: childURL,
+      responseDataHandler: (winningBidsResponseData) => {
+        if (winningBidsResponseData.responseError === null) {
+          props.getCustomerBidsResponseHanlder({
+            winningBidsList: winningBidsResponseData.responseData.data,
+          });
+        } else if (winningBidsResponseData.responseData === null) {
+          props.getCustomerBidsResponseHanlder({
+            winningBidsList: [],
+          });
+        }
+      },
+    });
+  };
+
+
+
+  const getCustomerActiveBidsData = async (props) => {
+    console.log("getCustomerActiveBidsData");
+    const childURL =
+      APIURLUtilities.getCustomerAPIChildURLKeys().getCustomerActiveBidsKey +
+      UtilitiesMethods.getLoggedInUserID();
+    
+    console.log(childURL);
+  
+    await GlobalServiceHandler.hitCustomResponseGetService({
+      childURL: childURL,
+      responseDataHandler: (activeBidsResponseData) => {
+        if (activeBidsResponseData.responseError === null) {
+          props.getCustomerBidsResponseHanlder({
+            bidsList: activeBidsResponseData.responseData.data,
+          });
+        } else if (activeBidsResponseData.responseData === null) {
+          props.getCustomerBidsResponseHanlder({
+            bidsList: [],
+          });
+        }
+      },
+    });
+  };
+
 // //Getting the bidders list for the current active bid...
 // const getCurrentBidBiddersList = async (props) => {
 //   console.log("getCurrentBidBiddersList");
@@ -207,6 +258,8 @@ const setPriceForCustomerBidData = async (props) => {
 const CustomerServiceHandler = {
   getCustomerBuyNewBidsData,
   setPriceForCustomerBidData,
+  getCustomerWinningBidsData,
+  getCustomerActiveBidsData
   //   getAllActiveListsData,
   //   addFarmerNewBid,
   //   getUserProfileData,
