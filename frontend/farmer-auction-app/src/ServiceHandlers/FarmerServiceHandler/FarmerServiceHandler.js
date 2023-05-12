@@ -71,7 +71,6 @@ const getCurrentBidBiddersList = async (props) => {
 
 //Getting the bidders list for the current active bid...
 const sellItemBidByFarmer = async (props) => {
-
   console.log(props.itemData);
 
   // itemData: bidData,
@@ -85,7 +84,7 @@ const sellItemBidByFarmer = async (props) => {
 
   await GlobalServiceHandler.hitCustomResponsePostService({
     childURL: childURL,
-    postData : {},
+    postData: {},
     responseDataHandler: (sellBidResponseData) => {
       console.log("sellBidResponseData");
       console.log(sellBidResponseData.responseData);
@@ -107,27 +106,18 @@ const sellItemBidByFarmer = async (props) => {
   });
 };
 
-
-
 //Getting the bidders list for the current active bid...
 const deleteBidByFarmer = async (props) => {
-
   console.log(props.itemData);
-
-  // itemData: bidData,
-  //     sellItemResponseHandler: sellItemResponseHandler
-
   const childURL =
     APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerDeleteBidKey +
     props.itemData.bidId;
 
   console.log(childURL);
 
-  // return;
-
   await GlobalServiceHandler.hitCustomResponsePostService({
     childURL: childURL,
-    postData : {},
+    postData: {},
     responseDataHandler: (deleteBidResponseData) => {
       console.log("deleteBidResponseData");
       console.log(deleteBidResponseData.responseData);
@@ -147,20 +137,48 @@ const deleteBidByFarmer = async (props) => {
   });
 };
 
+const getFarmerExpiredAndDeletedBidsData = async (props) => {
+  console.log("getFarmerExpiredAndDeletedBidsData");
 
+  const childURL =
+    APIURLUtilities.getFarmerAPIChildURLKeys()
+      .getFarmerExpiredAndDeletedBidsKey + UtilitiesMethods.getLoggedInUserID();
 
+  console.log(childURL);
 
+  await GlobalServiceHandler.hitCustomResponseGetService({
+    childURL: childURL,
+    responseDataHandler: (expiredBidsResponseData) => {
+      console.log("expiredBidsResponseData");
+      console.log(expiredBidsResponseData.responseData);
 
+      if (expiredBidsResponseData.responseError === null) {
+        props.getFarmerExpiredAndDeletdBidResponseHanlder({
+          isExpiredBidsListRecieved: true,
+          expiredBidsList: expiredBidsResponseData.responseData.data,
+          errorMessage: null,
+        });
+      } else if (expiredBidsResponseData.responseData === null) {
+        props.getFarmerExpiredAndDeletdBidResponseHanlder({
+          isExpiredBidsListRecieved: false,
+          expiredBidsList: [],
+          errorMessage: expiredBidsResponseData.responseError.message,
+        });
+      }
+    },
+  });
+};
 
 const getUserProfileData = async (props) => {
   console.log("GetSuperAdminAllRegisteredUserList");
 
   console.log(props.isFarmerProfile);
 
-  const childURL = (props.isFarmerProfile
-    ? APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey
-    : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey) +
-      UtilitiesMethods.getLoggedInUserID();
+  const childURL =
+    (props.isFarmerProfile
+      ? APIURLUtilities.getFarmerAPIChildURLKeys().getFarmerProfileDataKey
+      : APIURLUtilities.getFarmerAPIChildURLKeys().getCustomerProfileDataKey) +
+    UtilitiesMethods.getLoggedInUserID();
 
   console.log(childURL);
 
@@ -258,7 +276,8 @@ const FarmerServiceHandler = {
   updateFarmerProfileData,
   getCurrentBidBiddersList,
   sellItemBidByFarmer,
-  deleteBidByFarmer
+  deleteBidByFarmer,
+  getFarmerExpiredAndDeletedBidsData,
 };
 
 export default FarmerServiceHandler;
