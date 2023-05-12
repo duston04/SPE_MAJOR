@@ -80,7 +80,7 @@ const CustomerBuyNewItemList = (props) => {
   }, [props.invertBuyNewItemListFlag]);
 
   const getCustomerBuyNewBidListHandler = (buyNewBidsResponseData) => {
-    console.log("Active List Data Recieved");
+    console.log("Buy New List Data Recieved");
     console.log(buyNewBidsResponseData.activeBidsData);
 
     console.log(props);

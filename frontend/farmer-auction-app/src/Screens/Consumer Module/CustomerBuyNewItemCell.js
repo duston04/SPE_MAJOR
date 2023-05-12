@@ -1,3 +1,6 @@
+
+
+
 const CustomerBuyNewItemCell = (props) => {
   const handleUpdatedBid = (event) => {
     props.handlePriceValueChangeHanlder(
