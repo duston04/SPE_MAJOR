@@ -78,11 +78,11 @@ const getCustomerWinningBidsData = async (props) => {
       childURL: childURL,
       responseDataHandler: (winningBidsResponseData) => {
         if (winningBidsResponseData.responseError === null) {
-          props.getCustomerBidsResponseHanlder({
+          props.getCustomerWonBidResponseHanlder({
             winningBidsList: winningBidsResponseData.responseData.data,
           });
         } else if (winningBidsResponseData.responseData === null) {
-          props.getCustomerBidsResponseHanlder({
+          props.getCustomerWonBidResponseHanlder({
             winningBidsList: [],
           });
         }

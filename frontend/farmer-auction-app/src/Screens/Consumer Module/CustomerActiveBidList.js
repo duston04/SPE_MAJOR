@@ -67,10 +67,10 @@ const items = [
 ];
 
 const CustomerActiveBidList = (props) => {
-  const [customerActiveBidsList, setCustomerActiveBidsList] = useState([]);
+  const [activeBidsList, setActiveBidsList] = useState([]);
 
   useEffect(() => {
-    setCustomerActiveBidsList(items);
+    //setCustomerActiveBidsList(items);
     console.log("Use Effect running in active bids list page...");
 
     
@@ -90,20 +90,33 @@ const CustomerActiveBidList = (props) => {
     // setActiveBidsList(activeBidResponseData.activeBidsData);
   };
 
-  return (
-    <div className={classes.ActiveListContainer}>
-      <h2>Active List</h2>
 
-      <div className={classes.ActiveList}>
-        {customerActiveBidsList.length === 0 && (
-          <h2 style={{ textAlign: "center" }}>
-            No active bids to display. Please add a bid.
-          </h2>
+  return (
+    <div className={classes.ExpiredListContainer}>
+      <h2>Won Bid List</h2>
+      <div className={classes.ExpiredList}>
+        {activeBidsList.length === 0 && (
+          <h2 style={{ textAlign: "center" }}>No Active bids to display.</h2>
         )}
+
         <ul>
-          {customerActiveBidsList.map((item, index) => (
+          {activeBidsList.map((item, index) => (
             <li key={index}>
-              <CustomerActiveBidCell item={item} index={index} />
+              <div>
+                <strong>Category : </strong> {item.category.type}
+              </div>
+              <div>
+                <strong>Name : </strong> {item.category.subcategory}
+              </div>
+              <div>
+                <strong>Quantity : </strong> {item.quantity}
+              </div>
+              <div>
+                <strong>Base Price : </strong> {item.basePrice}
+              </div>
+              <div>
+                <strong>Status : </strong> {item.status}
+              </div>
             </li>
           ))}
         </ul>

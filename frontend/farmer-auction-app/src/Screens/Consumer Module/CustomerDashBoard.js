@@ -118,8 +118,8 @@ const CustomerDashBoard = (props) => {
     return (
       <>
         <CustomerActiveBidList
-          activeListPageRefreshFlag={activeListPageRefreshFlag}
-          showBottomMessageBar={showBottomMessageBar}
+          // activeListPageRefreshFlag={activeListPageRefreshFlag}
+          // showBottomMessageBar={showBottomMessageBar}
         />
       </>
     );

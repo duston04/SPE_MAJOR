@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import classes from "../Farmer Module/ExpiredBidList.module.css";
-import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
+import classes from "./CustomerWonBids.module.css";
+import CustomerServiceHandler from "../../ServiceHandlers/CustomerServiceHandler/CustomerServiceHandler";
 
 const CustomerWonBidsList = (props) => {
   const [winningBidsList, setWinningBidsList] = useState([]);
 
   //Use Effect to download Farmers's Winning Bids List...
   useEffect(() => {
-    FarmerServiceHandler.getCustomerWinningBidsData({
+    CustomerServiceHandler.getCustomerWinningBidsData({
       getCustomerWonBidResponseHanlder: getCustomerWonBidResponseHanlder,
     });
   }, [props.wonListRefreshFlag]);
