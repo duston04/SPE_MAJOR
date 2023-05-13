@@ -20,6 +20,7 @@ services:
       - mysqldb
     ports:
       - 8282:8282
+      - 5000:5000
     environment:
       MYSQL_HOST: mysqldb
       MYSQL_PORT: 3306
