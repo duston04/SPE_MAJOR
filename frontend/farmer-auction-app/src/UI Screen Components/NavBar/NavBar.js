@@ -42,26 +42,48 @@ const NavBar2 = (props) => {
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
   };
-  NavigationOptions = [
-    { option: "Active List" },
-    { option: "Expired List" },
-    { option: "Completed List" },
-    { option: "Farmer Profile" },
+  const FarmerNavigationOptions = [
+    { option: "Active List", name: "Active Biding List" },
+    { option: "Expired List", name: "Expired Biding List" },
+    { option: "Completed List", name: "Completed Biding List" },
+    { option: "Farmer Profile", name: "Profile Settings" },
+  ];
+
+  const CustomerNavigationOptions = [
+    { option: "Customer BuyNewItem List", name: "Buy New Item" },
+    { option: "Customer Active List", name: "Active Bids" },
+    { option: "Customer Expired List", name: "Expired Bids" },
+    { option: "Customer Winning List", name: "Won Bids" },
+    { option: "Customer Profile", name: "Profile Settings" },
   ];
   return (
     <span className={classes.NavBar}>
       {showMenu && (
         <div className={classes.menu}>
-          {NavigationOptions.map((navOption) => (
-            <button
-              onClick={() => {
-                props.setFarmerScreen(navOption.option);
-                handleMenuToggle();
-              }}
-            >
-              {navOption.option}
-            </button>
-          ))}
+          {props.userScreenType === "Farmer Dashboard" &&
+            FarmerNavigationOptions.map((navOption) => (
+              <button
+                key={navOption.option}
+                onClick={() => {
+                  props.setFarmerScreen(navOption.option);
+                  handleMenuToggle();
+                }}
+              >
+                {navOption.name}
+              </button>
+            ))}
+          {props.userScreenType === "Customer Dashboard" &&
+            CustomerNavigationOptions.map((navOption) => (
+              <button
+                key={navOption.option}
+                onClick={() => {
+                  props.setCustomerScreen(navOption.option);
+                  handleMenuToggle();
+                }}
+              >
+                {navOption.name}
+              </button>
+            ))}
         </div>
       )}
       <button className={classes.menu_btn} onClick={handleMenuToggle}>

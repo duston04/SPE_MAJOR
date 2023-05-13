@@ -33,8 +33,8 @@ public class CategoryController {
     @GetMapping("/getCategories")
     public ResponseEntity<List<String>> getCategories(){
         try {
-            List<String> typesList = categoryService.getCategories();
-            return ResponseEntity.of(Optional.of(typesList));
+            List<String> subCategoryList = categoryService.getCategories();
+            return ResponseEntity.of(Optional.of(subCategoryList));
         }catch (Exception e){
             throw new RuntimeException();
         }

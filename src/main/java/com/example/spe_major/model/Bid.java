@@ -22,7 +22,7 @@ public class Bid {
     private int basePrice;
 
     @OneToOne
-    private Customer finalCustomerId;
+    private Customer finalCustomer;
 
     @Column(nullable = false)
     private String expiryDate;
@@ -41,12 +41,12 @@ public class Bid {
     public Bid() {
     }
 
-    public Bid(int bidId, Category category, int quantity, int basePrice, Customer finalCustomerId, String expiryDate, String status, int currentMaxBid, List<CustomerBid> customerBidList, Farmer farmer) {
+    public Bid(int bidId, Category category, int quantity, int basePrice, Customer finalCustomer, String expiryDate, String status, int currentMaxBid, List<CustomerBid> customerBidList, Farmer farmer) {
         this.bidId = bidId;
         this.category = category;
         this.quantity = quantity;
         this.basePrice = basePrice;
-        this.finalCustomerId = finalCustomerId;
+        this.finalCustomer = finalCustomer;
         this.expiryDate = expiryDate;
         this.status = status;
         this.currentMaxBid = currentMaxBid;
@@ -86,12 +86,12 @@ public class Bid {
         this.basePrice = basePrice;
     }
 
-    public Customer getFinalCustomerId() {
-        return finalCustomerId;
+    public Customer getFinalCustomer() {
+        return finalCustomer;
     }
 
-    public void setFinalCustomerId(Customer finalCustomerId) {
-        this.finalCustomerId = finalCustomerId;
+    public void setFinalCustomer(Customer finalCustomer) {
+        this.finalCustomer = finalCustomer;
     }
 
     public String getExpiryDate() {
@@ -141,7 +141,7 @@ public class Bid {
                 ", category=" + category +
                 ", quantity=" + quantity +
                 ", basePrice=" + basePrice +
-                ", finalCustomerId=" + finalCustomerId +
+                ", finalCustomer=" + finalCustomer +
                 ", expiryDate='" + expiryDate + '\'' +
                 ", status='" + status + '\'' +
                 ", currentMaxBid=" + currentMaxBid +

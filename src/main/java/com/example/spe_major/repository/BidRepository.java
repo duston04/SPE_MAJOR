@@ -1,6 +1,7 @@
 package com.example.spe_major.repository;
 
 import com.example.spe_major.model.Bid;
+import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,5 +14,7 @@ public interface BidRepository extends JpaRepository<Bid, Integer> {
     List<Bid> findByStatus(String status);
 
     List<Bid> findByFarmerAndStatus(Farmer farmer, String status);
+
+    List<Bid> findByFinalCustomer(Customer customer);
 
 }

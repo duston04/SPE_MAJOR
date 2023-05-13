@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./ActiveBidList.module.css";
+import ActiveBidCell from "./ActiveBidCell";
+import FarmerServiceHandler from "../../ServiceHandlers/FarmerServiceHandler/FarmerServiceHandler";
 
 const items = [
   {
@@ -39,7 +41,7 @@ const items = [
     base_price: "2.00",
     active_bid: "2.75",
     expired_bid: "none",
-    status: "available",
+    status: "sold",
     name_of_highest_bidder: "none",
   },
   {
@@ -49,7 +51,7 @@ const items = [
     base_price: "4.00",
     active_bid: "5.50",
     expired_bid: "none",
-    status: "available",
+    status: "sold",
     name_of_highest_bidder: "none",
   },
   {
@@ -64,46 +66,64 @@ const items = [
   },
 ];
 
-function ActiveBidList() {
+const ActiveBidList = (props) => {
+  const [activeBidsList, setActiveBidsList] = useState([]);
+
+  useEffect(() => {
+    //props.setShowBidersList(false);
+    console.log("Use Effect running in active bids list page...");
+    FarmerServiceHandler.getAllActiveListsData({
+      getFarmersActiveBidListHandler: getFarmersActiveBidListHandler,
+    });
+  }, [props.activeListPageRefreshFlag]);
+
+  const getFarmersActiveBidListHandler = (activeBidResponseData) => {
+    console.log("Active List Data Recieved");
+    console.log(activeBidResponseData.activeBidsData);
+    // setActiveBidsList([]);
+    setActiveBidsList(activeBidResponseData.activeBidsData);
+    // setActiveBidsList(items);
+  };
+
+// basePrice: 2000
+// bidId: 3
+// category" {categoryId: 2, type: 'fruit', subcategory: 'banana'}
+// currentMaxBid: 0
+// expiryDate: "2023-05-11"
+// farmer
+// : 
+// {userId: 1, username: 'dhruvfarmer', password: '1234', role: 'ROLE_FARMER', address: 'f 172', …}
+// finalCustomer: null
+// quantity: 1000
+// status: "ACTIVE"
+//   
+
   return (
     <div className={classes.ActiveListContainer}>
       <h2>Active List</h2>
+
       <div className={classes.ActiveList}>
+        {activeBidsList.length === 0 && (
+          <h2 style={{ textAlign: "center" }}>
+            No active bids to display. Please add a bid.
+          </h2>
+        )}
         <ul>
-          {items.map((item, index) => (
+          {activeBidsList.map((item, index) => (
             <li key={index}>
-              <div>
-                <strong>Category:</strong> {item.category}
-              </div>
-              <div>
-                <strong>Name:</strong> {item.name}
-              </div>
-              <div>
-                <strong>Quantity:</strong> {item.quantity}
-              </div>
-              <div>
-                <strong>Base Price:</strong> {item.base_price}
-              </div>
-              <div>
-                <strong>Active Bid:</strong> {item.active_bid}
-              </div>
-              <div>
-                <strong>Expired Bid:</strong> {item.expired_bid}
-              </div>
-              <div>
-                <strong>Status:</strong> {item.status}
-              </div>
-              <div>
-                <strong>Name of Highest Bidder:</strong>{" "}
-                {item.name_of_highest_bidder}
-              </div>
-              <button>Sell Item</button>
+              <ActiveBidCell
+                setShowBidersList={props.setShowBidersList}
+                item={item}
+                index={index}
+                setUserSelectedBidData={props.setUserSelectedBidData}
+                deleteBid={props.deleteBid}
+              />
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default ActiveBidList;

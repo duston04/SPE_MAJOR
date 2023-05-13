@@ -1,0 +1,77 @@
+.ActiveListContainer {
+  position: absolute;
+  left: 30%;
+  top: 17%;
+  width: 700px;
+  background-color: white;
+  padding-inline: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: 500px;
+  border-radius: 10px;
+}
+.ActiveList {
+  background-color: wheat;
+
+  overflow-y: scroll;
+  height: 450px;
+  width: 680px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.li_data {
+  display: inline;
+  background-color: #0069d9;
+  justify-content: space-evenly;
+  margin-left: 10px;
+}
+
+.ActiveListContainer h2 {
+  margin-top: 0;
+  text-align: center;
+  border-bottom: 1px solid silver;
+}
+.ActiveList input {
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid silver;
+  margin-top: 5px;
+  margin-left: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.ActiveList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ActiveList li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.ActiveList li:last-child {
+  border-bottom: none;
+}
+
+.ActiveList li div {
+  margin-bottom: 5px;
+}
+
+.ActiveList li button {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #ff6200;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  margin-left: 20px;
+}
+
+.ActiveList li button:hover {
+  background-color: #0069d9;
+}

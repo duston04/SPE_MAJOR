@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     public Optional<Customer> findByUserId(int id);
+
+    public Optional<Customer> findByUsername(String username);
 }
