@@ -13,13 +13,35 @@ const getAPIChildURLKeys = () => {
 //API Child URL Keys...
 const getFarmerAPIChildURLKeys = () => {
   return {
-    getAddBidKey : "farmer/addBid/"
+    getAddBidKey : "farmer/addBid/",
+    getFarmerProfileDataKey : "farmer/profile/",
+    getCustomerProfileDataKey : "customer/profile/",
+    updateFarmerProfileDataKey : "farmer/update",
+    updateCustomerProfileDataKey : "customer/update",
+    getFarmerBiddersListPerBidKey : "farmer/customersPerBid/",
+    getFarmerSellItemBidKey : "farmer/completeBid/",
+    getFarmerDeleteBidKey : "farmer/deleteBid/",
+    getFarmerExpiredAndDeletedBidsKey : "farmer/expiredAndDeletedBids/",
+    getFarmerCompletedBidsKey : "farmer/completedBids/"
+  };
+};
+
+
+//API Child URL Keys...
+const getCustomerAPIChildURLKeys = () => {
+  return {
+    getActiveBidsListKey : "customer/activeBidsNotBiddedOn/",
+    setPriceOfCustomerOnBidKey : "customer/setPrice",
+    getCustomerExpiredAndDeletedBidsKey : "customer/deletedBidsForCustomer/",
+    getCustomerWonBidsKey : "customer/getWonBiddings/",
+    getCustomerActiveBidsKey : "customer/activeBidsForACustomer/",
   };
 };
 
 const APIURLUtilities = {
   getAPIChildURLKeys,
-  getFarmerAPIChildURLKeys
+  getFarmerAPIChildURLKeys,
+  getCustomerAPIChildURLKeys
 };
 
 export default APIURLUtilities;

@@ -5,6 +5,8 @@ import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.model.Role;
 import com.example.spe_major.repository.CustomerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ public class CustomerService {
     UserService userService;
     PasswordEncoder passwordEncoder;
 
+    Logger logger = LoggerFactory.getLogger(CustomerService.class);
+
     public CustomerService(CustomerRepository customerRepository, UserService userService, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.userService = userService;
@@ -29,6 +33,7 @@ public class CustomerService {
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customer.setRole(Role.ROLE_CUSTOMER);
         Customer customer1 = customerRepository.save(customer);
+        logger.trace("Customer Registered");
         return customer1;
     }
 
@@ -46,10 +51,12 @@ public class CustomerService {
         updatedCustomer.get().setContact(customer.getContact());
 
         Customer customer1 = customerRepository.save(updatedCustomer.get());
+        logger.trace("Customer Profile Updated");
         return customer1;
     }
 
     public Customer getProfile(String customerUsername){
+        logger.trace("Customer Profile fetched");
         return customerRepository.findByUsername(customerUsername).get();
     }
 }

@@ -52,7 +52,8 @@ const NavBar2 = (props) => {
   const CustomerNavigationOptions = [
     { option: "Customer BuyNewItem List", name: "Buy New Item" },
     { option: "Customer Active List", name: "Active Bids" },
-    { option: "Customer Completed List", name: "Completed Bids" },
+    { option: "Customer Expired List", name: "Expired Bids" },
+    { option: "Customer Winning List", name: "Won Bids" },
     { option: "Customer Profile", name: "Profile Settings" },
   ];
   return (

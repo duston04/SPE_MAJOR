@@ -15,14 +15,17 @@ const AddNewBid = (props) => {
 
   const handleCategoryChange = (e) => {
     updateUserBidCategoryData({ type: e.target.value, subcategory: "" });
+    //props.setShowBidersList(false);
   };
 
   const handleItemChange = (e) => {
     updateUserBidCategoryData({ subcategory: e.target.value });
+    //props.setShowBidersList(false);
   };
 
   //Update User registration data...
   const updateUserBidCategoryData = (updatedData) => {
+    props.setShowBidersList(false);
     setBidCategoryData((bidCategoryData) => {
       console.log({ ...bidCategoryData, ...updatedData });
       return { ...bidCategoryData, ...updatedData };
@@ -31,6 +34,7 @@ const AddNewBid = (props) => {
 
   //Update User registration data...
   const updateUserBidData = (updatedData) => {
+    props.setShowBidersList(false);
     setBidData((bidData) => {
       console.log({ ...bidData, ...updatedData });
       return { ...bidData, ...updatedData };
@@ -51,6 +55,7 @@ const AddNewBid = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.setShowBidersList(false);
 
     const categoryValidationData =
       FarmerUtility.checkBidCategoryDataValidations(bidData, bidCategoryData);

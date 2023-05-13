@@ -4,6 +4,8 @@ import com.example.spe_major.model.Customer;
 import com.example.spe_major.model.Farmer;
 import com.example.spe_major.services.CustomerService;
 import com.example.spe_major.services.FarmerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ public class RegisterController {
 
     CustomerService customerService;
 
+    Logger logger = LoggerFactory.getLogger(RegisterController.class);
+
     public RegisterController(FarmerService farmerService, CustomerService customerService) {
         this.farmerService = farmerService;
         this.customerService = customerService;
@@ -27,6 +31,7 @@ public class RegisterController {
 
     @PostMapping("/farmer")
     public ResponseEntity<Farmer> registerFarmer(@RequestBody Farmer farmer){
+        logger.info("Farmer register API Hit");
         Farmer savedFarmer;
         try{
             savedFarmer = farmerService.addFarmer(farmer);
@@ -39,6 +44,7 @@ public class RegisterController {
 
     @PostMapping("/customer")
     public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer){
+        logger.info("Customer register API Hit");
         Customer savedCustomer;
         try{
             savedCustomer = customerService.addCustomer(customer);

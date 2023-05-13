@@ -11,7 +11,7 @@
   border-radius: 10px;
 }
 .CompletedList {
-  background-color: #2ecc71;
+  background-color: #228b22ce;
   max-height: 400px;
   overflow-y: scroll;
   height: 350px;

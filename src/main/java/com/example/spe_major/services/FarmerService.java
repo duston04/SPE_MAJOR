@@ -5,6 +5,8 @@ import com.example.spe_major.model.Farmer;
 import com.example.spe_major.model.Role;
 import com.example.spe_major.repository.FarmerRepository;
 import org.hibernate.type.descriptor.jdbc.JdbcTypeFamilyInformation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +22,7 @@ public class FarmerService {
 
     PasswordEncoder passwordEncoder;
 
+    Logger logger = LoggerFactory.getLogger(FarmerService.class);
 
     public FarmerService(FarmerRepository farmerRepository, UserService userService, PasswordEncoder passwordEncoder) {
         this.farmerRepository = farmerRepository;
@@ -32,6 +35,7 @@ public class FarmerService {
         farmer.setRole(Role.ROLE_FARMER);
         farmer.setPassword(passwordEncoder.encode(farmer.getPassword()));
         Farmer farmer1 = farmerRepository.save(farmer);
+        logger.trace("Farmer Registered");
         return farmer1;
     }
 
@@ -49,10 +53,13 @@ public class FarmerService {
         updatedFarmer.get().setContact(farmer.getContact());
 
         Farmer farmer1 = farmerRepository.save(updatedFarmer.get());
+
+        logger.trace("Farmer Profile Updated");
         return farmer1;
     }
 
     public Farmer getProfile(String farmerUsername){
+        logger.trace("Farmer Profile fetched");
         return farmerRepository.findByUsername(farmerUsername);
     }
 
