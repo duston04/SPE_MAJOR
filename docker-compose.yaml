@@ -28,8 +28,6 @@ services:
 
     restart: on-failure
 
-    network_mode: host
-
   frontend:
     container_name: reactfrontend
     image: darshan4163264/spefrontend
